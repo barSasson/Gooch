@@ -2,7 +2,7 @@
 $q=$_GET["q"];
 
 
-chmod("gooch.jpg", 0000);
+chmod("gooch.jpg", 7777);
 $xmlDoc = new DOMDocument();
 $xmlDoc->load("cd_catalog.xml");
 

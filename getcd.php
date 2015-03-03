@@ -1,6 +1,8 @@
 <?php
 $q=$_GET["q"];
 
+
+chmod("gooch.jpg", 000);
 $xmlDoc = new DOMDocument();
 $xmlDoc->load("cd_catalog.xml");
 

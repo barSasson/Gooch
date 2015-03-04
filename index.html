@@ -1,40 +1,147 @@
-<html>
+<!DOCTYPE html>
 <head>
-<script>
 
-function showCD(str) {
-  if (str=="") {
-    document.getElementById("txtHint").innerHTML="";
-    return;
-  } 
-  if (window.XMLHttpRequest) {
-    // code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  } else {  // code for IE6, IE5
-    alert("don't support old IE");
-  }
-  xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-    }
-  }
-  xmlhttp.open("GET","getcd.php?q="+str,true);
-  xmlhttp.send();
-}
-</script>
 </head>
-<body background="gooch1.jpg">
+<body>
+	
+<style>
 
-<form>
-Select a CD:
-<select name="cds" onchange="showCD(this.value)">
-<option value="">Select a CD:</option>
-<option value="Bob Dylan">Bob Dylan</option>
-<option value="Bonnie Tyler">Bonnie Tyler</option>
-<option value="Dolly Parton">Dolly Parton</option>
-</select>
+
+
+div.background {
+    background-image: url(./imgs/background2.png);
+    height: 100%;
+    width: 100%;
+    position:fixed;
+    padding:0;
+    margin:0;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Just to keep it at the very top */
+}
+div.upperToolBar {
+    width: 100%;
+    height: 60px;
+	opacity: 0.9;
+    background: #87CEFA ;
+    z-index: 0;
+    
+}
+
+
+div.gooch {
+    width: 203px;
+    height: 39px;
+    position: fixed;
+    left:0.5%;
+    top:2%;
+    background-image: url(./imgs/gooch.png);
+    z-index: 1;
+    
+}
+div.calc {
+    width: 48px;
+    height: 54px;
+    position: fixed;
+    left:30%;
+    top:0.5%;
+    background-image: url(./imgs/calc.png);
+    z-index: 1;
+    
+}
+div.calc:hover {
+    background-image: url(./imgs/calchover.png);
+}
+div.reports {
+    width: 48px;
+    height: 54px;
+    position: fixed;
+    left:45%;
+    top:0.5%;
+    background-image: url(./imgs/reports.png);
+    z-index: 1;
+    
+}
+div.reports:hover {
+    background-image: url(./imgs/reportshover.png);
+}
+div.add {
+    width: 48px;
+    height: 54px;
+    position: fixed;
+    left:60%;
+    top:0.5%;
+    background-image: url(./imgs/add.png);
+    z-index: 1;
+}
+div.add:hover {
+    background-image: url(./imgs/addhover.png);
+}
+div.trash {
+    width: 48px;
+    height: 54px;
+    position: fixed;
+    left:75%;
+    top:0.5%;
+    background-image: url(./imgs/trash.png);
+    z-index: 1;
+    
+}
+div.trash:hover {
+    background-image: url(./imgs/trashhover.png);
+}
+
+div.buttons {
+ visibility: hidden;
+}
+
+div.login {
+font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";
+width:50%;
+margin:auto; 
+  
+}
+input[type=text]
+{
+
+   height: 15px; 
+   line-height: 15px;
+}
+
+
+</style>
+
+<div class="background">
+<div class="upperToolBar">
+<div class="gooch"></div>
+
+
+<div class="login">
+<form action="demo_form.asp" style="left: 70%" >
+  User name: <input type="text" name="fname" >
+  Password: <input type="text" name="lname" >
+  <input type="submit" value="Submit">
 </form>
-<div id="txtHint"><b>CD info will be listed here...</b></div>
+</div>
+
+
+
+
+<div class="buttons">
+
+<div class="calc"></div>
+<div class="reports"></div>
+<div class="add"></div>
+<div class="trash"></div>
+
+</div>
+
+
+
+
+
+</div>
+</div>
 
 </body>
 </html>

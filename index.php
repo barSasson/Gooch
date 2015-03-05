@@ -8,6 +8,21 @@
 <style>
 
 
+<?php
+
+if (!isset($_SESSION))
+ { 
+ if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["userName"]=="bar")
+{session_start();  echo "div.login   {visibility:hidden;} div.buttons {visibility:visible;}";}
+else
+echo "div.login   {visibility:visible;} div.buttons {visibility:hidden;}" ;
+ }
+ else 
+echo "div.login   {visibility:hidden;} div.buttons {visibility:visible;}" ;
+ 
+
+?>
+
 
 div.background {
     background-image: url(./imgs/background2.png);
@@ -100,27 +115,6 @@ div.trash:hover {
 }
 
 
-<?php
-
-if (!isset($_SESSION) && $_POST["userName"]=="bar") { 
-session_start();
-
-echo "div.buttons {
- visibility: hidden;}
- div.login {
- visibility: visible; }
- "
- }
- else{
- echo "div.buttons {
- visibility: visible;}
- div.login {
- visibility:hidden; }
- "
- }
-$url=$_SERVER['PHP_SELF'];
-
-?>
 
 
 

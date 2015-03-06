@@ -1,25 +1,20 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <title>-Gooch-</title>
 <head>
-
-</head>
-<body>
 	
 <style>
 
 
 <?php
 
-if (!isset($_SESSION))
- { 
- if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["userName"]=="bar")
-{session_start();  echo "div.login   {visibility:hidden;} div.buttons {visibility:visible;}";}
+ if ($_SESSION["id"]==5) 
+ {  echo "div.login   {visibility:hidden;} div.buttons {visibility:visible;}";   }
 else
 echo "div.login   {visibility:visible;} div.buttons {visibility:hidden;}" ;
- }
- else 
-echo "div.login   {visibility:hidden;} div.buttons {visibility:visible;}" ;
- 
+
 
 ?>
 
@@ -61,6 +56,10 @@ div.gooch {
          -o-animation: fadein 1s; /* Opera < 12.1 */
             animation: fadein 1s;
   
+}
+
+div.gooch:hover {
+    opacity:1;
 }
 div.calc {
     width: 48px;
@@ -204,10 +203,6 @@ opacity: 0.8;
 
 
 <div class="gooch"></div>
-
-
-
-</div>
  
 
 
@@ -224,15 +219,22 @@ opacity: 0.8;
 
 <div class="login">
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+<form action="login.php" method="post" >
 <b>User name: </b><input type="text" name="userName">
 <b>Password: </b><input type="password" name="Password" >
 <input type="submit" value="-->>"> 
-</form>
 
+</form>
 </div><!--login-->
+
+<form action="logout.php" method=post><input type="submit" value="-->>" style="background: black; z-index: -1; left: 70%;top: 1%; position:fixed;"> </form>
 
 </div><!--toolbar-->
 
+</head>
+<body>
+
+
+</div><!--background-div-->
 </body>
 </html>

@@ -2,9 +2,8 @@
 session_start();
 
 
-    chmod("css/flicity.css", 000);
-     chmod("css/flickity.pkgd.min.js", 000);
-
+    chmod("css/flicity.css", 777);
+     chmod("css/flickity.pkgd.min.js", 777)
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">

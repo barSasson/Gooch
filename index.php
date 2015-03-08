@@ -2,7 +2,8 @@
 session_start();
 
 
-    chmod("./css/flicity.css", 000);
+    chmod("css/flicity.css", 000);
+     chmod("css/flickity.pkgd.min.js", 000);
 
 
 ?>

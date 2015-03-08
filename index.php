@@ -1,13 +1,131 @@
 <?php
 session_start();
+
+
+    chmod("./css/flicity.css", 000);
+
+
 ?>
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<meta http-equiv="content-type" type="text/html;charset=utf-8" />
+  <link rel="stylesheet" href="css/flickity.css" media="screen">
+       <script src="css/flickity.pkgd.min.js"></script>
+       <script>
+
+docReady( function() {
+  var flkty = new Flickity('.gallery');
+  
+});
+
+</script>
+       
 <title>-Gooch-</title>
 <head>
+	<link rel="shortcut icon" href="imgs/ico.png">
+	
 	
 <style>
 
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
+body { font-family: sans-serif; }
+
+.gallery {
+position:fixed;
+left:300px;
+let:300px;
+  background: #87CEFA ;
+}
+
+.gallery-cell {
+margin-right: 10px;
+  width: 100px;
+  height: 100px;
+
+  /* flex-box, center image in cell */
+  display: -webkit-box;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+
+.gallery-cell img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+   text-align: center;
+  /* dim unselected */
+  opacity: 0.7;
+  -webkit-transform: scale(0.85);
+          transform: scale(0.85);
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s, transform 0.3s, -webkit-filter 0.3s, filter 0.3s;
+          transition: opacity 0.3s, transform 0.3s, filter 0.3s;
+}
+
+/* brighten selected image */
+.is-selected img {
+  opacity: 1;
+ 
+  background-image: url(./imgs/background2.png);
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-filter: none;
+          filter: none;
+}
+
+@media screen and ( min-width: 768px ) {
+  .gallery-cell {
+    height: 50px;
+  }
+}
+
+@media screen and ( min-width: 960px ) {
+  .gallery-cell {
+    width: 70px;
+  }
+}
+
+/* buttons, no circle */
+.flickity-prev-next-button {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  opacity: 0.6;
+}
+.flickity-prev-next-button:hover {
+  background: transparent;
+  opacity: 1;
+}
+/* arrow color */
+.flickity-prev-next-button .arrow {
+  fill: white;
+}
+.flickity-prev-next-button.no-svg {
+  color: white;
+}
+/* closer to edge */
+.flickity-prev-next-button.previous { left: 0; }
+.flickity-prev-next-button.next { right: 0; }
+/* hide disabled button */
+.flickity-prev-next-button:disabled {
+  display: none;
+}
+ .gallery-cell.is-selected {
+  background: #74e244;
+  opacity:0.8;
+  
+  }
+</style>
+<style>
 <?php
 
  if ($_SESSION["id"]==5) 
@@ -40,11 +158,12 @@ div.upperToolBar {
 
 
 div.gooch {
+
     width: 203px;
     height: 39px;
     left:2%;
     top:1.7%;
-    position:fixed;
+    position:absolute;
     background-image: url(./imgs/gooch.png);
     float:left;
     z-index: -1;
@@ -124,9 +243,9 @@ font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial
     line-height: 50px;
     position: fixed;
     top: 0.8%; 
-    left: 18%;
+    left: 0%;
    
-
+ margin-left: 230px; 
     opacity:0.8;
     border-radius: 5px;
     text-align: center;
@@ -202,7 +321,7 @@ opacity: 0.8;
    <div class="upperToolBar">
 
 
-<div class="gooch"></div>
+
  
 
 
@@ -215,11 +334,13 @@ opacity: 0.8;
 
 </div><!--buttons-->
 
+<div class="gooch"></div>
 
 
 <div class="login">
 
 <form action="login.php" method="post" >
+
 <b>User name: </b><input type="text" name="userName">
 <b>Password: </b><input type="password" name="Password" >
 <input type="submit" value="-->>"> 
@@ -231,8 +352,25 @@ opacity: 0.8;
 
 </div><!--toolbar-->
 
+<div class="wrapper" style="top:80px; z-index:100;">
+<div class="gallery" style="width:300px;height:50px;">
+
+  <div class="gallery-cell">
+  apple
+  </div>
+  <div class="gallery-cell">
+   בר ששון
+  </div>
+  <div class="gallery-cell" >
+    שני
+  </div>
+  
+</div>
+</div>
+
 </head>
 <body>
+ 
 
 
 </div><!--background-div-->

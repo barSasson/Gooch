@@ -30,7 +30,7 @@ var wrapper = document.createElement("div");
 wrapper.style.position="absolute"
 wrapper.style.left=position_left.toString() + "px";
 wrapper.style.top=position_top.toString()+"px";
-wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' width:300px;height:52px;position:absolute;background-color: rgba(135, 206, 250, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' ><div class='gallery-cell'>אופיר</div>  <div class='gallery-cell'>אריאל</div><div class='gallery-cell'>בר</div> <div class='gallery-cell'>גלית</div><div class='gallery-cell'>גף</div><div class='gallery-cell'>הראל</div><div class='gallery-cell'>חי</div><div class='gallery-cell'>טל</div><div class='gallery-cell'>טלי</div><div class='gallery-cell'>יעל</div><div class='gallery-cell'>לבנת</div><div class='gallery-cell'>ליה</div><div class='gallery-cell'>מור</div><div class='gallery-cell'>נועם</div><div class='gallery-cell'>עדן</div><div class='gallery-cell'>עופר</div><div class='gallery-cell'>עלמה</div><div class='gallery-cell'>פנחס</div><div class='gallery-cell'>קטיה</div><div class='gallery-cell'>רועי</div></div><input type='text' style='position:absolute; top:60px; left:70px;' />";
+wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' display:block;width:300px;height:52px;position:absolute;background-color: rgba(135, 206, 250, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' ><div class='gallery-cell'>אופיר</div>  <div class='gallery-cell'>אריאל</div><div class='gallery-cell'>בר</div> <div class='gallery-cell'>גלית</div><div class='gallery-cell'>גף</div><div class='gallery-cell'>הראל</div><div class='gallery-cell'>חי</div><div class='gallery-cell'>טל</div><div class='gallery-cell'>טלי</div><div class='gallery-cell'>יעל</div><div class='gallery-cell'>לבנת</div><div class='gallery-cell'>ליה</div><div class='gallery-cell'>מור</div><div class='gallery-cell'>נועם</div><div class='gallery-cell'>עדן</div><div class='gallery-cell'>עופר</div><div class='gallery-cell'>עלמה</div><div class='gallery-cell'>פנחס</div><div class='gallery-cell'>קטיה</div><div class='gallery-cell'>רועי</div></div><input type='text' style='position:absolute; top:60px; left:70px;' />";
 document.getElementsByClassName("main")[0].appendChild(wrapper);
 var initial=Math.floor((Math.random() * 15) + 1)
  var flkty2 = new Flickity('.gallery' + gallery_num.toString(),{pageDots:false, "initialIndex": initial });
@@ -58,7 +58,7 @@ var initial=Math.floor((Math.random() * 15) + 1)
   box-sizing: border-box;
 }
 
-body { font-family: sans-serif; }
+body { font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";}
 
 .gallery {
  width:200px;
@@ -74,8 +74,8 @@ position:absolute;
 
 .gallery-cell {
 margin-right: 10px;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
 opacity: 1;
   /* flex-box, center image in cell */
   display: -webkit-box;
@@ -92,17 +92,7 @@ opacity: 1;
 /* brighten selected image */
 
 
-@media screen and ( min-width: 768px ) {
-  .gallery-cell {
-    height: 50px;
-  }
-}
 
-@media screen and ( min-width: 960px ) {
-  .gallery-cell {
-    width: 70px;
-  }
-}
 
 /* buttons, no circle */
 .flickity-prev-next-button {
@@ -189,13 +179,13 @@ div.upperToolBar {
 
 
 div.gooch {
-
     width: 203px;
     height: 39px;
     left:2%;
     top:1.7%;
     position:absolute;
     background-image: url(./imgs/gooch.png);
+    color:transparent;
     float:left;
     z-index: -1;
     opacity:0.8;
@@ -211,7 +201,10 @@ div.gooch {
 div.gooch:hover {
     opacity:1;
 }
+
+
 div.calc {
+
     width: 48px;
     height: 54px;
     position: fixed;
@@ -278,7 +271,7 @@ font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial
     opacity:0.8;
     border-radius: 5px;
     text-align: center;
-    z-index: 1000; /* 1px higher than the overlay layer */
+    z-index: 1000; 
 
 
 
@@ -344,6 +337,23 @@ opacity: 0.8;
     to   { opacity: 0.8; }
 }
 
+
+@media screen and (max-width:720px){
+      div.gooch{
+background:transparent;
+color:black;
+left:5px;
+top:2px;
+
+position:absolute;
+font-size: 35pt;
+    }
+    
+
+}
+
+
+
 </style>
  
 <div class="background">
@@ -352,7 +362,7 @@ opacity: 0.8;
 
 
  
-
+<div class="gooch"><h>Gooch</h></div>
 
 <div class="buttons">
 
@@ -363,7 +373,7 @@ opacity: 0.8;
 
 </div><!--buttons-->
 
-<div class="gooch"></div>
+
 
 
 <div class="login">
@@ -384,7 +394,7 @@ opacity: 0.8;
 </div><!--toolbar-->
 
 
- <div class="main" style="width:82.5%;min-height:100%;overflow:scroll;position:fixed;top:60px;left:10%; background-color: rgba(249, 252, 255, 0.7);">
+ <div class="main" style="width:82.5%;height:100%;overflow:scroll;position:absolute;top:60px;left:10%; background-color: rgba(249, 252, 255, 0.7);">
  
  <img src="imgs/add_gallery.png" id="add_gallery2" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px;" onclick="add_gallery()" />
 <!-- <div class="wrapper" style="position:absolute;left:50px;top:20px; z-index:100;">

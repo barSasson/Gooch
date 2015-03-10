@@ -168,7 +168,7 @@ echo "div.login   {visibility:visible;} div.buttons {visibility:hidden;}  div.ma
 
 
 div.background {
-    background-image: url(./imgs/background2.png);
+    background-image: url(./imgs/background1.png);
     height: 100%;
     width: 100%;
     position:fixed;
@@ -345,7 +345,15 @@ opacity: 0.8;
     from { opacity: 0; }
     to   { opacity: 0.8; }
 }
-
+.clearfix:after
+{
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    line-height: 0;  
+}
 </style>
  
 <div class="background">
@@ -384,27 +392,31 @@ opacity: 0.8;
 </div><!--toolbar-->
 
 
- <div class="main" style="width:100%;height:870px;position:fixed;top:60px; background-color: rgba(249, 252, 255, 0.9);">
+ <div class="main" style="width:100%;height:auto;position:fixed;top:60px; background-color: rgba(249, 252, 255, 0.9);">
  
  <img src="imgs/add_gallery.png" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px;" onclick="add_gallery()" />
 <!-- <div class="wrapper" style="position:absolute;left:50px;top:20px; z-index:100;">
 
 <div class="gallery" >
   <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div>
- -->
+
  
 
   
   
 </div>
 </div><!--gallery-->
+-->
 
+ njnmnmnmnmn
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>jkjk<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>hhh<br><br><br><br><br><br>hhh<br><br><br>hhh
+
+</div>
 
 
 </head>
 <body>
  
-
 
 </div><!--background-div-->
 </body>

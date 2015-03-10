@@ -20,7 +20,7 @@ var position_top=20;
 var position_left=50;
 var gallery_num=0;
 function add_gallery (){
-if(gallery_num>=14)
+if(gallery_num>=15)
 {
 alert("Too Many Waiters");
 } 
@@ -30,16 +30,16 @@ var wrapper = document.createElement("div");
 wrapper.style.position="absolute"
 wrapper.style.left=position_left.toString() + "px";
 wrapper.style.top=position_top.toString()+"px";
-wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' width:200px;height:52px;position:absolute;background-color: rgba(135, 206, 250, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' ><div class='gallery-cell'>אופיר</div>  <div class='gallery-cell'>אריאל</div><div class='gallery-cell'>בר</div> <div class='gallery-cell'>גלית</div><div class='gallery-cell'>גף</div><div class='gallery-cell'>הראל</div><div class='gallery-cell'>חי</div><div class='gallery-cell'>טל</div><div class='gallery-cell'>טלי</div><div class='gallery-cell'>יעל</div><div class='gallery-cell'>לבנת</div><div class='gallery-cell'>ליה</div><div class='gallery-cell'>מור</div><div class='gallery-cell'>נועם</div><div class='gallery-cell'>עדן</div><div class='gallery-cell'>עופר</div><div class='gallery-cell'>עלמה</div><div class='gallery-cell'>פנחס</div><div class='gallery-cell'>קטיה</div><div class='gallery-cell'>רועי</div></div>";
-
+wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' width:300px;height:52px;position:absolute;background-color: rgba(135, 206, 250, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' ><div class='gallery-cell'>אופיר</div>  <div class='gallery-cell'>אריאל</div><div class='gallery-cell'>בר</div> <div class='gallery-cell'>גלית</div><div class='gallery-cell'>גף</div><div class='gallery-cell'>הראל</div><div class='gallery-cell'>חי</div><div class='gallery-cell'>טל</div><div class='gallery-cell'>טלי</div><div class='gallery-cell'>יעל</div><div class='gallery-cell'>לבנת</div><div class='gallery-cell'>ליה</div><div class='gallery-cell'>מור</div><div class='gallery-cell'>נועם</div><div class='gallery-cell'>עדן</div><div class='gallery-cell'>עופר</div><div class='gallery-cell'>עלמה</div><div class='gallery-cell'>פנחס</div><div class='gallery-cell'>קטיה</div><div class='gallery-cell'>רועי</div></div><input type='text' style='position:absolute; top:60px; left:70px;' />";
 document.getElementsByClassName("main")[0].appendChild(wrapper);
- var flkty2 = new Flickity('.gallery' + gallery_num.toString(),{pageDots:false});
+var initial=Math.floor((Math.random() * 15) + 1)
+ var flkty2 = new Flickity('.gallery' + gallery_num.toString(),{pageDots:false, "initialIndex": initial });
  gallery_num+=1;
- position_top+=70;
+ position_top+=100;
  if (position_top>500)
  {
  position_top=20;
- position_left+=250;
+ position_left+=320;
  }
 }
 }
@@ -65,7 +65,7 @@ body { font-family: sans-serif; }
  height:52px;
 position:absolute;
  background-color: rgba(135, 206, 250, 0.5);
-  border-radius: 15px;
+  border-radius: 2px;
  border-style: solid;
  
     border-width: 1px;
@@ -384,9 +384,9 @@ opacity: 0.8;
 </div><!--toolbar-->
 
 
- <div class="main" style="width:100%;height:870px;position:fixed;top:60px; background-color: rgba(249, 252, 255, 0.9);">
+ <div class="main" style="width:82.5%;min-height:100%;overflow:scroll;position:fixed;top:60px;left:10%; background-color: rgba(249, 252, 255, 0.7);">
  
- <img src="imgs/add_gallery.png" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px;" onclick="add_gallery()" />
+ <img src="imgs/add_gallery.png" id="add_gallery2" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px;" onclick="add_gallery()" />
 <!-- <div class="wrapper" style="position:absolute;left:50px;top:20px; z-index:100;">
 
 <div class="gallery" >

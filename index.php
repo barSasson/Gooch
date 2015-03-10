@@ -1,21 +1,48 @@
-<?php
+﻿<?php
 session_start();
 
-
-    chmod("css/flicity.css", 777);
-     chmod("css/flickity.pkgd.min.js", 777)
-
 ?>
+	
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <meta http-equiv="content-type" type="text/html;charset=utf-8" />
   <link rel="stylesheet" href="css/flickity.css" media="screen">
        <script src="css/flickity.pkgd.min.js"></script>
        <script>
+       
+       docReady      ( 
+       function() {
+  var flkty2 = new Flickity('.gallery',{pageDots:false});
+                  }
+                    );
 
-docReady( function() {
-  var flkty = new Flickity('.gallery');
-  
-});
+       
+var position_top=20;
+var position_left=50;
+var gallery_num=0;
+function add_gallery (){
+if(gallery_num>=14)
+{
+alert("Too Many Waiters");
+} 
+else
+{
+var wrapper = document.createElement("div");
+wrapper.style.position="absolute"
+wrapper.style.left=position_left.toString() + "px";
+wrapper.style.top=position_top.toString()+"px";
+wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' width:200px;height:52px;position:absolute;background-color: rgba(135, 206, 250, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' ><div class='gallery-cell'>אופיר</div>  <div class='gallery-cell'>אריאל</div><div class='gallery-cell'>בר</div> <div class='gallery-cell'>גלית</div><div class='gallery-cell'>גף</div><div class='gallery-cell'>הראל</div><div class='gallery-cell'>חי</div><div class='gallery-cell'>טל</div><div class='gallery-cell'>טלי</div><div class='gallery-cell'>יעל</div><div class='gallery-cell'>לבנת</div><div class='gallery-cell'>ליה</div><div class='gallery-cell'>מור</div><div class='gallery-cell'>נועם</div><div class='gallery-cell'>עדן</div><div class='gallery-cell'>עופר</div><div class='gallery-cell'>עלמה</div><div class='gallery-cell'>פנחס</div><div class='gallery-cell'>קטיה</div><div class='gallery-cell'>רועי</div></div>";
+
+document.getElementsByClassName("main")[0].appendChild(wrapper);
+ var flkty2 = new Flickity('.gallery' + gallery_num.toString(),{pageDots:false});
+ gallery_num+=1;
+ position_top+=70;
+ if (position_top>500)
+ {
+ position_top=20;
+ position_left+=250;
+ }
+}
+}
 
 </script>
        
@@ -34,17 +61,22 @@ docReady( function() {
 body { font-family: sans-serif; }
 
 .gallery {
-position:fixed;
-left:300px;
-let:300px;
-  background: #87CEFA ;
+ width:200px;
+ height:52px;
+position:absolute;
+ background-color: rgba(135, 206, 250, 0.5);
+  border-radius: 15px;
+ border-style: solid;
+ 
+    border-width: 1px;
+ 
 }
 
 .gallery-cell {
 margin-right: 10px;
   width: 100px;
   height: 100px;
-
+opacity: 1;
   /* flex-box, center image in cell */
   display: -webkit-box;
   display: -webkit-flex;
@@ -56,31 +88,9 @@ margin-right: 10px;
           align-items: center;
 }
 
-.gallery-cell img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-   text-align: center;
-  /* dim unselected */
-  opacity: 0.7;
-  -webkit-transform: scale(0.85);
-          transform: scale(0.85);
-  -webkit-filter: blur(5px);
-          filter: blur(5px);
-  -webkit-transition: opacity 0.3s, -webkit-transform 0.3s, transform 0.3s, -webkit-filter 0.3s, filter 0.3s;
-          transition: opacity 0.3s, transform 0.3s, filter 0.3s;
-}
 
 /* brighten selected image */
-.is-selected img {
-  opacity: 1;
- 
-  background-image: url(./imgs/background2.png);
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  -webkit-filter: none;
-          filter: none;
-}
+
 
 @media screen and ( min-width: 768px ) {
   .gallery-cell {
@@ -96,13 +106,15 @@ margin-right: 10px;
 
 /* buttons, no circle */
 .flickity-prev-next-button {
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  opacity: 0.6;
+  width: 20px;
+  height: 20px;
+  background: black;
+  opacity: 0.5;
 }
 .flickity-prev-next-button:hover {
-  background: transparent;
+   width: 20px;
+  height: 20px;
+  background: black;
   opacity: 1;
 }
 /* arrow color */
@@ -110,7 +122,7 @@ margin-right: 10px;
   fill: white;
 }
 .flickity-prev-next-button.no-svg {
-  color: white;
+  color: black;
 }
 /* closer to edge */
 .flickity-prev-next-button.previous { left: 0; }
@@ -120,10 +132,29 @@ margin-right: 10px;
   display: none;
 }
  .gallery-cell.is-selected {
-  background: #74e244;
-  opacity:0.8;
-  
+   background-color: rgba(166, 233, 137, 0.6);
+  border: 1px solid black;
+  font-weight: bold;
+  border-radius: 15px;
+  color: black;
   }
+  
+  .flickity-page-dots {
+  bottom: -35px;
+}
+/* white circles */
+.flickity-page-dots .dot {
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  background: transparent;
+  border: 3px solid black;
+}
+/* fill-in selected dot */
+.flickity-page-dots .dot.is-selected {
+  background: white;
+  opacity:1;
+}
 </style>
 <style>
 <?php
@@ -142,6 +173,7 @@ div.background {
     height: 100%;
     width: 100%;
     position:fixed;
+
     padding:0;
     top: 0;
     left: 0;
@@ -352,21 +384,23 @@ opacity: 0.8;
 
 </div><!--toolbar-->
 
-<div class="wrapper" style="top:80px; z-index:100;">
-<div class="gallery" style="width:300px;height:50px;">
 
-  <div class="gallery-cell">
-  apple
-  </div>
-  <div class="gallery-cell">
-   בר ששון
-  </div>
-  <div class="gallery-cell" >
-    שני
-  </div>
+ <div class="main" style="width:850px;height:870px;position:fixed;top:60px;left:200px; background-color: rgba(249, 252, 255, 0.9);">
+ 
+ <img src="imgs/add_gallery.png" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px;" onclick="add_gallery()" />
+<!-- <div class="wrapper" style="position:absolute;left:50px;top:20px; z-index:100;">
+
+<div class="gallery" >
+  <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div>
+ -->
+ 
+
+  
   
 </div>
-</div>
+</div><!--gallery-->
+
+
 
 </head>
 <body>

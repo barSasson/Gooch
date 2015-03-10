@@ -217,13 +217,11 @@ div.calc {
     position: fixed;
     left:30%;
     top:0.5%;
-    background-image: url(./imgs/calc.png);
+    background-image: url(./imgs/calchover.png);
     z-index: 1;
     
 }
-div.calc:hover {
-    background-image: url(./imgs/calchover.png);
-}
+
 div.reports {
     width: 48px;
     height: 54px;
@@ -379,7 +377,9 @@ opacity: 0.8;
 </form>
 </div><!--login-->
 
+
 <form action="logout.php" id="logout" method=post><input type="submit" value="Logout" style="background: white; z-index: -1; left: 90%;top: 3%; position:fixed;"> </form>
+
 
 </div><!--toolbar-->
 

@@ -1,6 +1,6 @@
 ﻿<?php
 session_start();
-
+ $xml = simplexml_load_file('./waiters.xml') or die ("Error: failed to open xml") ;
 ?>
 	
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -9,39 +9,85 @@ session_start();
        <script src="css/flickity.pkgd.min.js"></script>
        <script>
        
-       docReady      ( 
-       function() {
-  var flkty2 = new Flickity('.gallery',{pageDots:false});
-                  }
-                    );
-
+     
        
-var position_top=20;
+var position_top=-80;
 var position_left=50;
 var gallery_num=0;
+
+repeatBucket=[];
 function add_gallery (){
 if(gallery_num>=15)
 {
 alert("Too Many Waiters");
 } 
 else
+
+
 {
+gallery_num+=1;
+position_top+=100;
+
+var size=<?php echo $xml['size'];?>;
+var json_waiters = <?php echo json_encode($xml->waiter);?> ;
+var  waitersList="";
+for(var i=0;i<size;i++){
+       waitersList +="<div class='gallery-cell'>" + json_waiters[i] + "</div>";
+    }
+   
 var wrapper = document.createElement("div");
-wrapper.style.position="absolute"
+wrapper.id = gallery_num;
+wrapper.style.position="absolute";
 wrapper.style.left=position_left.toString() + "px";
-wrapper.style.top=position_top.toString()+"px";
-wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' display:block;width:300px;height:52px;position:absolute;background-color: rgba(135, 206, 250, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' ><div class='gallery-cell'>אופיר</div>  <div class='gallery-cell'>אריאל</div><div class='gallery-cell'>בר</div> <div class='gallery-cell'>גלית</div><div class='gallery-cell'>גף</div><div class='gallery-cell'>הראל</div><div class='gallery-cell'>חי</div><div class='gallery-cell'>טל</div><div class='gallery-cell'>טלי</div><div class='gallery-cell'>יעל</div><div class='gallery-cell'>לבנת</div><div class='gallery-cell'>ליה</div><div class='gallery-cell'>מור</div><div class='gallery-cell'>נועם</div><div class='gallery-cell'>עדן</div><div class='gallery-cell'>עופר</div><div class='gallery-cell'>עלמה</div><div class='gallery-cell'>פנחס</div><div class='gallery-cell'>קטיה</div><div class='gallery-cell'>רועי</div></div><input type='text' style='position:absolute; top:60px; left:70px;' />";
+wrapper.style.top=position_top.toString() + "px";
+wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' display:block;width:300px;height:52px;position:absolute;background-color: rgba(198, 134, 245, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' >"+ waitersList + " </div><input type='text' placeholder='שעות' autofocus style='text-align:center;position:absolute; top:60px; left:72px; border:1px solid black;' />";
 document.getElementsByClassName("main")[0].appendChild(wrapper);
-var initial=Math.floor((Math.random() * 15) + 1)
+
+
+var initial=Math.floor( (Math.random() * 17) + 1);
+var counter=0;
+while(typeof repeatBucket[initial] != 'undefined' && counter++ <10)
+{  initial=Math.floor((Math.random() * 17) + 1); }
+repeatBucket[initial]="true";
+
+
+
  var flkty2 = new Flickity('.gallery' + gallery_num.toString(),{pageDots:false, "initialIndex": initial });
- gallery_num+=1;
- position_top+=100;
- if (position_top>500)
+ var add_gallery_button = document.getElementById("add_gallery");
+add_gallery_button.style.top=(position_top + 12) + "px";
+ 
+
+
+/* if (position_top>500)
  {
  position_top=20;
  position_left+=320;
- }
-}
+ } */
+}//else
+
+}//add_gallery_func
+
+  docReady      ( 
+       function() {
+       for(var i=0;i<5;i++)
+  add_gallery();
+  
+  }   );
+  
+function remove_gallery(){
+if(gallery_num>1){
+  repeatBucket=[];
+  document.getElementById(gallery_num).innerHTML=""; 
+  document.getElementById(gallery_num).parentNode.removeChild(document.getElementById(gallery_num));
+  if(gallery_num>1)
+  {
+   position_top-=100;
+   document.getElementById("add_gallery").style.top=(position_top + 12) + "px";
+  }
+  
+  gallery_num-=1;
+  }
+  
 }
 
 </script>
@@ -60,17 +106,6 @@ var initial=Math.floor((Math.random() * 15) + 1)
 
 body { font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";}
 
-.gallery {
- width:200px;
- height:52px;
-position:absolute;
- background-color: rgba(135, 206, 250, 0.5);
-  border-radius: 2px;
- border-style: solid;
- 
-    border-width: 1px;
- 
-}
 
 .gallery-cell {
 margin-right: 10px;
@@ -122,10 +157,10 @@ opacity: 1;
   display: none;
 }
  .gallery-cell.is-selected {
-   background-color: rgba(166, 233, 137, 0.6);
+   background-color: rgba(135,206,250,0.5) ;
   border: 1px solid black;
   font-weight: bold;
-  border-radius: 15px;
+  border-radius: 3pxpx;
   color: black;
   }
   
@@ -158,11 +193,11 @@ echo "div.login   {visibility:visible;} div.buttons {visibility:hidden;}  div.ma
 
 
 div.background {
-    background-image: url(./imgs/background2.png);
+    background-image: url(./imgs/background1.png);
     height: 100%;
     width: 100%;
     position:fixed;
-
+    overflow:scroll;
     padding:0;
     top: 0;
     left: 0;
@@ -170,6 +205,7 @@ div.background {
 }
 div.upperToolBar {
     width: 100%;
+    position:fixed;
     height: 60px;
 	opacity: 0.9;
     background: #87CEFA ;
@@ -179,16 +215,14 @@ div.upperToolBar {
 
 
 div.gooch {
-    width: 203px;
-    height: 39px;
-    left:2%;
-    top:1.7%;
-    position:absolute;
-    background-image: url(./imgs/gooch.png);
-    color:transparent;
-    float:left;
-    z-index: -1;
-    opacity:0.8;
+ background:transparent;
+ opacity:0.7;
+color:black;
+font-weight: bold;
+left:5px;
+top:-5px;
+position:fixed;
+font-size: 40pt;
     
     -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 1s; /* Firefox < 16 */
@@ -197,11 +231,25 @@ div.gooch {
             animation: fadein 1s;
   
 }
-
 div.gooch:hover {
-    opacity:1;
+opacity:1;
 }
 
+@media screen and (max-width:800px){
+div.gooch{
+    font-size: 25pt;
+    left:10px;
+    top:6px;
+        }
+}
+@media screen and (max-width:500px){
+div.gooch{
+    font-size: 15pt;
+
+    position:absolute;
+    top:16px;
+        }
+}
 
 div.calc {
 
@@ -247,8 +295,9 @@ div.trash {
     left:75%;
     top:0.5%;
     background-image: url(./imgs/trash.png);
+    background-repeat:no-repeat;
     z-index: 1;
-    
+ 
 }
 div.trash:hover {
     background-image: url(./imgs/trashhover.png);
@@ -338,20 +387,6 @@ opacity: 0.8;
 }
 
 
-@media screen and (max-width:720px){
-      div.gooch{
-background:transparent;
-color:black;
-left:5px;
-top:2px;
-
-position:absolute;
-font-size: 35pt;
-    }
-    
-
-}
-
 
 
 </style>
@@ -362,7 +397,7 @@ font-size: 35pt;
 
 
  
-<div class="gooch"><h>Gooch</h></div>
+<div class="gooch"><h>-Gooch-</h></div>
 
 <div class="buttons">
 
@@ -394,14 +429,11 @@ font-size: 35pt;
 </div><!--toolbar-->
 
 
- <div class="main" style="width:82.5%;height:100%;overflow:scroll;position:absolute;top:60px;left:10%; background-color: rgba(249, 252, 255, 0.7);">
+ <div class="main" style="margin-left:auto;margin-right:auto; width:70%;height:500px;border-radius: 10px;position:relative;overflow-y:scroll;top:60px; background-color: rgba(249, 252, 255, 0.7); z-index:-2">
  
- <img src="imgs/add_gallery.png" id="add_gallery2" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px;" onclick="add_gallery()" />
-<!-- <div class="wrapper" style="position:absolute;left:50px;top:20px; z-index:100;">
+ <img src="imgs/add_gallery.png" id="add_gallery" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px; opacity:0.8;" onclick="add_gallery()" />
+<img src="imgs/remove_gallery.png" id="remove_gallery" style="width:30px;height:30px; position:absolute; left:370px;top:31.5px; opacity:0.8;" onclick="remove_gallery()" />
 
-<div class="gallery" >
-  <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div>
- -->
  
 
   
@@ -409,7 +441,13 @@ font-size: 35pt;
 </div>
 </div><!--gallery-->
 
-
+<div id="footer" style="position : absolute;
+    bottom : 0;
+    height : 20px;
+    background:rgba(206,216,246,0.7);
+    width:100%;
+    position:fixed;
+    margin-top : 40px;"></div>
 
 </head>
 <body>

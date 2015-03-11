@@ -1,6 +1,12 @@
 ﻿<?php
 session_start();
 
+
+ if (isset($_SESSION["id"]) && $_SESSION["id"]==5) {
+header("Location: ./calc.php");
+}
+
+
 ?>
 	
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -58,7 +64,7 @@ document.getElementsByClassName("main")[0].appendChild(wrapper);
   box-sizing: border-box;
 }
 
-body { font-family: sans-serif; }
+body { font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif"; }
 
 .gallery {
  width:200px;
@@ -164,6 +170,7 @@ opacity: 1;
 else
 echo "div.login   {visibility:visible;} div.buttons {visibility:hidden;}  div.main {visibility:hidden;} #logout{display:none;}" ;
 
+
 ?>
 
 
@@ -189,16 +196,14 @@ div.upperToolBar {
 
 
 div.gooch {
-
-    width: 203px;
-    height: 39px;
-    left:2%;
-    top:1.7%;
-    position:absolute;
-    background-image: url(./imgs/gooch.png);
-    float:left;
-    z-index: -1;
-    opacity:0.8;
+ background:transparent;
+ opacity:0.7;
+color:black;
+font-weight: bold;
+left:5px;
+top:-5px;
+position:fixed;
+font-size: 40pt;
     
     -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
        -moz-animation: fadein 1s; /* Firefox < 16 */
@@ -207,10 +212,20 @@ div.gooch {
             animation: fadein 1s;
   
 }
-
 div.gooch:hover {
-    opacity:1;
+opacity:1;
 }
+
+@media screen and (max-width:1000px){
+div.gooch{
+    font-size: 25pt;
+    left:10px;
+    top:6px;
+        }
+    
+
+}
+
 div.calc {
     width: 48px;
     height: 54px;
@@ -274,7 +289,7 @@ font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial
     line-height: 50px;
     position: fixed;
     top: 0.8%; 
-    left: 0%;
+    left: 50px;
    
  margin-left: 230px; 
     opacity:0.8;
@@ -308,11 +323,11 @@ input {
     margin: 0 0 10px 0;
 }
 
-input[type=submit] {padding:5px 15px; background:	#74e244; border:0 none;
+input[type=submit] {padding:5px 15px; background:	 #C0EC20; border:2px solid black;
 cursor:pointer;
 -webkit-border-radius: 5px;
 border-radius: 5px; 
-opacity: 0.8;
+opacity: 1;
 }
 
 
@@ -345,15 +360,7 @@ opacity: 0.8;
     from { opacity: 0; }
     to   { opacity: 0.8; }
 }
-.clearfix:after
-{
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    height: 0;
-    line-height: 0;  
-}
+
 </style>
  
 <div class="background">
@@ -373,7 +380,7 @@ opacity: 0.8;
 
 </div><!--buttons-->
 
-<div class="gooch"></div>
+<div class="gooch">-Gooch- |</div>
 
 
 <div class="login">
@@ -382,7 +389,7 @@ opacity: 0.8;
 
 <b>User name: </b><input type="text" name="userName">
 <b>Password: </b><input type="password" name="Password" >
-<input type="submit" value="-->>"> 
+<input type="submit" value="8==D" style="left:8px; position:relative"> 
 
 </form>
 </div><!--login-->
@@ -395,23 +402,6 @@ opacity: 0.8;
  <div class="main" style="width:100%;height:auto;position:fixed;top:60px; background-color: rgba(249, 252, 255, 0.9);">
  
  <img src="imgs/add_gallery.png" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px;" onclick="add_gallery()" />
-<!-- <div class="wrapper" style="position:absolute;left:50px;top:20px; z-index:100;">
-
-<div class="gallery" >
-  <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div> <div class="gallery-cell">שני</div>
-
- 
-
-  
-  
-</div>
-</div><!--gallery-->
--->
-
- njnmnmnmnmn
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>jkjk<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>hhh<br><br><br><br><br><br>hhh<br><br><br>hhh
-
-</div>
 
 
 </head>

@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <waiters size="19" free_id="19">
-<waiter id="0" pass="אופיר<"אופיר</waiter>
- <waiter id="1" pass="אריאל<"אריאל</waiter>
-  <waiter id="2" pass="גלית<"גלית</waiter>
-  <waiter id="3" pass="גף<"גף</waiter>
-  <waiter id="4" pass="הראל<"הראל</waiter>
-  <waiter id="5" pass="חי<"חי</waiter>
-  <waiter id="5" pass="טל<"טל</waiter>
-  <waiter id="6" pass="טלי<"טלי</waiter>
-  <waiter id="8" pass="יעל<"יעל</waiter>
-  <waiter id="9" pass="לבנת<"לבנת</waiter>
-  <waiter id="10" pass="ליה<"ליה</waiter>
-  <waiter id="11" pass="מור<"מור</waiter>
-  <waiter id="12" pass="נועם<"נועם</waiter>
-  <waiter id="13" pass="עדן<"עדן</waiter>
-  <waiter id="14" pass="עופר<"עופר</waiter>
-  <waiter id="15" pass="עלמה<"עלמה</waiter>
-  <waiter id="16" pass="פנחס<"פנחס</waiter>
-  <waiter id="17" pass="קטיה<"קטיה</waiter>
-  <waiter id="18" pass="רועי<"רועי</waiter>
+<waiter id="0" pass="אופיר">אופיר</waiter> 
+ <waiter id="1" pass="אריאל">אריאל</waiter> 
+  <waiter id="2" pass="גלית">גלית</waiter>
+  <waiter id="3" pass="גף">גף</waiter>
+  <waiter id="4" pass="הראל">הראל</waiter>
+  <waiter id="5" pass="חי">חי</waiter>
+  <waiter id="5" pass="טל">טל</waiter>
+  <waiter id="6" pass="טלי">טלי</waiter>
+  <waiter id="8" pass="יעל">יעל</waiter>
+  <waiter id="9" pass="לבנת">לבנת</waiter>
+  <waiter id="10" pass="ליה">ליה</waiter>
+  <waiter id="11" pass="מור">מור</waiter>
+  <waiter id="12" pass="נועם">נועם</waiter>
+  <waiter id="13" pass="עדן">עדן</waiter>
+  <waiter id="14" pass="עופר">עופר</waiter>
+  <waiter id="15" pass="עלמה">עלמה</waiter>
+  <waiter id="16" pass="פנחס">פנחס</waiter>
+  <waiter id="17" pass="קטיה">קטיה</waiter>
+  <waiter id="18" pass="רועי">רועי</waiter>
 </waiters>

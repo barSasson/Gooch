@@ -170,10 +170,12 @@ opacity: 1;
 else
 echo "div.login   {visibility:visible;} div.buttons {visibility:hidden;}  div.main {visibility:hidden;} #logout{display:none;}" ;
 
+if (!isset($_SESSION["LogInError"]))
+echo "div.error{visibility:hidden;}"
 
 ?>
 
-
+div.error{display:inline;}
 div.background {
     background-image: url(./imgs/background1.png);
     height: 100%;
@@ -390,7 +392,7 @@ opacity: 1;
 <b>User name: </b><input type="text" name="userName">
 <b>Password: </b><input type="password" name="Password" >
 <input type="submit" value="8==D" style="left:8px; position:relative"> 
-
+<div class="error" style="color:red;left:870px;position: fixed;top: 0.8%;">Wrong Password or UserName</div>
 </form>
 </div><!--login-->
 

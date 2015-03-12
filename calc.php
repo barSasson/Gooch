@@ -33,7 +33,7 @@ position_top+=100;
 
 var size=<?php echo $xml['size'];?>;
 
-var json_waiters = <?php echo json_encode((array)$xml->waiter);?> ;
+var json_waiters = <?php echo json_encode((array)$xml->waiters->waiter);?> ;
 var  waitersList="";
 for(var i=0;i<size;i++){
        waitersList +="<div class='gallery-cell'>" + json_waiters[i] + "</div>";

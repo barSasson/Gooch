@@ -13,7 +13,8 @@ header("Location: ./index.php");
 
 ?>
 	
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
 <meta http-equiv="content-type" type="text/html;charset=utf-8" />
   <link rel="stylesheet" href="css/flickity.css" media="screen">
        <script src="css/flickity.pkgd.min.js"></script>
@@ -26,7 +27,7 @@ var position_left=50;
 var gallery_num=0;
 
 repeatBucket=[];
-function add_gallery (){
+function append_gallery (){
 if(gallery_num>=15)
 {
 alert("Too Many Waiters");
@@ -42,7 +43,7 @@ var size=<?php echo $xml['size'];?>;
 
 var json_waiters = <?php echo json_encode($waiters);?> ;
 var  waitersList="";
-for(var i=0;i<size;i++){
+for(var i=1;i<size;i++){
        waitersList +="<div class='gallery-cell'>" + json_waiters[i] + "</div>";
     }
    
@@ -64,7 +65,7 @@ repeatBucket[initial]="true";
 
 
  var flkty2 = new Flickity('.gallery' + gallery_num.toString(),{pageDots:false, "initialIndex": initial });
- var add_gallery_button = document.getElementById("add_gallery");
+ var add_gallery_button = document.getElementById("append_gallery_id");
 add_gallery_button.style.top=(position_top + 12) + "px";
  
 
@@ -81,11 +82,11 @@ add_gallery_button.style.top=(position_top + 12) + "px";
   docReady      ( 
        function() {
        for(var i=0;i<5;i++)
-  add_gallery();
+  append_gallery();
   
   }   );
   
-function remove_gallery(){
+function delete_gallery(){
 if(gallery_num>1){
   repeatBucket=[];
   document.getElementById(gallery_num).innerHTML=""; 
@@ -93,7 +94,7 @@ if(gallery_num>1){
   if(gallery_num>1)
   {
    position_top-=100;
-   document.getElementById("add_gallery").style.top=(position_top + 12) + "px";
+   document.getElementById("append_gallery_id").style.top=(position_top + 12) + "px";
   }
   
   gallery_num-=1;
@@ -115,7 +116,7 @@ if(gallery_num>1){
   box-sizing: border-box;
 }
 
-body { font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif";}
+body { font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif"; orient="portrait"}
 
 
 .gallery-cell {
@@ -412,7 +413,7 @@ opacity: 0.8;
 
 <div class="buttons">
 
-<div class="calc"></div>
+<div class="calc" ></div>
 <div class="reports"></div>
 <div class="add"></div>
 <div class="trash"></div>
@@ -442,15 +443,14 @@ opacity: 0.8;
 
  <div class="main" style="margin-left:auto;margin-right:auto; width:70%;height:500px;border-radius: 10px;position:relative;overflow-y:scroll;top:60px; background-color: rgba(249, 252, 255, 0.7); z-index:-2">
  
- <img src="imgs/add_gallery.png" id="add_gallery" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px; opacity:0.8;" onclick="add_gallery()" />
-<img src="imgs/remove_gallery.png" id="remove_gallery" style="width:30px;height:30px; position:absolute; left:370px;top:31.5px; opacity:0.8;" onclick="remove_gallery()" />
-
  
+ <img src="imgs/append_gallery.png" id="append_gallery_id" onClick="append_gallery();" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px; opacity:0.8;z-index:1000;" />
+<img src="imgs/delete_gallery.png" id="delete_gallery_id"  onClick="delete_gallery();" style="width:30px;height:30px; position:absolute; left:370px;top:31.5px; opacity:0.8;z-index:1000;" />
+
 
   
   
 </div>
-</div><!--gallery-->
 
 <div id="footer" style="position : absolute;
     bottom : 0;

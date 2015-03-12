@@ -4,6 +4,13 @@ if(!isset($_SESSION["id"]) || $_SESSION["id"]!=5)
 header("Location: ./index.php");
 
  $xml = simplexml_load_file('./waiters.xml') or die ("Error: failed to open xml") ;
+ $waiters[]=array();
+ foreach($xml->children() as $waiter)
+{
+   $waiters[] = (string)$waiter; 
+  
+}       
+
 ?>
 	
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -33,10 +40,10 @@ position_top+=100;
 
 var size=<?php echo $xml['size'];?>;
 
-var json_waiters = <?php echo json_encode((array)$xml->waiters->waiter);?> ;
+var json_waiters = <?php echo json_encode($waiters);?> ;
 var  waitersList="";
 for(var i=0;i<size;i++){
-       waitersList +="<div class='gallery-cell'>" + json_waiters[i] + "</div>";
+       waitersList +="<div class='gallery-cell'>" + json_waiters[i].toString() + "</div>";
     }
    
 var wrapper = document.createElement("div");

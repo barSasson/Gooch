@@ -1,22 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <waiters size="19" free_id="19">
-<waiter id="0">dsfdsf</waiter> 
- <waiter id="1">dsfsdל</waiter> 
-  <waiter id="2">גלית</waiter>
-  <waiter id="3">גף</waiter>
-  <waiter id="4">הראל</waiter>
-  <waiter id="5">חי</waiter>
-  <waiter id="5">טל</waiter>
-  <waiter id="6">טלי</waiter>
-  <waiter id="8">יעל</waiter>
-  <waiter id="9">לבנת</waiter>
-  <waiter id="10">ליה</waiter>
-  <waiter id="11">מור</waiter>
-  <waiter id="12">נועם</waiter>
-  <waiter id="13">עדן</waiter>
-  <waiter id="14">עופר</waiter>
-  <waiter id="15">עלמה</waiter>
-  <waiter id="16">פנחס</waiter>
-  <waiter id="17">קטיה</waiter>
-  <waiter id="18">רועי</waiter>
+<waiter>אופיר</waiter> 
+ <waiter>אריאל</waiter> 
+  <waiter>גלית</waiter>
+  <waiter>גף</waiter>
+  <waiter>הראל</waiter>
+  <waiter>חי</waiter>
+  <waiter>טל</waiter>
+  <waiter>טלי</waiter>
+  <waiter>יעל</waiter>
+  <waiter>לבנת</waiter>
+  <waiter>ליה</waiter>
+  <waiter>מור</waiter>
+  <waiter>נועם</waiter>
+  <waiter>עדן</waiter>
+  <waiter>עופר</waiter>
+  <waiter>עלמה</waiter>
+  <waiter>פנחס</waiter>
+  <waiter>קטיה</waiter>
+  <waiter>רועי</waiter>
 </waiters>

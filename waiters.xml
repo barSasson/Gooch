@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<waiters size="19" free_id="19">
-<waiter>אופיר</waiter> 
- <waiter>אריאל</waiter> 
-  <waiter>גלית</waiter>
-  <waiter>גף</waiter>
-  <waiter>הראל</waiter>
-  <waiter>חי</waiter>
-  <waiter>טל</waiter>
-  <waiter>טלי</waiter>
-  <waiter>יעל</waiter>
-  <waiter>לבנת</waiter>
-  <waiter>ליה</waiter>
-  <waiter>מור</waiter>
-  <waiter>נועם</waiter>
-  <waiter>עדן</waiter>
-  <waiter>עופר</waiter>
-  <waiter>עלמה</waiter>
-  <waiter>פנחס</waiter>
-  <waiter>קטיה</waiter>
-  <waiter>רועי</waiter>
+<waiters>
+ <waiter>אסף</waiter> 
+ <waiter>דניאל</waiter> 
+ <waiter>דניאלה</waiter>
+ <waiter>לילית</waiter>
+ <waiter>בר</waiter>
+ <waiter>חי</waiter>
+ <waiter>טל</waiter>
+ <waiter>נטלי</waiter>
+ <waiter>נטעלי</waiter>
+ <waiter>עדן</waiter>
+ <waiter>ליה</waiter>
+ <waiter>רוני</waiter>
+ <waiter>נועם</waiter>
+ <waiter>עדן</waiter>
+ <waiter>פנחס</waiter>
+ <waiter>קטיה</waiter>
+ <waiter>רועי</waiter>
 </waiters>

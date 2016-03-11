@@ -21,29 +21,50 @@ header("Location: ./index.php");
        <script>
        
      
-       
+       function shuffleArray(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 var position_top=-80;
 var position_left=50;
 var gallery_num=0;
 var taxReductionPerHour = 6;
-var json_waiters;
+var checkersAllowance = 20;
 var flkty = [];
-repeatBucket=[];
+var size=<?php echo sizeof($waiters) ?>;
+var json_waiters = <?php echo json_encode($waiters);?> ;
+
+var waiterIndices = [];
+for (var i = 0;i<size-1;i++) {
+  waiterIndices[i] = i;
+}
+
+shuffleArray(waiterIndices);
 function append_gallery (){
 if(gallery_num>=15)
 {
 alert("Too Many Waiters");
 } 
-else
-
-
-{
+else{
 gallery_num+=1;
 position_top+=100;
 
-var size=<?php echo $xml['size'];?>;
 
-json_waiters = <?php echo json_encode($waiters);?> ;
 var  waitersList="";
 for(var i=1;i<size;i++){
        waitersList +="<div class='gallery-cell'>" + json_waiters[i] + "</div>";
@@ -58,12 +79,8 @@ wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' 
 document.getElementsByClassName("main")[0].appendChild(wrapper);
 
 
-var initial=Math.floor( (Math.random() * 17) + 1);
-var counter=0;
-while(typeof repeatBucket[initial] != 'undefined' && counter++ <10)
-{  initial=Math.floor((Math.random() * 17) + 1); }
-repeatBucket[initial]="true";
-
+var initial=waiterIndices[0];
+waiterIndices.shift();
 
 
  flkty[gallery_num - 1] = new Flickity('.gallery' + gallery_num.toString(),{pageDots:false, "initialIndex": initial });
@@ -72,11 +89,7 @@ add_gallery_button.style.top=(position_top + 12) + "px";
  
 document.getElementsByClassName("main")[0].style.height+=100 ;
 
-/* if (position_top>500)
- {
- position_top=20;
- position_left+=320;
- } */
+
 }//else
 
 }//add_gallery_func
@@ -104,36 +117,52 @@ if(gallery_num>1){
   
 }
 
-           
-           function calculateTips(){
-               var ShiftData = [];
-               var TotalTipsAmount = document.getElementById('TotalTipsAmount').value;
-               var totalHours = 0;
-               for(var i=0; i<gallery_num; i++)
-               {
+
+function calculateTips(){
+ var ShiftData = [];
+ var TotalTipsAmount = document.getElementById('TotalTipsAmount').value;
+ if(isNaN(TotalTipsAmount))
+ {
+  TotalTipsAmount = 0;
+}
+var totalHours = 0;
+for(var i=0; i<gallery_num; i++)
+{
                    //hours = document.getElementById("textBox" + i.toString()).value.parseInt();
                    var waiterid = flkty[i].selectedIndex + 1;
                    var waitername = json_waiters[waiterid];
                    var waiterhours = parseFloat(document.getElementById('textBox' + (i+1).toString()).value);
-                  
+                   if (isNaN(waiterhours))
+                   {
+                     waiterhours = 0;
+                   }
+
                    ShiftData[i] = { m_waiterId : waiterid, m_waiterName: waitername, m_hours : waiterhours};
                    totalHours += waiterhours;
-                   
+                 }
+                 var taxReduction = Math.ceil(taxReductionPerHour*totalHours);
+                 var tipsAfterTax = TotalTipsAmount - taxReduction;
+                 var totalAllowance = Math.floor(tipsAfterTax*0.12);
+                 var barAllowance = Math.ceil(totalAllowance*0.25)
+                 var kitchenAllowance = totalAllowance-barAllowance;
+                 var kitchenAllowanceAfterCheckersReduction = kitchenAllowance - checkersAllowance;
+                 var tipsAfterAllReduction = tipsAfterTax - totalAllowance;
+                 var moneyPerHour = tipsAfterAllReduction/totalHours;
+
+                 for(var i=0; i<ShiftData.length;i++)
+                 {
+                   ShiftData[i].m_earnedInShift = ShiftData[i].m_hours*moneyPerHour;
+                   alert(ShiftData[i].m_earnedInShift);
+
+                 }
+                 var htmlTipsData;
+                 htmlTipsData = "Tax Reduction: " +  taxReduction + "</br> Kitchen: " + kitchenAllowanceAfterCheckersReduction + "</br> Bar: " + barAllowance + "</br>money Per Hour:" + moneyPerHour;
+                 for(var i=0;i<ShiftData.length;i++){
+                   htmlTipsData +="<div>" +ShiftData[i].m_waiterName + "</br> "+ShiftData[i].m_hours+" X "+moneyPerHour+" = "+ ShiftData[i].m_earnedInShift + "</div>";
+                 }
+                 var TipsCalculationsContainer = document.getElementById("TipsCalculations");
+                 TipsCalculationsContainer.innerHTML= htmlTipsData;
                }
-                
-               var tipsAfterTax = TotalTipsAmount - Math.ceil(taxReductionPerHour*totalHours);
-               var totalAllowance = Math.floor(tipsAfterTax*0.12);
-               var barAllowance = Math.ceil(totalAllowance*0.25)
-               var kitchenAllowance = totalAllowance-barAllowance;
-               var tipsAfterAllReduction = tipsAfterTax - totalAllowance;
-               var moneyPerHour = tipsAfterAllReduction/totalHours;
-               
-               for(var i=0; i<ShiftData.length;i++)
-               {
-                   ShiftData[i].EarnedInShift = ShiftData[i].m_hours*moneyPerHour;
-                   alert(ShiftData[i].EarnedInShift);
-               }
-           }
 </script>
        
 <title>-Gooch-</title>
@@ -479,9 +508,18 @@ opacity: 0.8;
  <img src="imgs/append_gallery.png" id="append_gallery_id" onClick="append_gallery();" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px; opacity:0.8;z-index:1000;" />
 <img src="imgs/delete_gallery.png" id="delete_gallery_id"  onClick="delete_gallery();" style="width:30px;height:30px; position:absolute; left:370px;top:31.5px; opacity:0.8;z-index:1000;" />
 
-<input type='number' id='TotalTipsAmount'>
- <input type='button' value='send' onClick='calculateTips()'>
-  
+<div style="width:300px;height:30px; position:absolute; left:600px;top:31.5px; opacity:0.8;z-index:1000;">
+
+  <div style="background-color:#DEFF8C;">
+  <input type='number' id='TotalTipsAmount'>
+  <input type='button' value='send' onClick='calculateTips()'>
+  </div>
+
+  <div style="background-color:#DEFF8C;" id ="TipsCalculations">
+  </div>
+
+  </div>
+ 
   
 </div>
 

@@ -68,7 +68,7 @@ repeatBucket[initial]="true";
  var add_gallery_button = document.getElementById("append_gallery_id");
 add_gallery_button.style.top=(position_top + 12) + "px";
  
-
+document.getElementsByClassName("main")[0].style.height+=100;
 
 /* if (position_top>500)
  {
@@ -116,7 +116,7 @@ if(gallery_num>1){
   box-sizing: border-box;
 }
 
-body { font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif"; orient="portrait"}
+body { font-family:"Myriad Set Pro","Lucida Grande","Helvetica Neue","Helvetica","Arial","Verdana","sans-serif"; }
 
 
 .gallery-cell {

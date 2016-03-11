@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 if(!isset($_SESSION["id"]) || $_SESSION["id"]!=5)
 header("Location: ./index.php");
@@ -7,7 +7,7 @@ header("Location: ./index.php");
  $waiters[]=array();
  foreach($xml->children() as $waiter)
 {
-   $waiters[] = (string)$waiter; 
+   $waiters[] = (string)$waiter;
   
 }       
 
@@ -25,7 +25,9 @@ header("Location: ./index.php");
 var position_top=-80;
 var position_left=50;
 var gallery_num=0;
-
+var taxReductionPerHour = 6;
+var json_waiters;
+var flkty = [];
 repeatBucket=[];
 function append_gallery (){
 if(gallery_num>=15)
@@ -41,18 +43,18 @@ position_top+=100;
 
 var size=<?php echo $xml['size'];?>;
 
-var json_waiters = <?php echo json_encode($waiters);?> ;
+json_waiters = <?php echo json_encode($waiters);?> ;
 var  waitersList="";
 for(var i=1;i<size;i++){
        waitersList +="<div class='gallery-cell'>" + json_waiters[i] + "</div>";
     }
-   
+    
 var wrapper = document.createElement("div");
 wrapper.id = gallery_num;
 wrapper.style.position="absolute";
 wrapper.style.left=position_left.toString() + "px";
 wrapper.style.top=position_top.toString() + "px";
-wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' display:block;width:300px;height:52px;position:absolute;background-color: rgba(198, 134, 245, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' >"+ waitersList + " </div><input type='text' placeholder='שעות' autofocus style='text-align:center;position:absolute; top:60px; left:72px; border:1px solid black;' />";
+wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' display:block;width:300px;height:52px;position:absolute;background-color: rgba(198, 134, 245, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' >"+ waitersList + " </div><input type='text' id='textBox"  + gallery_num.toString() + "' placeholder='שעות' autofocus style='text-align:center;position:absolute; top:60px; left:72px; border:1px solid black;' />";
 document.getElementsByClassName("main")[0].appendChild(wrapper);
 
 
@@ -64,11 +66,11 @@ repeatBucket[initial]="true";
 
 
 
- var flkty2 = new Flickity('.gallery' + gallery_num.toString(),{pageDots:false, "initialIndex": initial });
+ flkty[gallery_num - 1] = new Flickity('.gallery' + gallery_num.toString(),{pageDots:false, "initialIndex": initial });
  var add_gallery_button = document.getElementById("append_gallery_id");
 add_gallery_button.style.top=(position_top + 12) + "px";
  
-document.getElementsByClassName("main")[0].style.height+=100;
+document.getElementsByClassName("main")[0].style.height+=100 ;
 
 /* if (position_top>500)
  {
@@ -102,6 +104,36 @@ if(gallery_num>1){
   
 }
 
+           
+           function calculateTips(){
+               var ShiftData = [];
+               var TotalTipsAmount = document.getElementById('TotalTipsAmount').value;
+               var totalHours = 0;
+               for(var i=0; i<gallery_num; i++)
+               {
+                   //hours = document.getElementById("textBox" + i.toString()).value.parseInt();
+                   var waiterid = flkty[i].selectedIndex + 1;
+                   var waitername = json_waiters[waiterid];
+                   var waiterhours = parseFloat(document.getElementById('textBox' + (i+1).toString()).value);
+                  
+                   ShiftData[i] = { m_waiterId : waiterid, m_waiterName: waitername, m_hours : waiterhours};
+                   totalHours += waiterhours;
+                   
+               }
+                
+               var tipsAfterTax = TotalTipsAmount - Math.ceil(taxReductionPerHour*totalHours);
+               var totalAllowance = Math.floor(tipsAfterTax*0.12);
+               var barAllowance = Math.ceil(totalAllowance*0.25)
+               var kitchenAllowance = totalAllowance-barAllowance;
+               var tipsAfterAllReduction = tipsAfterTax - totalAllowance;
+               var moneyPerHour = tipsAfterAllReduction/totalHours;
+               
+               for(var i=0; i<ShiftData.length;i++)
+               {
+                   ShiftData[i].EarnedInShift = ShiftData[i].m_hours*moneyPerHour;
+                   alert(ShiftData[i].EarnedInShift);
+               }
+           }
 </script>
        
 <title>-Gooch-</title>
@@ -125,8 +157,8 @@ margin-right: 10px;
   height: 50px;
 opacity: 1;
   /* flex-box, center image in cell */
-  display: -webkit-box;
-  display: -webkit-flex;
+  display:-webkit-box;
+  display:-webkit-flex;
   display:         flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -172,7 +204,7 @@ opacity: 1;
    background-color: rgba(135,206,250,0.5) ;
   border: 1px solid black;
   font-weight: bold;
-  border-radius: 3pxpx;
+  border-radius:3px;
   color: black;
   }
   
@@ -409,7 +441,7 @@ opacity: 0.8;
 
 
  
-<div class="gooch"><h>-Gooch-</h></div>
+<div class="gooch">-Gooch-</div>
 
 <div class="buttons">
 
@@ -447,7 +479,8 @@ opacity: 0.8;
  <img src="imgs/append_gallery.png" id="append_gallery_id" onClick="append_gallery();" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px; opacity:0.8;z-index:1000;" />
 <img src="imgs/delete_gallery.png" id="delete_gallery_id"  onClick="delete_gallery();" style="width:30px;height:30px; position:absolute; left:370px;top:31.5px; opacity:0.8;z-index:1000;" />
 
-
+<input type='number' id='TotalTipsAmount'>
+ <input type='button' value='send' onClick='calculateTips()'>
   
   
 </div>

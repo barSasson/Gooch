@@ -124,6 +124,7 @@ function calculateTips(){
 var shiftData = {};
 var waitersData = [];
 shiftData.TotalTipsAmount = document.getElementById('TotalTipsAmount').value;
+extendedView = false;
 if(shiftData.TotalTipsAmount.lastIndexOf(k_prefix, 0) === 0)
 {
   shiftData.TotalTipsAmount = parseFloat(shiftData.TotalTipsAmount.substr(k_prefix.length));

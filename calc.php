@@ -48,8 +48,9 @@ var checkersAllowance = 20;
 var flkty = [];
 var size=<?php echo sizeof($waiters) ?>;
 var json_waiters = <?php echo json_encode($waiters);?> ;
-var k_tipsPercentToAdd = 0.2;
-var k_prefix = '0x';
+var k_defaultTipsPercentToAdd = 0.2;
+var tipsPercentToAdd = k_defaultTipsPercentToAdd;
+var k_prefix = 'x';
 var extendedView = false;
 var waiterIndices = [];
 for (var i = 0;i<size-1;i++) {
@@ -125,9 +126,15 @@ var shiftData = {};
 var waitersData = [];
 shiftData.TotalTipsAmount = document.getElementById('TotalTipsAmount').value;
 extendedView = false;
-if(shiftData.TotalTipsAmount.lastIndexOf(k_prefix, 0) === 0)
+tipsPercentToAdd = k_defaultTipsPercentToAdd;
+var splittedStringArray = shiftData.TotalTipsAmount.split(k_prefix);
+if(splittedStringArray.length == 2)
 {
-  shiftData.TotalTipsAmount = parseFloat(shiftData.TotalTipsAmount.substr(k_prefix.length));
+  if(splittedStringArray[0] != 0)
+  {
+    tipsPercentToAdd = parseFloat(splittedStringArray[0])
+  }
+  shiftData.TotalTipsAmount = parseFloat(splittedStringArray[1]);
   extendedView = true;
 }
 if(isNaN(shiftData.TotalTipsAmount))
@@ -184,7 +191,7 @@ shiftData.totalHours = 0;
 
                function addTips(shiftData)
                {
-                var perHourToAdd = (k_tipsPercentToAdd*shiftData.TotalTipsAmount/(1 - k_tipsPercentToAdd))/shiftData.totalHours;
+                var perHourToAdd = (tipsPercentToAdd*shiftData.TotalTipsAmount/(1 - tipsPercentToAdd))/shiftData.totalHours;
                 for (var i = 0; i < shiftData.m_waitersData.length; i++) {
                   shiftData.m_waitersData[i].m_earnedInShift += shiftData.m_waitersData[i].m_hours*perHourToAdd;
                 }

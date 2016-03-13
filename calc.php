@@ -48,7 +48,9 @@ var checkersAllowance = 20;
 var flkty = [];
 var size=<?php echo sizeof($waiters) ?>;
 var json_waiters = <?php echo json_encode($waiters);?> ;
-
+var k_tipsPercentToAdd = 0.2;
+var k_prefix = '0x';
+var extendedView = false;
 var waiterIndices = [];
 for (var i = 0;i<size-1;i++) {
   waiterIndices[i] = i;
@@ -119,15 +121,21 @@ if(gallery_num>1){
 
 
 function calculateTips(){
- var ShiftData = [];
- var TotalTipsAmount = document.getElementById('TotalTipsAmount').value;
- if(isNaN(TotalTipsAmount))
- {
-  TotalTipsAmount = 0;
-}
-var totalHours = 0;
-for(var i=0; i<gallery_num; i++)
+var shiftData = {};
+var waitersData = [];
+shiftData.TotalTipsAmount = document.getElementById('TotalTipsAmount').value;
+if(shiftData.TotalTipsAmount.lastIndexOf(k_prefix, 0) === 0)
 {
+  shiftData.TotalTipsAmount = parseFloat(shiftData.TotalTipsAmount.substr(k_prefix.length));
+  extendedView = true;
+}
+if(isNaN(shiftData.TotalTipsAmount))
+{
+  shiftData.TotalTipsAmount = 0;
+}
+shiftData.totalHours = 0;
+                for(var i=0; i<gallery_num; i++)
+                {
                    //hours = document.getElementById("textBox" + i.toString()).value.parseInt();
                    var waiterid = flkty[i].selectedIndex + 1;
                    var waitername = json_waiters[waiterid];
@@ -137,32 +145,84 @@ for(var i=0; i<gallery_num; i++)
                      waiterhours = 0;
                    }
 
-                   ShiftData[i] = { m_waiterId : waiterid, m_waiterName: waitername, m_hours : waiterhours};
-                   totalHours += waiterhours;
+                   waitersData[i] = { m_waiterId : waiterid, m_waiterName: waitername, m_hours : waiterhours};
+                   shiftData.totalHours += waiterhours;
                  }
-                 var taxReduction = Math.ceil(taxReductionPerHour*totalHours);
-                 var tipsAfterTax = TotalTipsAmount - taxReduction;
+                 var taxReduction = Math.ceil(taxReductionPerHour*shiftData.totalHours);
+                 var tipsAfterTax = shiftData.TotalTipsAmount - taxReduction;
                  var totalAllowance = Math.floor(tipsAfterTax*0.12);
                  var barAllowance = Math.ceil(totalAllowance*0.25)
                  var kitchenAllowance = totalAllowance-barAllowance;
                  var kitchenAllowanceAfterCheckersReduction = kitchenAllowance - checkersAllowance;
                  var tipsAfterAllReduction = tipsAfterTax - totalAllowance;
-                 var moneyPerHour = tipsAfterAllReduction/totalHours;
+                 shiftData.m_moneyPerHour = (tipsAfterAllReduction/shiftData.totalHours).toFixed(2);
 
-                 for(var i=0; i<ShiftData.length;i++)
+                 for(var i=0; i<waitersData.length;i++)
                  {
-                   ShiftData[i].m_earnedInShift = ShiftData[i].m_hours*moneyPerHour;
-                   alert(ShiftData[i].m_earnedInShift);
+                   waitersData[i].m_earnedInShift = waitersData[i].m_hours*shiftData.m_moneyPerHour;
+                 }
+                shiftData.m_waitersData = waitersData;
 
+                clearHtmlcodeFromElement("TipsCalculations");
+
+                 var calculationStringHeader = "Total Hours :" + shiftData.totalHours + "</br>Tax Reduction: " + taxReduction + "</br> Kitchen: " + kitchenAllowanceAfterCheckersReduction + "</br> Bar: " + barAllowance + "</br>money Per Hour:" + shiftData.m_moneyPerHour;
+                 concatenateHtmlCodeIntoHtmlElement("TipsCalculations", calculationStringHeader);
+
+                 
+                 devideRemainder(shiftData);
+                 concatenateHtmlCodeIntoHtmlElement("TipsCalculations", getWaitersshiftData(shiftData));
+                 if(extendedView == true)
+                 {
+                  addTips(shiftData);
+                  devideRemainder(shiftData);
+                  concatenateHtmlCodeIntoHtmlElement("TipsCalculations", getWaitersshiftData(shiftData));
                  }
-                 var htmlTipsData;
-                 htmlTipsData = "Tax Reduction: " +  taxReduction + "</br> Kitchen: " + kitchenAllowanceAfterCheckersReduction + "</br> Bar: " + barAllowance + "</br>money Per Hour:" + moneyPerHour;
-                 for(var i=0;i<ShiftData.length;i++){
-                   htmlTipsData +="<div>" +ShiftData[i].m_waiterName + "</br> "+ShiftData[i].m_hours+" X "+moneyPerHour+" = "+ ShiftData[i].m_earnedInShift + "</div>";
-                 }
-                 var TipsCalculationsContainer = document.getElementById("TipsCalculations");
-                 TipsCalculationsContainer.innerHTML= htmlTipsData;
+                 
+                           
                }
+
+               function addTips(shiftData)
+               {
+                var perHourToAdd = (k_tipsPercentToAdd*shiftData.TotalTipsAmount/(1 - k_tipsPercentToAdd))/shiftData.totalHours;
+                for (var i = 0; i < shiftData.m_waitersData.length; i++) {
+                  shiftData.m_waitersData[i].m_earnedInShift += shiftData.m_waitersData[i].m_hours*perHourToAdd;
+                }
+              }
+              
+              function clearHtmlcodeFromElement(elementName)
+              {
+                document.getElementById(elementName).innerHTML = "";
+              }
+              function getWaitersshiftData(shiftData)
+              {
+                var htmldata = "<div>-------------";
+                for(var i=0;i<shiftData.m_waitersData.length;i++){
+                 htmldata += "</br>" + shiftData.m_waitersData[i].m_waiterName+"</br>"+shiftData.m_waitersData[i].m_hours+" X "+ shiftData.m_moneyPerHour +" = "+ shiftData.m_waitersData[i].m_earnedInShift + "</div>";
+               }
+               return htmldata;
+             }
+
+             function concatenateHtmlCodeIntoHtmlElement(htmlEelementName, htmlcode)
+             {
+              var elementToAdd = document.getElementById(htmlEelementName);
+                 elementToAdd.innerHTML += htmlcode;
+             }
+
+             function devideRemainder(shiftData)
+             {
+                var remainder = 0;
+              for (var i = 0; i < shiftData.m_waitersData.length; i++) {
+                remainder += shiftData.m_waitersData[i].m_earnedInShift%1;
+                shiftData.m_waitersData[i].m_earnedInShift = Math.floor(shiftData.m_waitersData[i].m_earnedInShift);                  
+              }
+              remainder = Math.floor(remainder);
+            
+              for (var i = 0; i < remainder; i++) {
+                var waiterIndexToAdd = i%shiftData.m_waitersData.length;
+                shiftData.m_waitersData[waiterIndexToAdd].m_earnedInShift++;
+             }
+           }
+
 </script>
        
 <title>-Gooch-</title>
@@ -508,10 +568,10 @@ opacity: 0.8;
  <img src="imgs/append_gallery.png" id="append_gallery_id" onClick="append_gallery();" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px; opacity:0.8;z-index:1000;" />
 <img src="imgs/delete_gallery.png" id="delete_gallery_id"  onClick="delete_gallery();" style="width:30px;height:30px; position:absolute; left:370px;top:31.5px; opacity:0.8;z-index:1000;" />
 
-<div style="width:300px;height:30px; position:absolute; left:600px;top:31.5px; opacity:0.8;z-index:1000;">
+<div style="width:400px;height:30px; position:absolute; left:600px;top:31.5px; opacity:0.8;z-index:1000;">
 
   <div style="background-color:#DEFF8C;">
-  <input type='number' id='TotalTipsAmount'>
+  <input type='text' id='TotalTipsAmount'>
   <input type='button' value='send' onClick='calculateTips()'>
   </div>
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["userName"]=="bar" && $_POST["Password"]=="2565121024") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["userName"]=="gooch" && $_POST["Password"]=="8==D") {
 $_SESSION["id"]=5;
 header("Location: ./calc.php");
 }

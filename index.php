@@ -391,7 +391,7 @@ opacity: 1;
 
 <b>User name: </b><input type="text" name="userName">
 <b>Password: </b><input type="password" name="Password" >
-<input type="submit" value="8==D" style="left:8px; position:relative"> 
+<input type="submit" value="Login" style="left:8px; position:relative"> 
 <div class="error" style="color:red;left:870px;position: fixed;top: 0.8%;">Wrong Password or UserName</div>
 </form>
 </div><!--login-->

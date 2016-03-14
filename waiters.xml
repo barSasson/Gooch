@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <waiters>
  <waiter>אסף</waiter> 
+  <waiter>איתי</waiter> 
  <waiter>דניאל</waiter> 
  <waiter>דניאלה</waiter>
  <waiter>לילית</waiter>
@@ -12,6 +13,7 @@
  <waiter>עדן</waiter>
  <waiter>ליה</waiter>
  <waiter>רוני</waiter>
+<waiter>נועה</waiter>
  <waiter>נועם</waiter>
  <waiter>עדן</waiter>
  <waiter>פנחס</waiter>

@@ -78,7 +78,7 @@ wrapper.id = gallery_num;
 wrapper.style.position="absolute";
 wrapper.style.left=position_left.toString() + "px";
 wrapper.style.top=position_top.toString() + "px";
-wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' display:block;width:300px;height:52px;position:absolute;background-color: rgba(198, 134, 245, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' >"+ waitersList + " </div><input type='text' id='textBox"  + gallery_num.toString() + "' placeholder='שעות' autofocus style='text-align:center;position:absolute; top:60px; left:72px; border:1px solid black;' />";
+wrapper.innerHTML = "<div class='gallery" + gallery_num.toString() + "' style=' display:block;width:300px;height:52px;position:absolute;background-color: rgba(198, 134, 245, 0.5);border-radius: 15px;border-style: solid;border-width: 1px;' >"+ waitersList + " </div><span><input type='text' id='textBox"  + gallery_num.toString() + "' placeholder='fill-in Hours' autofocus style='text-align:center;position:absolute; top:60px; left:72px; border:1px solid black;' /></span>";
 document.getElementsByClassName("main")[0].appendChild(wrapper);
 
 
@@ -99,7 +99,7 @@ document.getElementsByClassName("main")[0].style.height+=100 ;
 
   docReady      ( 
        function() {
-       for(var i=0;i<5;i++)
+       for(var i=0;i<6;i++)
   append_gallery();
   
   }   );
@@ -173,7 +173,7 @@ shiftData.totalHours = 0;
 
                 clearHtmlcodeFromElement("TipsCalculations");
 
-                 var calculationStringHeader = "Total Hours :" + shiftData.totalHours + "</br>Tax Reduction: " + taxReduction + "</br> Kitchen: " + kitchenAllowanceAfterCheckersReduction + "</br> Bar: " + barAllowance + "</br>money Per Hour:" + shiftData.m_moneyPerHour;
+                 var calculationStringHeader = "Total Hours :" + shiftData.totalHours +"</br>Tax Reduction: " + taxReduction +"</br> Total Allowance: " + totalAllowance + "</br> Kitchen: " + kitchenAllowanceAfterCheckersReduction + "</br> Bar: " + barAllowance +"</br>Checkers: " + checkersAllowance  + "</br> Money Per Hour:" + shiftData.m_moneyPerHour ;
                  concatenateHtmlCodeIntoHtmlElement("TipsCalculations", calculationStringHeader);
 
                  
@@ -349,7 +349,7 @@ div.upperToolBar {
     position:fixed;
     height: 60px;
 	opacity: 0.9;
-    background: #87CEFA ;
+    background:#FAFBEE ;
     z-index: -1;
     
 }
@@ -570,20 +570,20 @@ opacity: 0.8;
 </div><!--toolbar-->
 
 
- <div class="main" style="margin-left:auto;margin-right:auto; width:70%;height:500px;border-radius: 10px;position:relative;overflow-y:scroll;top:60px; background-color: rgba(249, 252, 255, 0.7); z-index:-2">
+ <div class="main" style="margin-left:auto;margin-right:auto; width:70%;height:800px;border-radius: 10px;position:relative;overflow-y:scroll;top:60px; background-color: #FFDC84; opacity:0.9; z-index:-2">
  
  
  <img src="imgs/append_gallery.png" id="append_gallery_id" onClick="append_gallery();" style="width:30px;height:30px; position:absolute; left:7px;top:31.5px; opacity:0.8;z-index:1000;" />
 <img src="imgs/delete_gallery.png" id="delete_gallery_id"  onClick="delete_gallery();" style="width:30px;height:30px; position:absolute; left:370px;top:31.5px; opacity:0.8;z-index:1000;" />
 
-<div style="width:400px;height:30px; position:absolute; left:600px;top:31.5px; opacity:0.8;z-index:1000;">
+<div style="width:400px;height:100px; position:absolute; left:525px;top:24px; opacity:0.8;z-index:1000;">
 
-  <div style="background-color:#DEFF8C;">
-  <input type='text' id='TotalTipsAmount'>
-  <input type='button' value='send' onClick='calculateTips()'>
+  <div>
+  <input type='text' id='TotalTipsAmount'  placeholder='Total Tips'>
+  <input type='button' value='Calculate' onClick='calculateTips()'>
   </div>
 
-  <div style="background-color:#DEFF8C;" id ="TipsCalculations">
+  <div style="font-weight:bold ;text-align: center;display: inline-block; background-color: #D3D3F4" id ="TipsCalculations">
   </div>
 
   </div>

@@ -334,7 +334,7 @@ echo "div.login   {visibility:visible;} div.buttons {visibility:hidden;}  div.ma
 
 
 div.background {
-    background-image: url(./imgs/background1.png);
+    background-image: url(./imgs/background.png);
     height: 100%;
     width: 100%;
     position:fixed;

@@ -8,5 +8,5 @@ $db = mysql_connect($servername,$username,$password);
  if (!$db) {
  die("Database connection failed miserably: " . mysql_error());
  }
-
+echo "sdfsdf";
 ?>

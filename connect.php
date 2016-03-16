@@ -14,7 +14,7 @@ $db = mysql_connect($servername,$username,$password);
  }
 
 
- $sql = "SHOW TABLES FROM $db";
+ $sql = "SHOW TABLES";
  $result = mysql_query($sql);
 
 

@@ -14,7 +14,7 @@ $db = mysql_connect($servername,$username,$password);
  }
 
 
- $sql = "SHOW TABLES";
+ $sql = "SHOW TABLES from dizz";
  $result = mysql_query($sql);
 
 

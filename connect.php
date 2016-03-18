@@ -6,7 +6,7 @@ $password = "f_kHaNi63ccf";
 // Create connection
 //$db = mysql_connect($servername,$username,$password);
 
-$m = new MongoClient("admin:eTbFI2KfnvTI@127.9.124.4:27017/dizz");
+$m = new MongoClient("mongodb://admin:eTbFI2KfnvTI@127.9.124.4:27017");
  if($m->connected)
     echo "Connected successfully";
 else

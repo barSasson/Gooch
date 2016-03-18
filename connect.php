@@ -6,7 +6,7 @@ $password = "f_kHaNi63ccf";
 // Create connection
 //$db = mysql_connect($servername,$username,$password);
 
-$db = new MongoClient("mongodb://admin:eTbFI2KfnvTI@127.9.124.4:27017");
+$db = new MongoClient("mongodb://admin:eTbFI2KfnvTI@127.9.124.4:27017/dizz");
 
 $collections = $db->listCollections();
 

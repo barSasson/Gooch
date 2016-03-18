@@ -7,7 +7,8 @@ $password = "f_kHaNi63ccf";
 //$db = mysql_connect($servername,$username,$password);
 
 $m = new MongoClient("mongodb://admin:eTbFI2KfnvTI@127.9.124.4:27017");
-echo $b->bb
+$d = $m->selectCollection("bb");
+echo $d;
  if($m->connected)
     echo "Connected successfully";
 else

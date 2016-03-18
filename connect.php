@@ -5,11 +5,13 @@ $password = "f_kHaNi63ccf";
 
 // Create connection
 $db = mysql_connect($servername,$username,$password);
+$m = new MongoClient();
+$db = $m->selectDB('dizz');
+echo $db;
 
-$m = new MongoClient("mongodb://127.9.124.4:27017/");
-echo $m;
+
  if (!$db) {
- die("Database connection failed miserably: " . mysql_error());
+ die("Database connection failed miserably: ");
  }
  else
  {

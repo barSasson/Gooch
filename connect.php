@@ -8,7 +8,7 @@ $password = "f_kHaNi63ccf";
 
 $m = new MongoClient("mongodb://admin:eTbFI2KfnvTI@127.9.124.4:27017/dizz");
 //$d = $m->selectCollection("bb");
-
+ $db = $m->dizz;
 $collections = $db->listCollections();
 foreach ($collections as $collection) {
     echo "amount of documents in $collection: ";

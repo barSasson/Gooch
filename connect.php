@@ -8,10 +8,12 @@ $password = "f_kHaNi63ccf";
 
 $m = new MongoClient("mongodb://admin:eTbFI2KfnvTI@127.9.124.4:27017/dizz");
 //$d = $m->selectCollection("bb");
-echo $d;
- if($m->connected)
-    echo "Connected successfully";
-else
-    echo "Connection failed";
+
+$collections = $db->listCollections();
+foreach ($collections as $collection) {
+    echo "amount of documents in $collection: ";
+    echo $collection->count(), "\n";
+}
+
 
 ?>

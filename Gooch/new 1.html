@@ -128,11 +128,15 @@
         <p>
 This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
         </p>
-        <p><input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="11" data-slider-step=".25" data-slider-value="6"/></p></br>
-        <p><input id="ex2" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="11" data-slider-step=".25" data-slider-value="6"/></p></br>
-        <p><input id="ex3" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="11" data-slider-step=".25" data-slider-value="6"/></p></br>
-        <p><input id="ex4" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="11" data-slider-step=".25" data-slider-value="6"/></p></br>
-        <p><input id="ex5" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="11" data-slider-step=".25" data-slider-value="6"/></p></br>
+        
+        <label for="slider-fill">Input slider:</label>
+<div data-role="rangeslider">
+  <label for="range-1a">Rangeslider:</label>
+  <input name="range-1a" id="range-1a" min="0" max="100" value="0" type="range" />
+  <label for="range-1b">Rangeslider:</label>
+  <input name="range-1b" id="range-1b" min="0" max="100" value="100" type="range" />
+</div>
+         
         <p><a class="btn btn-lg btn-primary btn-outline" href="#">Learn more &raquo;</a></p>
         
       </div>
@@ -166,15 +170,12 @@ This is a template for a simple marketing or informational website. It includes 
     </div> <!-- /container -->
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-<script src="slider/js/bootstrap-slider.js">
 </script>
-<script>
-for (var i=1 ; i<=5 ;i++) {
-  $('#ex'  + i).slider();
-}
-</script>
+<script></script>
 
 </body>
 </html>

@@ -46,7 +46,7 @@ header("Location: ./index.php");
     var checkersAllowance = 20;
     var flkty = [];
     var size = <?php echo sizeof($waiters); ?>;
-    var json_waiters = <?php echo json_encode($waiters);?>;
+    var json_waiters = <?php echo json_encode($waiters); ?>;
     var k_defaultTipsPercentToAdd = 0.2;
     var tipsPercentToAdd = k_defaultTipsPercentToAdd;
     var k_prefix = 'x';

@@ -45,7 +45,7 @@ header("Location: ./index.php");
     var taxReductionPerHour = 6;
     var checkersAllowance = 20;
     var flkty = [];
-    var size = <?php echo sizeof($waiters) ?>;
+    var size = <?php echo sizeof($waiters); ?>;
     var json_waiters = <?php echo json_encode($waiters);?>;
     var k_defaultTipsPercentToAdd = 0.2;
     var tipsPercentToAdd = k_defaultTipsPercentToAdd;
@@ -600,7 +600,13 @@ header("Location: ./index.php");
 
         </div>
 
-      
+        <div id="footer" style="position : absolute;
+bottom : 0;
+height : 20px;
+background:rgba(206,216,246,0.7);
+width:100%;
+position:fixed;
+margin-top : 40px;"></div>
 
 </head>
 

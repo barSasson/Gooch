@@ -22,7 +22,6 @@ header("Location: ./index.php");
     function shuffleArray(array) {
         var currentIndex = array.length,
             temporaryValue, randomIndex;
-sdfsdf
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
 

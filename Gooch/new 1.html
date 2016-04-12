@@ -4,8 +4,6 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="slider/css/slider.css">
-<link rel="stylesheet" href="slider/jquery.mobile.custom.theme.min.css">
-<link rel="stylesheet" href="slider/jquery.mobile.custom.structure.min.css">
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -132,8 +130,13 @@ This is a template for a simple marketing or informational website. It includes 
         </p>
         
         <label for="slider-fill">Input slider:</label>
-<label for="slider-1">Input slider:</label>
-<input type="range" name="slider-1" id="slider-1" value="60" min="0" max="100" />
+<div data-role="rangeslider">
+  <label for="range-1a">Rangeslider:</label>
+  <input name="range-1a" id="range-1a" min="0" max="100" value="0" type="range" />
+  <label for="range-1b">Rangeslider:</label>
+  <input name="range-1b" id="range-1b" min="0" max="100" value="100" type="range" />
+</div>
+         
         <p><a class="btn btn-lg btn-primary btn-outline" href="#">Learn more &raquo;</a></p>
         
       </div>
@@ -167,7 +170,7 @@ This is a template for a simple marketing or informational website. It includes 
     </div> <!-- /container -->
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="slider/jquery.mobile.custom.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 </script>

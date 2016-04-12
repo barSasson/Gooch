@@ -45,7 +45,7 @@ header("Location: ./index.php");
     var taxReductionPerHour = 6;
     var checkersAllowance = 20;
     var flkty = [];
-    var size = <?php echo sizeof($waiters); ?>;
+    var size = <?php echo sizeof($waiters); ?> - 1;
     var json_waiters = <?php echo json_encode($waiters); ?>;
     var k_defaultTipsPercentToAdd = 0.2;
     var tipsPercentToAdd = k_defaultTipsPercentToAdd;

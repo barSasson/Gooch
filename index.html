@@ -17,6 +17,9 @@ body {
 }
 
 h1 {
+		
+	margin-top:30px !important;
+    margin-bottom: 30px !important;
 	color: #4c4c4c; font-family: League Script; font-size: 80px;
 }
 
@@ -30,7 +33,7 @@ border-color: #aaaaaa;
 	width: auto;
 	min-width: 320px;
 	max-width: 400px;
-	height: auto;
+	height: inherit;
 	background-color:#ebe3d8;
 	margin:0 auto;
 	border-radius: 10px;
@@ -47,7 +50,7 @@ border-color: #aaaaaa;
 }
 
 .email-txt {
-	margin-bottom: 3px;
+		margin-bottom: 3px;
 }
 .password-txt {
 	margin-bottom: 10px;
@@ -56,7 +59,7 @@ border-color: #aaaaaa;
 .login-btn
 {
 	background-color:#18759c;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 	
 }
 
@@ -91,10 +94,9 @@ border-color: #aaaaaa;
 <div class="container">
 	<div class="login-container">
 		<h1>Gooch</h1>
-			<hr>
         		<form class="login-inner-container">
-    				<input type="email" class="form-control email-txt" style=" background-color: #ffffff"id="email-input" placeholder="Enter email">
-    				<input type="password" class="form-control password-txt" style=" background-color: #ffffff" id="password-input" placeholder="Password">
+    				<input type="email" class="form-control input-lg email-txt" id="email-input" placeholder="Enter email">
+    				<input type="password" class="form-control input-lg password-txt" id="password-input" placeholder="Password">
 					<input class="btn btn-lg btn-block login-btn" value="Login">
 				</form>
 			<a href="#" class="btn btn-md  halfWidth-btn">Register</a>

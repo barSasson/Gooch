@@ -30,7 +30,7 @@ border-color: #aaaaaa;
 	width: auto;
 	min-width: 320px;
 	max-width: 400px;
-	height: 400px;
+	height: auto;
 	background-color:#ebe3d8;
 	margin:0 auto;
 	border-radius: 10px;
@@ -50,18 +50,26 @@ border-color: #aaaaaa;
 	margin-bottom: 3px;
 }
 .password-txt {
-	margin-bottom: 3px;
+	margin-bottom: 10px;
 }
 
 .login-btn
 {
 	background-color:#18759c;
+	margin-bottom: 15px;
+	
 }
 
 .halfWidth-btn {
 	min-width:50px;
-	width: 49%;
-	margin-top: 12px;
+	width: 50%;
+	color: #0f618b;
+	margin-bottom: 9px;
+	font-size: x-small;
+	background-color: transparent;
+    transition: all .5s;
+	border-width: 1.5px;
+	border-color: #0f618b;
 }
 
 
@@ -85,14 +93,12 @@ border-color: #aaaaaa;
 		<h1>Gooch</h1>
 			<hr>
         		<form class="login-inner-container">
-    				<input type="email" class="form-control email-txt" id="email-input" placeholder="Enter email">
-    				<input type="password" class="form-control password-txt" id="password-input" placeholder="Password">
-					<label class="checkbox-inline">
-					</label>
-					<input class="btn btn-block login-btn" value="Login">
+    				<input type="email" class="form-control email-txt" style=" background-color: #ffffff"id="email-input" placeholder="Enter email">
+    				<input type="password" class="form-control password-txt" style=" background-color: #ffffff" id="password-input" placeholder="Password">
+					<input class="btn btn-lg btn-block login-btn" value="Login">
 				</form>
-			<a href="#" class="btn btn-sm btn-default halfWidth-btn">Register</a>
-			<a href="#" class="btn btn-sm btn-default halfWidth-btn">Forgot your password?</a>
+			<a href="#" class="btn btn-md  halfWidth-btn">Register</a>
+			<a href="#" class="btn btn-md  halfWidth-btn">Forgot your password?</a>
 	</div>
 </div><script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/bootstrap.js"></script>

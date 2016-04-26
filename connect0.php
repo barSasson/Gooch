@@ -12,9 +12,9 @@ $db = mysql_connect($servername,$username,$password);
  if (!$db) {
  die("Database connection failed miserably: " . mysql_error());
  }
+mysql_select_db( 'dizz' );
 
-
- $sql = "SHOW TABLES from dizz";
+ $sql = "SELECT * from users";
  $result = mysql_query($sql);
 
 

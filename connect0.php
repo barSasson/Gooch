@@ -21,11 +21,11 @@ mysql_select_db('dizz');
  $sql = "SELECT * FROM users";
  $result = mysql_query($sql);
 
-$row = mysql_fetch_assoc($result);
-echo $row[0];
-echo $row[1];
-echo $row[2];
-echo $row[3];
+while ($row = mysql_fetch_assoc($result))
+{
+	echo $row;
+}
+
 $hashed = hash('sha256', $pass); 
 //--------------------
 echo "-----";
@@ -34,10 +34,10 @@ echo "-----";
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result);
-echo $row[0];
-echo $row[1];
-echo $row[2];
-echo $row[3];
+while ($row = mysql_fetch_assoc($result))
+{
+	echo $row[2];
+}
 
 $hashed = hash('sha256', $pass); 
 

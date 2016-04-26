@@ -107,11 +107,12 @@ if (isset($_GET["login_failed"]))
 {
 echo "<div class='alert alert-danger'>";
 echo "<strong>Login Failed!</strong> The user name or password is incorrect";
+echo "</div>";
 }
 
 ?>
 					
-</div>
+
 			<a href="#" class="btn btn-md  halfWidth-btn">Register</a>
 			<a href="#" class="btn btn-md  halfWidth-btn">Forgot your password?</a>
 	</div>

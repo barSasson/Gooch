@@ -24,7 +24,7 @@ mysql_select_db( 'dizz' );
     echo 'MySQL Error: ' . mysql_error();
     exit;
 }
-
+echo $result;
 while ($row = mysql_fetch_row($result)) {
     echo "Table: {$row[0]}\n";
 }

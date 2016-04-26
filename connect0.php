@@ -17,7 +17,7 @@ mysql_select_db('dizz');
  $sql = "SELECT password FROM users where id=".$id;
  $result = mysql_query($sql);
 
-$row = mysql_fetch_assoc($result));
+$row = mysql_fetch_assoc($result);
 
 if(hash("sha256", $password) == $row['password'])
 {

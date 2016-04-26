@@ -20,6 +20,7 @@ mysql_select_db('dizz');
 while($row = mysql_fetch_assoc($result))
 {
    print_r($row);
+   echo $row['password'];
 }
 
 

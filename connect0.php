@@ -30,7 +30,9 @@ if($password_input_was_given && $password_is_matching)
 }
 else
 {
-	echo "login failed";
+	echo $password_input_was_given;
+	echo $password_is_matching;
+	echo $row['password'];
 }
 
 

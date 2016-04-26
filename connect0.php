@@ -16,14 +16,10 @@ $db = mysql_connect($servername,$username,$password);
 
 mysql_select_db('dizz');
 
- $sql = "SELECT * FROM users WHERE id=1";
+ $sql = "SELECT * FROM users WHERE id='1'";
  $result = mysql_query($sql);
 
-echo $row;
-$hashed = hash('sha256', $pass); 
-echo $hashed;
-echo "-----";
-echo $row[0];
+
 
 
  if (!$result) {

@@ -13,12 +13,13 @@ $db = mysql_connect($servername,$server_login_username,$server_login_password);
  }
 mysql_select_db('dizz');
 
- $sql = "SELECT password FROM users where username=".$safe_username_input;
+ $sql = "SELECT password FROM users WHERE username=".$safe_username_input;
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result);
-
-if(hash("sha256", $safe_password_input) == $row['password'] && $row['password'] && $safe_password_input)
+$password_is_matching = hash("sha256", $safe_password_input) == $row['password'];
+$password_input_was_given = isset($_POST['password-input']);
+if($password_input_was_given && $password_is_matching)
 {
    echo "login successful";
 }

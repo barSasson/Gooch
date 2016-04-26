@@ -30,9 +30,11 @@ if($password_input_was_given && $password_is_matching)
 }
 else
 {
-	echo $password_input_was_given;
-	echo $password_is_matching;
-	echo $row['password'];
+	echo $password_input_was_given.'\n';
+	echo $password_is_matching.'\n';
+	echo $row['password'].'\n';
+	echo $_POST['password-input'].'\n';
+	echo $_POST['username-input'].'\n';
 }
 
 

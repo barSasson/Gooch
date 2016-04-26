@@ -19,6 +19,10 @@ mysql_select_db('dizz');
  $sql = "SELECT * FROM users WHERE id='1'";
  $result = mysql_query($sql);
 
+echo $row;
+echo "-----";
+$hashed = hash('sha256', $pass); 
+echo $hashed;
 
 
 

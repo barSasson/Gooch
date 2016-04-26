@@ -36,7 +36,7 @@ if($input_was_given && $password_is_matching)
 }
 else
 {
-header("Location: ./index.php?login_failed=true");
+header("Location: ./index.php?login_failed");
 }
 
 

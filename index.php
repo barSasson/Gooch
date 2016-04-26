@@ -88,15 +88,11 @@ border-color: #aaaaaa;
 </style>
 </head>
 <body>
-<style>
-
-
-</style>
 <div class="container">
 	<div class="login-container">
 		<h1>Gooch</h1>
         		<form class="login-inner-container" action="connect0.php" method="post">
-    				<input type="text" class="form-control input-lg username-txt" name="username-input" placeholder="Enter User Name">
+    				<input type="text" class="form-control input-lg username-txt" name="username-input" placeholder="User Name">
     				<input type="password" class="form-control input-lg password-txt" name="password-input" placeholder="Password">
 					<input class="btn btn-lg btn-block login-btn" type="submit" value="Login">
 				</form>
@@ -109,7 +105,6 @@ echo "<div class='alert alert-danger'>";
 echo "<strong>Login Failed!</strong> The user name or password is incorrect";
 echo "</div>";
 }
-
 ?>
 					
 

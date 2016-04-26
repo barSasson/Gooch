@@ -17,9 +17,14 @@ mysql_select_db('dizz');
  $sql = "SELECT password FROM users where id=".$id;
  $result = mysql_query($sql);
 
-while($row = mysql_fetch_assoc($result))
+$row = mysql_fetch_assoc($result))
+if(hash("sha256", $password) == $row['password'])
 {
-   echo $row[0];
+   echo "login successful"
+}
+else
+{
+	echo "login failed";
 }
 
 

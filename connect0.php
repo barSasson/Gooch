@@ -18,9 +18,11 @@ mysql_select_db('dizz');
  $result = mysql_query($sql);
 
 
+while($row = mysql_fetch_assoc($result))
+{
+   print_r($row);
+}
 
-
-echo $result;
 
  if (!$result) {
     echo "DB Error, could not list tables\n";

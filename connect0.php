@@ -16,7 +16,7 @@ $db = mysql_connect($servername,$username,$password);
 
 mysql_select_db('dizz');
 
- $sql = "SELECT * FROM users WHERE id='1'";
+ $sql = "SELECT * FROM users";
  $result = mysql_query($sql);
 
 echo $row;

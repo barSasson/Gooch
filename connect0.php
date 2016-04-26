@@ -14,8 +14,8 @@ $db = mysql_connect($servername,$username,$password);
  }
 mysql_select_db( 'dizz' );
 
- $sql = "SELECT * from users";
- $result = mysql_query($sql);
+ $sql = "SELECT id,email FROM users";
+ $result = mysql_query("SELECT id,email FROM users");
 
 
 

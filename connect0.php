@@ -20,7 +20,7 @@ mysql_select_db('dizz');
 $row = mysql_fetch_assoc($result))
 if(hash("sha256", $password) == $row['password'])
 {
-   echo "login successful"
+   echo "login successful";
 }
 else
 {

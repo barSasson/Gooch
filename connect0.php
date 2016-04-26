@@ -23,7 +23,7 @@ mysql_select_db('dizz');
 
 while ($row = mysql_fetch_assoc($result))
 {
-	echo $row;
+	echo $row[2];
 }
 
 $hashed = hash('sha256', $pass); 

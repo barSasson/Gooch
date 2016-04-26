@@ -12,21 +12,20 @@ $db = mysql_connect($servername,$username,$password);
  if (!$db) {
  die("Database connection failed miserably: " . mysql_error());
  }
-mysql_select_db( 'dizz' );
+mysql_select_db('dizz');
 
- $sql = "SELECT id,email FROM users";
- $result = mysql_query("SELECT id,email FROM users");
+ $sql = "SELECT id,username,email FROM users";
+ $result = mysql_query($sql);
 
 
+
+
+echo $result;
 
  if (!$result) {
     echo "DB Error, could not list tables\n";
     echo 'MySQL Error: ' . mysql_error();
     exit;
-}
-echo $result;
-while ($row = mysql_fetch_row($result)) {
-    echo "Table: {$row[0]}\n";
 }
 
 ?>

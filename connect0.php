@@ -15,7 +15,7 @@ $db = mysql_connect($servername,$username,$password);
  }
 mysql_select_db('dizz');
 
- $sql = "SELECT password FROM users WHERE id=1";
+ $sql = "SELECT password FROM users";
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result);

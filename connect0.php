@@ -1,10 +1,12 @@
 <?php
 $servername = "127.9.124.2:3306";
-$username = "adminUbfgc62";
-$password = "f_kHaNi63ccf";
+$server_login_username = "adminUbfgc62";
+$server_login_password = "f_kHaNi63ccf";
+$temp_pass= "2565121024";
 $id =1;
+
 // Create connection
-$db = mysql_connect($servername,$username,$password);
+$db = mysql_connect($servername,$server_login_username,$server_login_password);
 
 
 
@@ -19,16 +21,12 @@ mysql_select_db('dizz');
 
 $row = mysql_fetch_assoc($result);
 
-if(hash("sha256", $password) == $row['password'])
+if(hash("sha256", $temp_pass) == $row['password'])
 {
-   echo hash("sha256", $password);
-   echo $row['password'];
    echo "login successful";
 }
 else
 {
-   echo hash("sha256", $password);
-   echo $row['password'];
 	echo "login failed";
 }
 

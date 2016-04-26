@@ -15,13 +15,12 @@ $db = mysql_connect($servername,$username,$password);
  }
 mysql_select_db('dizz');
 
- $sql = "SELECT password FROM users WHERE id='".$id."'";
+ $sql = "SELECT password FROM users WHERE id=".$id;
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result)
 
-if(hash('sha256', $pass) == $row[0])
-
+if( hash('sha256', $pass) == $row[0] )
 {
 	echo "success";
 }

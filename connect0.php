@@ -18,7 +18,7 @@ $password_input_was_given = isset($_POST['password-input']);
  }
 mysql_select_db('dizz');
 
- $sql = "SELECT password FROM users WHERE username='".$safe_username_input.".;";
+ $sql = "SELECT password FROM users WHERE username='".$safe_username_input."';";
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result);

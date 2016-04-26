@@ -16,7 +16,18 @@ $db = mysql_connect($servername,$username,$password);
 
 mysql_select_db('dizz');
 
- $sql = "SELECT * FROM users WHERE id=1";
+
+//-----------------
+ $sql = "SELECT * FROM users";
+ $result = mysql_query($sql);
+
+$row = mysql_fetch_assoc($result);
+echo $row;
+$hashed = hash('sha256', $pass); 
+//--------------------
+echo "-----";
+
+ $sql = "SELECT * FROM users WHERE id='1'";
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result);

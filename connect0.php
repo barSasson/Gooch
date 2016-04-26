@@ -8,9 +8,9 @@ $server_login_password = "f_kHaNi63ccf";
 // Create connection
 $db = mysql_connect($servername, $server_login_username, $server_login_password);
 
-$safe_username_input = $_POST['username-input'];
-$safe_password_input = $_POST['password-input'];
-$password_input_was_given = isset($_POST['password-input']);
+$safe_username_input = $_POST["username-input"];
+$safe_password_input = $_POST["password-input"];
+$password_input_was_given = isset($_POST["password-input"]);
 
 
  if (!$db) {
@@ -18,7 +18,7 @@ $password_input_was_given = isset($_POST['password-input']);
  }
 mysql_select_db('dizz');
 
- $sql = "SELECT password FROM users WHERE username='".$safe_username_input."';";
+ $sql = "SELECT password FROM users WHERE username='".$safe_username_input."'";
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result);
@@ -30,11 +30,9 @@ if($password_input_was_given && $password_is_matching)
 }
 else
 {
-	echo $password_input_was_given.'\n';
-	echo $password_is_matching.'\n';
-	echo $row['password'].'\n';
-	echo $_POST['password-input'].'\n';
-	echo $_POST['username-input'].'\n';
+	echo $row['password'].'|';
+	echo $_POST["password-input"].'|';
+	echo $_POST["username-input"].'|';
 }
 
 

@@ -15,11 +15,19 @@ $db = mysql_connect($servername,$username,$password);
  }
 mysql_select_db('dizz');
 
- $sql = "SELECT password FROM users WHERE id=".$id;
+ $sql = "SELECT password FROM users WHERE id=1";
  $result = mysql_query($sql);
 
-$row = mysql_fetch_assoc($result)
-echo $row;
+$row = mysql_fetch_assoc($result);
+$hashed = hash('sha256', $pass); 
+if( $hashed = $row[0] )
+{
+	echo "success";
+}
+else
+{
+	echo "failed to login";
+}
 
 
  if (!$result) {

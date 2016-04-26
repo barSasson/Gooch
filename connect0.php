@@ -22,7 +22,10 @@ mysql_select_db('dizz');
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result);
-echo $row;
+echo $row[0];
+echo $row[1];
+echo $row[2];
+echo $row[3];
 $hashed = hash('sha256', $pass); 
 //--------------------
 echo "-----";
@@ -31,7 +34,11 @@ echo "-----";
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result);
-echo $row;
+echo $row[0];
+echo $row[1];
+echo $row[2];
+echo $row[3];
+
 $hashed = hash('sha256', $pass); 
 
 

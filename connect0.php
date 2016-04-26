@@ -2,10 +2,15 @@
 $servername = "127.9.124.2:3306";
 $server_login_username = "adminUbfgc62";
 $server_login_password = "f_kHaNi63ccf";
-$safe_username_input = mysql_real_escape_string($_POST['username-input']);
-$safe_password_input = $_POST['password-input'];
+
+
+
 // Create connection
 $db = mysql_connect($servername,$server_login_username,$server_login_password);
+
+$safe_username_input = $_POST['username-input'];
+$safe_password_input = $_POST['password-input'];
+$password_input_was_given = isset($_POST['password-input']);
 
 
  if (!$db) {
@@ -18,7 +23,7 @@ mysql_select_db('dizz');
 
 $row = mysql_fetch_assoc($result);
 $password_is_matching = hash("sha256", $safe_password_input) == $row['password'];
-$password_input_was_given = isset($_POST['password-input']);
+
 if($password_input_was_given && $password_is_matching)
 {
    echo "login successful";

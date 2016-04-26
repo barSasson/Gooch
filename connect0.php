@@ -21,14 +21,8 @@ mysql_select_db('dizz');
 
 $row = mysql_fetch_assoc($result);
 $hashed = hash('sha256', $pass); 
-if( $hashed == $row[0] )
-{
-	echo "success";
-}
-else
-{
-	echo "failed to login";
-}
+echo $hashed;
+echo $row[0];
 
 
  if (!$result) {

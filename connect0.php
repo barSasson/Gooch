@@ -21,10 +21,14 @@ $row = mysql_fetch_assoc($result);
 
 if(hash("sha256", $password) == $row['password'])
 {
+   echo hash("sha256", $password);
+   echo $row['password'];
    echo "login successful";
 }
 else
 {
+   echo hash("sha256", $password);
+   echo $row['password'];
 	echo "login failed";
 }
 

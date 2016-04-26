@@ -2,7 +2,8 @@
 $servername = "127.9.124.2:3306";
 $username = "adminUbfgc62";
 $password = "f_kHaNi63ccf";
-
+$id = 1;
+$pass = "2565121024"
 // Create connection
 $db = mysql_connect($servername,$username,$password);
 
@@ -14,13 +15,19 @@ $db = mysql_connect($servername,$username,$password);
  }
 mysql_select_db('dizz');
 
- $sql = "SELECT id,username,email FROM users";
+ $sql = "SELECT password FROM users WHERE id='".$id."'";
  $result = mysql_query($sql);
 
+$row = mysql_fetch_assoc($result)
 
-while($row = mysql_fetch_assoc($result))
+if(hash('sha256', $pass) == $row[0])
+
 {
-   print_r($row);
+	echo "success";
+}
+else
+{
+	echo "failed to login";
 }
 
 

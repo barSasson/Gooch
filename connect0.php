@@ -13,14 +13,15 @@ $db = mysql_connect($servername,$username,$password);
  if (!$db) {
  die("Database connection failed miserably: " . mysql_error());
  }
+
 mysql_select_db('dizz');
 
- $sql = "SELECT password FROM users";
+ $sql = "SELECT password FROM users WHERE id=1";
  $result = mysql_query($sql);
 
 $row = mysql_fetch_assoc($result);
 $hashed = hash('sha256', $pass); 
-if( $hashed = $row[0] )
+if( $hashed == $row[0] )
 {
 	echo "success";
 }

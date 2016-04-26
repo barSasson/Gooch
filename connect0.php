@@ -3,7 +3,7 @@ $servername = "127.9.124.2:3306";
 $username = "adminUbfgc62";
 $password = "f_kHaNi63ccf";
 $id = 1;
-$pass = "2565121024"
+$pass = "2565121024";
 // Create connection
 $db = mysql_connect($servername,$username,$password);
 

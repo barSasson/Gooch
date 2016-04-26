@@ -100,11 +100,15 @@ border-color: #aaaaaa;
     				<input type="password" class="form-control input-lg password-txt" name="password-input" placeholder="Password">
 					<input class="btn btn-lg btn-block login-btn" type="submit" value="Login">
 				</form>
-				<div class="alert alert-danger">
+				
 										
 <?php
-if (isset($_GET["LogInError"]))
-echo "<strong>Login Failed!</strong> The user name or password is incorrect"
+if (isset($_GET["login_failed"]))
+{
+echo  "<div class="alert alert-danger">";
+echo "<strong>Login Failed!</strong> The user name or password is incorrect";
+}
+
 ?>
 					
 </div>

@@ -34,6 +34,7 @@ if($input_was_given && $password_is_matching)
 {
    $_SESSION['loggedin'] = true;
    $_SESSION['user_id'] = $first_row_in_query_result['id'];
+   echo 'login successful';
 }
 else
 {

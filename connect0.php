@@ -19,10 +19,8 @@ $safe_password_input = $_POST["password-input"];
 $input_was_given = isset($_POST["password-input"]) && isset($_POST["username-input"]);
 
 
-$sql_query = "SELECT password,id FROM users WHERE username=?";
-$params = array($safe_username_input);
-$query_result = sqlsrv_query($server_connect_response, $sql_query, $params);
-
+$sql_query = "SELECT password,id FROM users WHERE username='".$safe_username_input."'";
+$query_result = mysql_query($sql_query);
 if (!$query_result) {
     echo "DB Error, could not process the query\n";
     echo 'MySQL Error: ' . mysql_error();
@@ -36,8 +34,6 @@ if($input_was_given && $password_is_matching)
 {
    $_SESSION['loggedin'] = true;
    $_SESSION['user_id'] = $first_row_in_query_result['id'];
-   header("Location: ./index.php?login_failed");
-   
 }
 else
 {

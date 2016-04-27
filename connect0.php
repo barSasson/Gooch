@@ -32,6 +32,7 @@ $password_is_matching = hash("sha256", $safe_password_input) == $first_row_in_qu
 
 if($input_was_given && $password_is_matching)
 {
+   session_start();
    $_SESSION['loggedin'] = true;
    $_SESSION['user_id'] = $first_row_in_query_result['id'];
    header("Location: ./calc.php");

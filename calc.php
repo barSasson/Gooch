@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION["id"]) || $_SESSION["id"]!=5)
+if(!isset($_SESSION["loggedin"])
 header("Location: ./index.php");
 
  $xml = simplexml_load_file('./waiters.xml') or die ("Error: failed to open xml") ;

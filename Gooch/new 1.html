@@ -9,7 +9,20 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <style>
-    
+
+body
+{
+    background-color:#ad8258;
+    color: #dedede;
+}
+
+h1{
+    padding: 5px;
+}
+.jumbotron {
+   background-color: #403328;
+    margin-top:20px;
+}
 .navbar-collapse {
     max-height: 100% !important;
 }
@@ -42,15 +55,19 @@
    margin-left: 7px;
 }
 
+.waiter-name-input
+{
+    margin-top: 15px;
+    background-color: #a02816;
+}
+
 .white, .white a {
   color: #fff;
 }
 
 
 
-body {
-  background-color: #f0f7ef;
-}
+
 
 input[type=range] {
   -webkit-appearance: none;
@@ -66,7 +83,7 @@ input[type=range]::-webkit-slider-runnable-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: #FFFFFF;
+  background: #99CC99;
   border-radius: 25px;
   border: 0px solid #000101;
 }
@@ -75,13 +92,13 @@ input[type=range]::-webkit-slider-thumb {
   height: 35px;
   width: 39px;
   border-radius: 7px;
-  background: #00CCCC;
+  background: #3399CC;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -10px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #FFFFFF;
+  background: #99CC99;
 }
 input[type=range]::-moz-range-track {
   width: 100%;
@@ -89,14 +106,13 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: #FFFFFF;
-  border-radius: 25px;
+  background: #99CC99;
   border: 0px solid #000101;
 }
 input[type=range]::-moz-range-thumb {
   height: 35px;
   width: 39px;
-  background: #00CCCC;
+  background: #3399CC;
   cursor: pointer;
 }
 input[type=range]::-ms-track {
@@ -110,13 +126,13 @@ input[type=range]::-ms-track {
   color: transparent;
 }
 input[type=range]::-ms-fill-lower {
-  background: #FFFFFF;
+  background: #99CC99;
   border: 0px solid #000101;
   border-radius: 50px;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
 }
 input[type=range]::-ms-fill-upper {
-  background: #FFFFFF;
+  background: #99CC99;
   border: 0px solid #000101;
   border-radius: 50px;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
@@ -124,17 +140,18 @@ input[type=range]::-ms-fill-upper {
 input[type=range]::-ms-thumb {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 0px solid #000000;
-  height: 20px;
+  height: 35px;
   width: 39px;
   border-radius: 7px;
-  background: #00CCCC;
+  background: #3399CC;
   cursor: pointer;
+  margin-top: 2px;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #FFFFFF;
+  background: #99CC99;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #FFFFFF;
+  background: #99CC99;
 }
 
 
@@ -145,7 +162,7 @@ input[type=range]:focus::-ms-fill-upper {
   margin: auto;
   padding: 10px 0px;
   width: 100%;
-  color: #0ebfbe;
+  color: #FFFFFF;
 }
 
 </style>
@@ -194,12 +211,17 @@ input[type=range]:focus::-ms-fill-upper {
         <p>
 This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
         </p>
-          <div>
-          <input type = "range" min="0.25" max="12" step="0.25" oninput="rangevalue.value=value"/>
-            <output id="rangevalue">6</output>
-          </div>
-
-        <p><a class="btn btn-lg btn-primary btn-outline" href="#">Learn more &raquo;</a></p>
+         
+        
+        <div class="row">
+    <div class="col-lg-4 col-lg-offset-4" style="padding: 50px;">
+        <div class="input-group">
+             <output id="rangevalue">6</output>
+            <input type ="range" value="6" min="0.25" max="12" step="0.25" style="margin-left: 6px" oninput="rangevalue.value=value"/>
+         <input type="text" class="form-control waiter-name-input"align="middle" placeholder="Waiter Name">
+        </div><!-- /input-group -->
+    </div><!-- /.col-lg-4 -->
+</div><!-- /.row -->
         
       </div>
     </div>

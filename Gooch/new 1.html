@@ -275,7 +275,9 @@ This is a template for a simple marketing or informational website. It includes 
       </div>
     </div>
 
-
+<div id="field">
+<input type="text" class="typeahead">
+</div>
 
     <div class="container">
       <!-- Example row of columns -->
@@ -307,7 +309,7 @@ This is a template for a simple marketing or informational website. It includes 
         <p>&copy; Company 2015</p>
       </footer>
     </div> <!-- /container -->
-    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKkRaDYz7ij-3F1iAjhQaF5P2c4wEKxhE&libraries=places">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
@@ -331,6 +333,34 @@ $('#autocomplete .typeahead').typeahead({
 {
   name: 'phrases',
   source: phrases
+});
+
+
+
+var service = new google.maps.places.AutocompleteService();
+var geocoder = new google.maps.Geocoder();
+
+$(field).typeahead({
+  source: function(query, process) {
+    service.getPlacePredictions({ input: query }, function(predictions, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        process($.map(predictions, function(prediction) {
+          return prediction.description;
+        }));
+      }
+    });
+  },
+  updater: function (item) {
+    geocoder.geocode({ address: item }, function(results, status) {
+      if (status != google.maps.GeocoderStatus.OK) {
+        alert('Cannot find address');
+        return;
+      }
+      map.setCenter(results[0].geometry.location);
+      map.setZoom(12); 
+    });
+    return item;
+  }
 });
 </script>
 

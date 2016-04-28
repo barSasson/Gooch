@@ -1,12 +1,13 @@
-﻿<html>
-<head>
+<!doctype html>
+<head  lang="he">
 <title>Gooch</title>
-<meta http-equiv="Content-Type" content="text/html;  charset=iso-1988-i" />
+<meta http-equiv="Content-Type" content="text/html"  charset="utf-8" />
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link href='https://fonts.googleapis.com/css?family=League+Script' rel='stylesheet' type='text/css'>
 <!-- Optional theme -->
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/selectize.default.css">
 <style>
 
 
@@ -57,8 +58,9 @@ h1{
 
 .waiter-name-input
 {
-    margin-top: 15px;
+	width: 200px;
     background-color: #333333;
+	color: white;
 }
 
 .white, .white a {
@@ -165,54 +167,22 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
-.tt-query {
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+
+
+::-webkit-input-placeholder {
+   text-align: center;
 }
 
-.tt-hint {
-  color: #999
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
 }
 
-.tt-menu {
-  width: 200px;
-  
-  background-color: #f5f7ac;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
-          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
 }
 
-.tt-suggestion {
-  padding: 3px 20px;
-  font-size: 18px;
-  line-height: 24px;
-}
-
-.tt-suggestion:hover {
-  cursor: pointer;
-  color: #fff;
-  background-color: #0097cf;
-}
-
-.tt-suggestion.tt-cursor {
-  color: #fff;
-  background-color: #0097cf;
-
-}
-
-.tt-suggestion p {
-  margin: 0;
-}
-
-#rtl-support .tt-dropdown-menu {
-  text-align: right;
+:-ms-input-placeholder {  
+   text-align: center; 
 }
 </style>
 
@@ -262,18 +232,23 @@ This is a template for a simple marketing or informational website. It includes 
         </p>
          
         
-        <div class="row">
-    <div class="col-lg-4 col-lg-offset-4" style="padding: 50px;">
-        <div class="input-group" id="autocomplete">
-             <output id="rangevalue">6</output>
-            <input type ="range" value="6" min="0.25" max="12" step="0.25" style="margin-left: 6px" oninput="rangevalue.value=value"/>
-         <center><input type="text" class="form-control waiter-name-input typeahead" dir="rtl"  align="middle" placeholder="Waiter Name"></center>
+	<div class="col-lg-4 col-lg-offset-4" style="padding: 50px;">
+        <div class="input-group">
+        <output id="rangevalue">6</output>
+        <input type ="range" value="6" min="0.25" max="12" step="0.25" style="margin-left: 6px" oninput="rangevalue.value=value"/>
+         <center>
+			<select id="waiter-select"  class="waiter-name-input" multiple>
+				<option value=0>Option 0</option>
+				<option value=1>Option 1</option>
+			</select>
+			<div id="result"></div>
+		 </center>
         </div><!-- /input-group -->
-    </div><!-- /.col-lg-4 -->
-</div><!-- /.row -->
-        
-      </div>
-    </div>
+	</div><!-- /.col-lg-4 -->
+		
+       
+      </div><!-- .contaner -->
+    </div><!-- /.jumbotron -->
 
 
 
@@ -311,26 +286,14 @@ This is a template for a simple marketing or informational website. It includes 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-<script src="bloodhound.min.js"></script>
-<script src="typeahead.jquery.min.js"></script>
+<script src="js/selectize.js"></script>
 
 <script>
- var phrases = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.whitespace,
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  local: [
-    "דניאל מינס",
-     "לילית",
-      "טל פטיט שביט"
-  ]
-});
 
-$('#autocomplete .typeahead').typeahead({
-  hint: false
-},
-{
-  name: 'phrases',
-  source: phrases
+$('#waiter-select').selectize({
+  	maxItems:1,
+    create: true,
+    sortField: 'text'
 });
 
 

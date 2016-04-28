@@ -1,14 +1,14 @@
-<html>
+﻿<html>
 <head>
 <title>Gooch</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html;  charset=iso-1988-i" />
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="slider/css/slider.css">
 <link href='https://fonts.googleapis.com/css?family=League+Script' rel='stylesheet' type='text/css'>
 <!-- Optional theme -->
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <style>
+
 
 body
 {
@@ -84,7 +84,6 @@ input[type=range]::-webkit-slider-runnable-track {
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   background: #99CC99;
-  border-radius: 25px;
   border: 0px solid #000101;
 }
 input[type=range]::-webkit-slider-thumb {
@@ -134,7 +133,6 @@ input[type=range]::-ms-fill-lower {
 input[type=range]::-ms-fill-upper {
   background: #99CC99;
   border: 0px solid #000101;
-  border-radius: 50px;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
 }
 input[type=range]::-ms-thumb {
@@ -166,6 +164,56 @@ input[type=range]:focus::-ms-fill-upper {
   font-family: league script;
 }
 
+
+.tt-query {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+  color: #999
+}
+
+.tt-menu {
+  width: 200px;
+  
+  background-color: #f5f7ac;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+  padding: 3px 20px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.tt-suggestion:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #0097cf;
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+#rtl-support .tt-dropdown-menu {
+  text-align: right;
+}
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -216,16 +264,18 @@ This is a template for a simple marketing or informational website. It includes 
         
         <div class="row">
     <div class="col-lg-4 col-lg-offset-4" style="padding: 50px;">
-        <div class="input-group">
+        <div class="input-group" id="autocomplete">
              <output id="rangevalue">6</output>
             <input type ="range" value="6" min="0.25" max="12" step="0.25" style="margin-left: 6px" oninput="rangevalue.value=value"/>
-         <input type="text" class="form-control waiter-name-input"align="middle" placeholder="Waiter Name">
+         <center><input type="text" class="form-control waiter-name-input typeahead" dir="rtl"  align="middle" placeholder="Waiter Name"></center>
         </div><!-- /input-group -->
     </div><!-- /.col-lg-4 -->
 </div><!-- /.row -->
         
       </div>
     </div>
+
+
 
     <div class="container">
       <!-- Example row of columns -->
@@ -234,7 +284,7 @@ This is a template for a simple marketing or informational website. It includes 
           <h2>Heading</h2>
           
         
-         
+        
         
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
           <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
@@ -261,8 +311,28 @@ This is a template for a simple marketing or informational website. It includes 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
+<script src="bloodhound.min.js"></script>
+<script src="typeahead.jquery.min.js"></script>
+
+<script>
+ var phrases = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  local: [
+    "דניאל מינס",
+     "לילית",
+      "טל פטיט שביט"
+  ]
+});
+
+$('#autocomplete .typeahead').typeahead({
+  hint: false
+},
+{
+  name: 'phrases',
+  source: phrases
+});
 </script>
-<script></script>
 
 </body>
 </html>

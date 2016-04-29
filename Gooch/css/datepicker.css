@@ -679,15 +679,18 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
   margin-right: -5px;
 }
 .datepicker.dropdown-menu {
-  position: absolute;
+  position: relative;
   top: 100%;
+  margin-top: -28px;
+  margin-left: -9px;
+
   left: 0;
   z-index: 1000;
   display: none;
   float: left;
   min-width: 160px;
   list-style: none;
-  background-color: #ffffff;
+  background-color: #0b0b0b;
   border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
@@ -697,7 +700,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
-  color: #333333;
+  color: #8f8f8f;
   font-size: 13px;
   line-height: 1.42857143;
 }

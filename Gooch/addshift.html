@@ -18,13 +18,15 @@ body
 {
     background-color:#ad8258;
     color: #dedede;
+		 padding-top: 70px; 
+
 }
 
 h1{
     padding: 5px;
 }
 .jumbotron {
-   background-color: #403328;
+   background-color: #373f39;
     margin-top:20px;
 }
 .navbar-collapse {
@@ -95,9 +97,10 @@ input[type=range]::-webkit-slider-thumb {
   height: 35px;
   width: 39px;
   border-radius: 7px;
-   background: transparent;
-  border-color: #364632;
-  border-width: 3px;
+   background: #b66d22;
+  opacity: 0.8;
+  border-color: #ffffff;
+  border-width: 2px;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -10px;
@@ -111,14 +114,15 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: #576a54;
+  background: #4f4f4f;
 }
 input[type=range]::-moz-range-thumb {
   height: 35px;
   width: 39px;
-  background: transparent;
-  border-color: #364632;
-  border-width: 3px;
+  background: #b66d22;
+  opacity: 0.8;
+  border-color: #ffffff;
+  border-width: 2px;
   cursor: pointer;
 }
 input[type=range]::-ms-track {
@@ -148,7 +152,10 @@ input[type=range]::-ms-thumb {
   height: 35px;
   width: 39px;
   border-radius: 7px;
-  background: #226de7;
+   background: #b66d22;
+  opacity: 0.8;
+  border-color: #ffffff;
+  border-width: 2px;
   cursor: pointer;
   margin-top: 2px;
 }
@@ -174,6 +181,7 @@ input[type=range]:focus::-ms-fill-upper {
     border: 5px solid #292814;
     padding: 10px;
 	width: 150px;
+	margin-top: 20px;
 }
 
 .v-hr {
@@ -243,52 +251,62 @@ input[type=range]:focus::-ms-fill-upper {
       <div class="container" style="text-align: center">
         <h1 class="display-3"">Add New Shift</h1>
         <p>
-			Please enter working hours [decimal format] foreach waiter in the shift.
+			Here you can add a new shift;
+			please first enter the working hours for each waiter in the shift, then enter the total amount of tips.
+			You may also change the number of waiters using the plus/minus controls below,
+			and also specify a different date from current one by the date picker.
         </p>
-		
-		
-	
-
-		
 			<a href="#" class="btn btn-lg  halfWidth-btn">Edit Shift</a>
 			<a href="#" class="btn btn-lg halfWidth-btn">Latest Shifts</a>
 
       </div><!-- .contaner -->
     </div><!-- /.jumbotron -->
 
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4" align="center">
-			<div id="datePickerContainer">
-				<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control input-md" type="text" style='width:200px; background-color: #2e2e2e; text-align: center; color: #7f7f7f'> 
-			</div>
-		    <div class="input-group" id="hours-input"></div>
-			<div class="AddRemoveControlWrapper">
-				<div id="glyphicon-add" class="glyphicon glyphicon-plus" style="cursor:pointer" onclick="addHourPickerControl();"></div>
-				<div class="v-hr"></div>
-				<div id="glyphicon-minus" class="glyphicon glyphicon-minus" style="cursor:pointer" onclick="removeTailOfHourPickerControl()"></div>
-		    </div>
-		</div><!-- /.col-md-4 -->
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;  </a></p>
-        </div>
-      </div>
+	<html>
+	<head>
+		<title></title>
+	</head>
 
-      <hr>
+	<body>
+		<div class="container">
+			<!-- Example row of columns -->
 
-      <footer>
-        <p>&copy; Company 2015</p>
-      </footer>
-    </div> <!-- /container -->
-  
+			<div class="row">
+				<div class="col-md-4" align="center">
+					<div class="jumbotron">
+						<div id="datePickerContainer">
+							<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control input-md" type="text" style='width:200px; background-color: #2e2e2e; text-align: center; color: #7f7f7f'>
+						</div>
+
+						<div class="input-group" id="hours-input"></div>
+
+						<div class="AddRemoveControlWrapper">
+							<div id="glyphicon-add" class="glyphicon glyphicon-plus" style="cursor:pointer" onclick="addHourPickerControl();"></div>
+							<div class="v-hr"></div>
+							<div id="glyphicon-minus" class="glyphicon glyphicon-minus" style="cursor:pointer" onclick="removeTailOfHourPickerControl()"></div>
+						</div>
+					</div><!-- /.col-md-4 -->
+				</div>
+					<div class="col-md-4">
+						<h2>Heading</h2>
+						<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+						<p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+					</div>
+
+					<div class="col-md-4">
+						<h2>Heading</h2>
+						<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+						<p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+					</div>
+				</div>
+			<hr>
+
+			<footer>
+				<p>© Company 2015</p>
+			</footer>
+		</div><!-- /container -->
+	</body>
+	</html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
@@ -314,7 +332,7 @@ for(var i=0; i<initialNumOfWaiters; i++)
 
 function addHourPickerControl() {
 	var htmlSelectHoursCode = "<div id='hours-picker-wrapper" + numOfWaiters + "'>";
-	htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ numOfWaiters +"'>6</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>  [Hours in Decimal]</small><center>";
+	htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ numOfWaiters +"'>6</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>  [Hours]</small><center>";
     htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' oninput='rangevalue"+ numOfWaiters +".value=value'/><br>";
 	htmlSelectHoursCode += "<center>";
 	htmlSelectHoursCode += "<select id='waiter-select"+ numOfWaiters +"' class='waiter-name-input'>";

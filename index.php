@@ -13,7 +13,8 @@
 <style>
 body {
     background-color:#996633;
-	color:#ffffff
+	color:#ffffff;
+	 padding-top: 70px; 
 }
 
 h1 {

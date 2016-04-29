@@ -8,6 +8,7 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/selectize.default.css">
+<link rel="stylesheet" href="css/datepicker.css">
 <style>
 
 
@@ -59,7 +60,6 @@ h1{
 .waiter-name-input
 {
 	width: 200px;
-    background-color: #333333;
 	color: white;
 }
 
@@ -155,18 +155,27 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 
-#rangevalue {
+.range-value-style {
   text-align: center;
   font-size: 30px;
   display: block;
-  margin: auto;
-  padding: 10px 0px;
   width: 100%;
   color: #FFFFFF;
-  font-family: league script;
+  font-family: cursive;
 }
 
 
+
+.halfWidth-btn {
+	min-width:50px;
+	color: #0f618b;
+	margin-bottom: 9px;
+	font-size: x-small;
+	background-color: transparent;
+    transition: all .5s;
+	border-width: 1px;
+	border-color: #0f618b;
+}
 
 
 </style>
@@ -210,45 +219,34 @@ input[type=range]:focus::-ms-fill-upper {
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3">Tipper!</h1>
+      <div class="container" style="text-align: center">
+        <h1 class="display-3"">Add New Shift</h1>
         <p>
-This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
+			Please enter working hours [decimal format] foreach waiter in the shift.
         </p>
-         
-        
-	<div class="col-lg-4 col-lg-offset-4" style="padding: 50px;">
-        <div class="input-group">
-        <output id="rangevalue">6</output>
-        <input type ="range" value="6" min="0.25" max="12" step="0.25" style="margin-left: 6px" oninput="rangevalue.value=value"/><br>
-		 <center>
-			<select id="waiter-select"  class="waiter-name-input">
-				<option value="">Choose Waiter..</option>
-				<option value=0>דניאל </option>
-				<option value=1>בר ששון</option>
-			</select>
-			<div id="result"></div>
-		 </center>
-        </div><!-- /input-group -->
-	</div><!-- /.col-lg-4 -->
-		
-       
+	
+	
+			<a href="#" class="btn btn-md  halfWidth-btn">Register</a>
+			<a href="#" class="btn btn-md  halfWidth-btn">Register</a>
+
       </div><!-- .contaner -->
     </div><!-- /.jumbotron -->
 
 
 
     <div class="container">
+		<center><div class=" date datepicker" data-date-format="dd-mm-yyyy" style="background-color: #57a779; max-width: 220px;"></div></center>
       <!-- Example row of columns -->
       <div class="row">
+		
         <div class="col-md-4">
-          <h2>Heading</h2>
-          
-        
-        
-        
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+			
+		   
+			
+            <div class="col-lg-4 col-lg-offset-4" style="padding: 50px;">
+		    <div class="input-group" id="hours-input">		 
+			</div><!-- /input-group -->
+			</div><!-- /.col-lg-4 -->        
         </div>
         <div class="col-md-4">
           <h2>Heading</h2>
@@ -272,18 +270,50 @@ This is a template for a simple marketing or informational website. It includes 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
+<script src="js/moment.js"></script>
+
 <script src="js/selectize.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
 
 <script>
+var options = [
+			   "דניאל מינס",
+			   " בר ששון",
+			   " לילית רז"
+			  ]
+			   
+for(var i=0; i<3 ; i++)
+{
+	var htmlSelectHoursCode = "";
+	htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ i +"'>6</output>";
+    htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' oninput='rangevalue"+ i +".value=value'/><br>";
+	htmlSelectHoursCode += "<center>";
+	htmlSelectHoursCode += "<select id='waiter-select"+ i +"' class='waiter-name-input'>";
+	htmlSelectHoursCode += "<option value=''>Waiter Name</option>";
 
-$('#waiter-select').selectize({
-  	maxItems:1,
-    create: false,
-    sortField: 'text'
-});
+	for(var j =0; j < options.length; ++j)
+	{
+		htmlSelectHoursCode += "<option value='" + j + "'>" + options[j] + "</option>";
+	}
+	
+	htmlSelectHoursCode += "</select>";
+	htmlSelectHoursCode += "<div id='result" + i + "'></div>";
+	htmlSelectHoursCode += "</center>";
+	htmlSelectHoursCode += "</br>"
+	
+	$("#hours-input").append(htmlSelectHoursCode);
+	$('#waiter-select' + i).selectize({
+		maxItems:1,
+		create: false,
+		sortField: 'text'
+		});	
+}
 
-
-
+  $('.datepicker').datepicker({
+            autoclose: true,
+        });
+  
+  
 </script>
 
 </body>

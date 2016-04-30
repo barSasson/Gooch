@@ -18,6 +18,7 @@ while($curr_row_in_query = mysql_fetch_assoc($query_result))
       'id' => $curr_row_in_query['id'],
       'username_heb' => $curr_row_in_query['username_heb']
    );
+	print_r($curr_row_in_query);
 }
 mysql_close($server_connect_response);
 

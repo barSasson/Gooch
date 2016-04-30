@@ -2,6 +2,8 @@
 session_start();
 if(!isset($_SESSION["loggedin"]))
 header("Location: ./index.php");
+
+
 ?>
 
 <!doctype html>
@@ -80,8 +82,6 @@ h1{
 
 
 
-
-
 input[type=range] {
   -webkit-appearance: none;
   margin: 10px 0;
@@ -121,7 +121,7 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: #4f4f4f;
+  background: #576a54;
 }
 input[type=range]::-moz-range-thumb {
   height: 35px;
@@ -241,7 +241,7 @@ input[type=range]:focus::-ms-fill-upper {
          <li><a href="#">Show Statistics</a></li>
          <li><a href="#">Chat</a></li>
          <li><a href="#">Edit Profile</a></li>
-         <li><a href="./logout.php">Logout</a></li>
+         <li><a href="#">Logout</a></li>
          <li>
            <form class="navbar-form" role="search">
             <div class="input-group">
@@ -309,18 +309,18 @@ input[type=range]:focus::-ms-fill-upper {
 							<p>Extra Data</p>		
 							<div class="btn-group" data-toggle="buttons">
 								<label class="btn default-input-style active">
-									<input type="radio" name="options" id="morning-shift-input" autocomplete="off"/><span>Morning Shift</span>
+									<input type="radio" name="shift-type" id="morning-shift-input" autocomplete="off"/><span>Morning Shift</span>
 								</label>
 								<label class="btn default-input-style">
-									<input type="radio" name="options" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
+									<input type="radio" name="shift-type" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
 								</label>
 							</div>
 							<div class="btn-group" data-toggle="buttons">
 								<label class="btn default-input-style active">
-									<input type="radio" name="options" id="morning-shift-input" autocomplete="off"/><span>Checker Enabled</span>
+									<input type="radio" name="checker-exists" id="checker-exists-input" checked autocomplete="off"/><span>Checker Exists</span>
 								</label>
 								<label class="btn default-input-style">
-									<input type="radio" name="options" id="evening-shift-input" autocomplete="off"/><span>Checker Disabled</span>
+									<input type="radio" name="checker-exists" id="checker-not-exists-input" autocomplete="off"/><span>Checker Does Not Exist</span>
 								</label>
 							</div>
 						</div>
@@ -413,7 +413,6 @@ function removeLastWaiterPicker() {
 	
 }
 
-
 $('#datePicker').datepicker({
   container:'#datePickerContainer',
   orientation: "left",
@@ -427,7 +426,7 @@ if (currentDate.getHours() >= 10){
 	 $("#morning-shift-input").checked = true;
 	 document.getElementById("morning-shift-input").checked = true;
 }
-else{
+else {
 	$('#datePicker').datepicker('setDate', yesterday);
 	document.getElementById("evening-shift-input").checked = true;
 }

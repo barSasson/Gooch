@@ -303,10 +303,10 @@ input[type=range]:focus::-ms-fill-upper {
 							<p>Extra Data</p>		
 							<div class="btn-group" data-toggle="buttons">
 								<label class="btn default-input-style active">
-									<input type="radio" name="options" id="morning-shift-input" autocomplete="off" checked /><span>Morning Shift</span>
+									<input type="radio" name="options" id="morning-shift-input" autocomplete="off"/><span>Morning Shift</span>
 								</label>
 								<label class="btn default-input-style">
-									<input type="radio" name="options" id="evening-shift-input" autocomplete="off"><span>Evening Shift</span>
+									<input type="radio" name="options" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
 								</label>
 							</div>
 						</div>
@@ -406,7 +406,20 @@ $('#datePicker').datepicker({
   autoclose: true
   
 });
- $('#datePicker').datepicker('setDate', new Date());
+var currentDate = new Date();
+var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
+if (currentDate.getHours() >= 10){
+	 $('#datePicker').datepicker('setDate', currentDate);
+	 $("#morning-shift-input").checked = true;
+	 document.getElementById("morning-shift-input").checked = true;
+}
+else{
+	$('#datePicker').datepicker('setDate', yesterday);
+	document.getElementById("evening-shift-input").checked = true;
+
+	
+
+}
  
   
 </script>

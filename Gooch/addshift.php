@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 require_once('config.php'); 
 
 
@@ -14,11 +15,7 @@ if (!$query_result) {
 
 while($curr_row_in_query = mysql_fetch_assoc($query_result))
 {
-	$query_result_array[] = array(
-      'id' => $curr_row_in_query['id'],
-      'username_heb' => $curr_row_in_query['username_heb']
-   );
-	print_r($curr_row_in_query);
+	$query_result_array[] = $curr_row_in_query;
 }
 mysql_close($server_connect_response);
 

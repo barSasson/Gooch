@@ -315,6 +315,14 @@ input[type=range]:focus::-ms-fill-upper {
 									<input type="radio" name="options" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
 								</label>
 							</div>
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn default-input-style active">
+									<input type="radio" name="options" id="morning-shift-input" autocomplete="off"/><span>Checker Enabled</span>
+								</label>
+								<label class="btn default-input-style">
+									<input type="radio" name="options" id="evening-shift-input" autocomplete="off"/><span>Checker Disabled</span>
+								</label>
+							</div>
 						</div>
 						<br><br>
 						<input type="submit" class="btn default-input-style btn-lg" value="Submit Shift" style="width: 50%;">

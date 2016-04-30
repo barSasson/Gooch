@@ -1,32 +1,20 @@
 <?php
 
-require_once('config.php'); 
+require_once('config.php');
 
 
-if(!isset($_SESSION["loggedin"]))
-header("Location: ./index.php");
-
-
-$sql_query = "SELECT password,id FROM users";
+$sql_query = "SELECT id FROM users";
 $query_result = mysql_query($sql_query);
-
-if (!$query_result) {
-    echo "DB Error, could not process the query\n";
-    echo 'MySQL Error: ' . mysql_error();
-    exit;
-}
-
 $result_object = array();
-$var = 0;
-while($current_row = mysqli_fetch_assoc($query_result))
-{
-$var = $var + 1;
+$current_row = mysqli_fetch_assoc($query_result);
+
+  if (mysql_num_rows($query_result) > 0) {
+   echo $current_row['id'];
 }
+
+mysql_close();
 ?>
-
-<script> alert('<?php echo $var; ?>'); </script>
-
-<script> alert('<?php echo $current_row['id']; ?>'); </script>
+<script> alert('<?php echo $var ?>'); </script>
 
 <!doctype html>
 <head  lang="he">

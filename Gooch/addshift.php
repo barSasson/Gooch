@@ -14,11 +14,18 @@ if (!$query_result) {
 
 while($curr_row_in_query = mysql_fetch_assoc($query_result))
 {
-	$query_result_array[] = $curr_row_in_query;
+	$query_result_array[] = array(
+      'id' => $curr_row_in_query['id'],
+      'username-heb' => $curr_row_in_query['username-heb']
+   );
 }
 mysql_close($server_connect_response);
 
-
+session_start();
+if(!isset($_SESSION["loggedin"]))
+{
+	header("Location: ./index.php");	
+}
 ?>
 
 

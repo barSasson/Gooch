@@ -58,6 +58,7 @@ if(!isset($_SESSION["loggedin"]))
 #glyphicon-add, #glyphicon-minus {
     font-size: 50px;
 }
+
 body
 {
     background-color:#ad8258;
@@ -368,6 +369,11 @@ input[type=range]:focus::-ms-fill-upper {
 				
 				
 					<div class="col-md-4">
+            <div class="jumbotron">
+             <div class="container">
+             <p>Latest Shifts</p>
+             </div>
+           </div>
 					</div><!-- /.col-md-4 -->
 
 					<div class="col-md-4">

@@ -19,7 +19,7 @@ mysql_select_db($database_name);
 $sql_query = "SELECT password,id FROM users";
 $query_result = mysql_query($sql_query);
 
-while($row = mysql_fetch_array($result)) {
+while($row = mysql_fetch_assoc($result)) {
 print_r($row);
 echo 'dd';
 }

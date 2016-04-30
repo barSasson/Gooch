@@ -17,8 +17,8 @@
 body
 {
     background-color:#ad8258;
-    color: #dedede;
-		 padding-top: 70px; 
+    color: #cdcdcd;
+	padding-top: 70px; 
 
 }
 
@@ -28,6 +28,7 @@ h1{
 .jumbotron {
    background-color: #373f39;
     margin-top:20px;
+	padding: 10%;
 }
 .navbar-collapse {
     max-height: 100% !important;
@@ -61,7 +62,7 @@ h1{
    margin-left: 7px;
 }
 
-.waiter-name-input
+.waiter-name-input , #tips-input
 {
 	width: 200px;
 	color: white;
@@ -178,7 +179,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .AddRemoveControlWrapper {
 	  border-radius: 25px;
-    border: 5px solid #4989d9;
+    border: 5px solid #305da6;
     padding: 10px;
 	width: 150px;
 	margin-top: 20px;
@@ -189,10 +190,10 @@ input[type=range]:focus::-ms-fill-upper {
     display: inline-block;
     width: 0px;
     height: 50px;
-	border: 2px solid #4989d9;
+	border: 2px solid #305da6;
 }
 
-.halfWidth-btn {
+.default-input-style {
 	min-width:50px;
 	color: #d4a449;
 	margin-bottom: 9px;
@@ -202,7 +203,9 @@ input[type=range]:focus::-ms-fill-upper {
 	border-width: 1px;
 	border-color: #9c702b;
 }
-.halfWidth-btn:hover
+
+:checked + span { color: #2b8eff; }
+.default-input-style:hover
 {
 		color: #2b8eff;
 }
@@ -256,8 +259,8 @@ input[type=range]:focus::-ms-fill-upper {
 			You may also change the number of waiters using the plus/minus controls below,
 			and also specify a different date from current one by the date picker.
         </p>
-			<a href="#" class="btn btn-lg  halfWidth-btn">Edit Shift</a>
-			<a href="#" class="btn btn-lg halfWidth-btn">Latest Shifts</a>
+			<a href="#" class="btn btn-lg  default-input-style">Edit Shift</a>
+			<a href="#" class="btn btn-lg default-input-style">Latest Shifts</a>
 
       </div><!-- .contaner -->
     </div><!-- /.jumbotron -->
@@ -274,31 +277,58 @@ input[type=range]:focus::-ms-fill-upper {
 			<div class="row">
 				<div class="col-md-4" align="center">
 					<div class="jumbotron">
-						<div id="datePickerContainer">
-							<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control input-md" type="text" style='width:200px; background-color: #2e2e2e; text-align: center; color: #7f7f7f'>
-						</div>
-
+						
 						<div class="input-group" id="hours-input"></div>
-
-						<div class="AddRemoveControlWrapper">
-							<div id="glyphicon-add" class="glyphicon glyphicon-plus" style="cursor:pointer" onclick="addHourPickerControl();"></div>
+						<div class="AddRemoveControlWrapper" class="" role="group">
+							<div id="glyphicon-add" class="glyphicon glyphicon-plus" style="cursor:pointer" onclick="appendWaiterPicker();"></div>
 							<div class="v-hr"></div>
-							<div id="glyphicon-minus" class="glyphicon glyphicon-minus" style="cursor:pointer" onclick="removeTailOfHourPickerControl()"></div>
+							<div id="glyphicon-minus" class="glyphicon glyphicon-minus" style="cursor:pointer" onclick="removeLastWaiterPicker()"></div>
+						</div><!-- /.AddRemoveControlWrapper -->
+					</div><!-- /.jumbotron -->
+				</div><!-- /.col-md-4 -->
+				
+				<div class="col-md-4" align="center">
+					<div class="jumbotron">
+						<div class="container">
+							<p>Tips</p>
+							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="Total Tips">
 						</div>
-					</div><!-- /.col-md-4 -->
-				</div>
+						<div class="container">
+							<p>Date</p>
+							<div id="datePickerContainer">
+								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
+							</div>
+						</div>
+						<div class="container">
+							<p>Extra Data</p>		
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn default-input-style active">
+									<input type="radio" name="options" id="morning-shift-input" autocomplete="off" checked /><span>Morning Shift</span>
+								</label>
+								<label class="btn default-input-style">
+									<input type="radio" name="options" id="evening-shift-input" autocomplete="off"><span>Evening Shift</span>
+								</label>
+							</div>
+						</div>
+						<br><br>
+						<input type="submit" class="btn default-input-style btn-lg" value="Submit Shift" style="width: 50%;">
+
+					</div><!-- /.jumbotron -->
+				</div><!-- /.col-md-4 -->
+				
+				
 					<div class="col-md-4">
 						<h2>Heading</h2>
 						<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
 						<p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-					</div>
+					</div><!-- /.col-md-4 -->
 
 					<div class="col-md-4">
 						<h2>Heading</h2>
 						<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 						<p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-					</div>
-				</div>
+					</div><!-- /.col-md-4 -->
+				</div><!-- /.row -->
 			<hr>
 
 			<footer>
@@ -326,14 +356,14 @@ var options = [
 			   
 for(var i=0; i<initialNumOfWaiters; i++)
 {
-	addHourPickerControl();
+	appendWaiterPicker();
 }
 
 
-function addHourPickerControl() {
+function appendWaiterPicker() {
 	var htmlSelectHoursCode = "<div id='hours-picker-wrapper" + numOfWaiters + "'>";
 	htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ numOfWaiters +"'>6</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>  [Hours]</small><center>";
-    htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' oninput='rangevalue"+ numOfWaiters +".value=value'/><br>";
+    htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' id='hour-"+ numOfWaiters +"-input'oninput='rangevalue"+ numOfWaiters +".value=value'/><br>";
 	htmlSelectHoursCode += "<center>";
 	htmlSelectHoursCode += "<select id='waiter-select"+ numOfWaiters +"' class='waiter-name-input'>";
 	htmlSelectHoursCode += "<option value=''>Waiter Name</option>";
@@ -360,15 +390,19 @@ function addHourPickerControl() {
 
 }
 
-function removeTailOfHourPickerControl() {
-	numOfWaiters--;
-	var elementToRemove = document.getElementById("hours-picker-wrapper" + numOfWaiters);
-	elementToRemove.parentNode.removeChild(elementToRemove);
+function removeLastWaiterPicker() {
+	if (numOfWaiters >= 1) {
+			numOfWaiters--;
+		var elementToRemove = document.getElementById("hours-picker-wrapper" + numOfWaiters);
+		elementToRemove.parentNode.removeChild(elementToRemove);
+	}
+	
 }
 
 
 $('#datePicker').datepicker({
   container:'#datePickerContainer',
+  orientation: "left",
   autoclose: true
   
 });

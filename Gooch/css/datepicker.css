@@ -438,7 +438,7 @@ fieldset[disabled] .datepicker table tr td.selected.highlighted.focus {
 .datepicker table tr td.active.highlighted {
   color: #ffffff;
   background-color: #337ab7;
-  border-color: #2e6da4;
+  border-color: #99ccff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 .datepicker table tr td.active:focus,
@@ -498,7 +498,7 @@ fieldset[disabled] .datepicker table tr td.active.highlighted:focus,
 fieldset[disabled] .datepicker table tr td.active.focus,
 fieldset[disabled] .datepicker table tr td.active.highlighted.focus {
   background-color: #337ab7;
-  border-color: #2e6da4;
+  border-color: #99ccff;
 }
 .datepicker table tr td span {
   display: block;
@@ -526,7 +526,7 @@ fieldset[disabled] .datepicker table tr td.active.highlighted.focus {
 .datepicker table tr td span.active.disabled:hover {
   color: #ffffff;
   background-color: #337ab7;
-  border-color: #2e6da4;
+  border-color: #99ccff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 .datepicker table tr td span.active:focus,
@@ -626,7 +626,7 @@ fieldset[disabled] .datepicker table tr td span.active:hover.focus,
 fieldset[disabled] .datepicker table tr td span.active.disabled.focus,
 fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
   background-color: #337ab7;
-  border-color: #2e6da4;
+  border-color: #99ccff;
 }
 .datepicker table tr td span.old,
 .datepicker table tr td span.new {
@@ -675,15 +675,13 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
   line-height: 1.42857143;
   text-shadow: 0 1px 0 #fff;
   border-width: 1px 0;
-  margin-left: -5px;
-  margin-right: -5px;
+ 
 }
 .datepicker.dropdown-menu {
   position: relative;
   top: 100%;
   margin-top: -28px;
   margin-left: -9px;
-
   left: 0;
   z-index: 1000;
   display: none;
@@ -691,7 +689,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
   min-width: 160px;
   list-style: none;
   background-color: #0b0b0b;
-  border: 1px solid #cccccc;
+  border: 1px solid #774b16;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -700,7 +698,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
-  color: #8f8f8f;
+  color: #d7d7d7;
   font-size: 13px;
   line-height: 1.42857143;
 }

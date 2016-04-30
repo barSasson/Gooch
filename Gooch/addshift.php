@@ -26,6 +26,7 @@ $current_row = mysqli_fetch_assoc($query_result);
    echo $current_row['id'];
    $current_row = mysqli_fetch_assoc($query_result);
    echo $current_row['id'];
+   echo 'hhhh';
 
 }
 else
@@ -35,7 +36,7 @@ else
 
 mysql_close();
 ?>
-<script> alert('<?php echo $var ?>'); </script>
+<script> alert('<?php echo mysql_num_rows($query_result); ?>'); </script>
 
 <!doctype html>
 <head  lang="he">

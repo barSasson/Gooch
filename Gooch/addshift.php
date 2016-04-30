@@ -2,7 +2,7 @@
 require_once('config.php'); 
 
 
-$sql_query = "SELECT 'username-heb','id' FROM users";
+$sql_query = "SELECT 'username_heb','id' FROM users";
 $query_result = mysql_query($sql_query);
 $query_resut_array = array();
 
@@ -16,7 +16,7 @@ while($curr_row_in_query = mysql_fetch_assoc($query_result))
 {
 	$query_result_array[] = array(
       'id' => $curr_row_in_query['id'],
-      'username-heb' => $curr_row_in_query['username-heb']
+      'username_heb' => $curr_row_in_query['username_heb']
    );
 }
 mysql_close($server_connect_response);
@@ -385,7 +385,7 @@ input[type=range]:focus::-ms-fill-upper {
 <script>
 const initialNumOfWaiters = 6;
 var numOfWaiters = 0;
-var completionOptions = <?php echo json_encode($query_result_array); ?>
+var completionOptions = <?php echo json_encode($query_result_array); ?>;
 			   
 for(var i=0; i<initialNumOfWaiters; i++)
 {
@@ -403,7 +403,7 @@ function appendWaiterPicker() {
 	
 	for(var j =0; j < completionOptions.length; ++j)
 	{
-		htmlSelectHoursCode += "<option value='" + completionOptions[j].id + "'>" + completionOptions[j].username-heb  + "</option>";
+		htmlSelectHoursCode += "<option value='" + completionOptions[j].id + "'>" + completionOptions[j].username_heb  + "</option>";
 	}
 	
 	htmlSelectHoursCode += "</select>";

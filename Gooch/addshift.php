@@ -2,17 +2,19 @@
 require_once('config.php'); 
 
 
-$sql_query = "SELECT email,id FROM users";
+$sql_query = "SELECT username-heb,id FROM users";
 $query_result = mysql_query($sql_query);
+$query_resut_array = array();
+
 if (!$query_result) {
     echo "DB Error, could not process the query\n";
     echo 'MySQL Error: ' . mysql_error();
     exit;
 }
 
-while($first_row_in_query_result = mysql_fetch_assoc($query_result))
+while($curr_row_in_query = mysql_fetch_assoc($query_result))
 {
-	print_r($first_row_in_query_result);
+	$query_result_array[] = $curr_row_in_query;
 }
 mysql_close($server_connect_response);
 
@@ -380,11 +382,7 @@ input[type=range]:focus::-ms-fill-upper {
 <script>
 const initialNumOfWaiters = 6;
 var numOfWaiters = 0;
-var options = [
-			   "דניאל מינס",
-			   " בר ששון",
-			   " לילית רז"
-			  ];
+var completionOptions = <?php echo json_encode($query_result_array); ?>
 			   
 for(var i=0; i<initialNumOfWaiters; i++)
 {
@@ -400,9 +398,9 @@ function appendWaiterPicker() {
 	htmlSelectHoursCode += "<select id='waiter-select"+ numOfWaiters +"' class='waiter-name-input'>";
 	htmlSelectHoursCode += "<option value=''>Waiter Name</option>";
 	
-	for(var j =0; j < options.length; ++j)
+	for(var j =0; j < completionOptions.length; ++j)
 	{
-		htmlSelectHoursCode += "<option value='" + j + "'>" + options[j] + "</option>";
+		htmlSelectHoursCode += "<option value='" + completionOptions[j].id + "'>" + completionOptions[j].username-heb  + "</option>";
 	}
 	
 	htmlSelectHoursCode += "</select>";

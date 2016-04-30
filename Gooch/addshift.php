@@ -6,17 +6,16 @@ header("Location: ./index.php");
 require_once('config.php');
 
 
-$sql_query = "SELECT id,username-heb FROM users";
+$sql_query = "SELECT id FROM users";
 $query_result = mysql_query($sql_query);
 $result_object = array();
-while($current_row = mysqli_fetch_assoc($query_result)) {
-    $result_object[] = $current_row;
+$current_row = mysqli_fetch_assoc($query_result);
+  
 }
 
 ?>
 
-
-<script>alert("<?php echo  json_encode($result_object); echo  $result_object ;  $current_row['id'] ;?>")</script>
+<script> alert('<?php  echo $current_row['id'];  ?>')</script>
 <!doctype html>
 <head  lang="he">
 <title>Gooch</title>

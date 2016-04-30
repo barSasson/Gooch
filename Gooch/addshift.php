@@ -1,4 +1,7 @@
 <?php
+session_start();
+if(!isset($_SESSION["loggedin"]))
+header("Location: ./index.php");
 
 $servername = "127.9.124.2:3306";
 $server_login_username = "adminUbfgc62";

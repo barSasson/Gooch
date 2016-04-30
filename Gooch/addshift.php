@@ -1,7 +1,4 @@
 <?php
-session_start();
-if(!isset($_SESSION["loggedin"]))
-header("Location: ./index.php");
 
 $servername = "127.9.124.2:3306";
 $server_login_username = "adminUbfgc62";
@@ -26,7 +23,7 @@ if (mysql_num_rows($query_result) == 0)
 {
 $var = 0;
 } else {
-$var = 0;
+$var = 1;
 }
 ?>
 <script> alert('<?php echo $var ?>'); </script>

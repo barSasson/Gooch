@@ -13,12 +13,12 @@ $current_row = mysqli_fetch_assoc($query_result);
   
 if (mysql_num_rows($query_result) == 0)
 {
-echo "<script> alert('no result')</script>"
+$var = 0;
 } else {
-echo "<script> alert('".$current_row."')</script>"
-
+$var = 0;
 }
 ?>
+<script> alert('<?php echo $var ?>'); </script>
 
 <!doctype html>
 <head  lang="he">

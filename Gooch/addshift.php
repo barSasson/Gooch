@@ -18,6 +18,7 @@ mysql_select_db($database_name);
 
 $sql_query = "SELECT email FROM users WHERE email='bar.sasson@gmail.com'";
 $query_result = mysql_query($sql_query);
+mysql_num_rows($query_result);
 
 while($row = mysql_fetch_assoc($result)) {
 print_r($row);

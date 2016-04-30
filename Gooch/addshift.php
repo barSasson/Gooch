@@ -20,19 +20,16 @@ mysql_select_db($database_name);
 $sql_query = "SELECT email,id FROM users";
 $query_result = mysql_query($sql_query);
 $result_object = array();
-$current_row = mysqli_fetch_assoc($query_result);
-  
-if (mysql_num_rows($query_result) == 0)
-{
 $var = 0;
-} else {
-$var = 1;
+while($current_row = mysqli_fetch_assoc($query_result))
+{
+$var = $var + 1;
 }
 ?>
 
 <script> alert('<?php echo $var; ?>'); </script>
 
-<script> alert('<?php echo $current_row['email']; ?>'); </script>
+<script> alert('<?php echo $current_row['id']; ?>'); </script>
 
 <!doctype html>
 <head  lang="he">

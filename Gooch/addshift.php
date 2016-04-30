@@ -16,13 +16,14 @@ if (!$server_connect_response) {
  
 mysql_select_db($database_name);
 
-$sql_query = "SELECT password,id FROM users";
+$sql_query = "SELECT email FROM users WHERE email='bar.sasson@gmail.com'";
 $query_result = mysql_query($sql_query);
 
 while($row = mysql_fetch_assoc($result)) {
 print_r($row);
 echo 'dd';
 }
+echo 'dd';
 
 ?>
 <script> alert('<?php echo mysql_num_rows($query_result); ?>'); </script>

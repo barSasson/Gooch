@@ -21,6 +21,8 @@ $query_result = mysql_query($sql_query);
 
 while($row = mysql_fetch_array($result)) {
 echo $row['id'];
+echo 'dd';
+echo $query_result;
 
 }
 

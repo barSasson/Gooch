@@ -17,8 +17,15 @@ if (!$server_connect_response) {
 mysql_select_db($database_name);
 
 
-$sql_query = "SELECT email,id FROM users";
+$sql_query = "SELECT password,id FROM users";
 $query_result = mysql_query($sql_query);
+
+if (!$query_result) {
+    echo "DB Error, could not process the query\n";
+    echo 'MySQL Error: ' . mysql_error();
+    exit;
+}
+
 $result_object = array();
 $var = 0;
 while($current_row = mysqli_fetch_assoc($query_result))

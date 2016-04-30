@@ -18,13 +18,11 @@ mysql_select_db($database_name);
 
 $sql_query = "SELECT email FROM users WHERE email='bar.sasson@gmail.com'";
 $query_result = mysql_query($sql_query);
-mysql_num_rows($query_result);
+echo mysql_num_rows($query_result);
 
-while($row = mysql_fetch_assoc($result)) {
-print_r($row);
-echo 'dd';
-}
-echo 'dd';
+$row = mysql_fetch_assoc($result);
+var_dump($row);
+
 
 ?>
 <script> alert('<?php echo mysql_num_rows($query_result); ?>'); </script>

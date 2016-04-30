@@ -3,9 +3,20 @@ session_start();
 if(!isset($_SESSION["loggedin"]))
 header("Location: ./index.php");
 
+require_once('config.php');
+
+
+$sql_query = "SELECT id,username-heb FROM users";
+$query_result = mysql_query($sql_query);
+$result_object = array();
+while($current_row = mysqli_fetch_assoc($query_result)) {
+    $result_object[] = $current_row;
+}
 
 ?>
 
+
+<script>alert("<?php echo  json_encode($result_object); ?>")</script>
 <!doctype html>
 <head  lang="he">
 <title>Gooch</title>
@@ -241,7 +252,7 @@ input[type=range]:focus::-ms-fill-upper {
          <li><a href="#">Show Statistics</a></li>
          <li><a href="#">Chat</a></li>
          <li><a href="#">Edit Profile</a></li>
-         <li><a href="./logout.php">Logout</a></li>
+         <li><a href="#">Logout</a></li>
          <li>
            <form class="navbar-form" role="search">
             <div class="input-group">
@@ -317,10 +328,10 @@ input[type=range]:focus::-ms-fill-upper {
 							</div>
 							<div class="btn-group" data-toggle="buttons">
 								<label class="btn default-input-style active">
-									<input type="radio" name="checker-exists" id="checker-exists-input" checked autocomplete="off"/><span>Checker Exists</span>
+									<input type="radio" name="checker-exists" id="checker-exists-input" checked autocomplete="off"/><span>Checker Enabled</span>
 								</label>
 								<label class="btn default-input-style">
-									<input type="radio" name="checker-exists" id="checker-not-exists-input" autocomplete="off"/><span>Checker Does Not Exist</span>
+									<input type="radio" name="checker-exists" id="checker-not-exists-input" autocomplete="off"/><span>Checker Disabled</span>
 								</label>
 							</div>
 						</div>

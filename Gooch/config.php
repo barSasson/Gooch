@@ -11,6 +11,7 @@ if (!$server_connect_response) {
  }
  
 mysql_select_db($database_name);
+mysql_query("SET NAMES 'utf8'");
 
 ?>
 

@@ -35,7 +35,7 @@ if($input_was_given && $password_is_matching)
    session_start();
    $_SESSION['loggedin'] = true;
    $_SESSION['user_id'] = $first_row_in_query_result['id'];
-   header("Location: ./calc.php");
+   header("Location: ./addshift.php");
 }
 else
 {

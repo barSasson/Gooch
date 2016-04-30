@@ -689,7 +689,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
   min-width: 160px;
   list-style: none;
   background-color: #0b0b0b;
-  border: 1px solid #774b16;
+  border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);

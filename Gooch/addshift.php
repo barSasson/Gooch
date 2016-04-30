@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION["loggedin"]))
+header("Location: ./index.php");
+?>
+
 <!doctype html>
 <head  lang="he">
 <title>Gooch</title>
@@ -416,9 +422,6 @@ if (currentDate.getHours() >= 10){
 else{
 	$('#datePicker').datepicker('setDate', yesterday);
 	document.getElementById("evening-shift-input").checked = true;
-
-	
-
 }
  
   

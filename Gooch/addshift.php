@@ -2,7 +2,7 @@
 require_once('config.php'); 
 
 
-$sql_query = "SELECT 'username_heb','id' FROM users";
+$sql_query = "SELECT username_heb,id FROM users";
 $query_result = mysql_query($sql_query);
 $query_resut_array = array();
 

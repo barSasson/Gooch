@@ -20,7 +20,7 @@ $sql_query = "SELECT password,id FROM users";
 $query_result = mysql_query($sql_query);
 
 while($row = mysql_fetch_array($result)) {
-print_r($row['id']);
+print_r($row);
 echo 'dd';
 }
 

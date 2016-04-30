@@ -241,7 +241,7 @@ input[type=range]:focus::-ms-fill-upper {
          <li><a href="#">Show Statistics</a></li>
          <li><a href="#">Chat</a></li>
          <li><a href="#">Edit Profile</a></li>
-         <li><a href="#">Logout</a></li>
+         <li><a href="./logout.php">Logout</a></li>
          <li>
            <form class="navbar-form" role="search">
             <div class="input-group">

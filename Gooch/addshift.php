@@ -18,23 +18,12 @@ mysql_select_db($database_name);
 
 $sql_query = "SELECT password,id FROM users";
 $query_result = mysql_query($sql_query);
-$current_row = mysqli_fetch_assoc($query_result);
 
-  if (mysql_num_rows($query_result) > 0) {
-   echo $current_row['id'];
-   $current_row = mysqli_fetch_assoc($query_result);
-   echo $current_row['id'];
-   $current_row = mysqli_fetch_assoc($query_result);
-   echo $current_row['id'];
-   echo 'hhhh';
+while($row = mysql_fetch_array($result)) {
+echo $row['id'];
 
 }
-else
-{
-	echo 'there is no data';
-}
 
-mysql_close();
 ?>
 <script> alert('<?php echo mysql_num_rows($query_result); ?>'); </script>
 

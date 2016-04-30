@@ -16,6 +16,11 @@ while($first_row_in_query_result = mysql_fetch_assoc($query_result))
 }
  mysql_close($server_connect_response);
 
+session_start();
+if(!isset($_SESSION["loggedin"]))
+{
+	header("Location: ./index.php");	
+}
 ?>
 
 

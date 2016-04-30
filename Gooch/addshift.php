@@ -17,7 +17,7 @@ if (!$server_connect_response) {
 mysql_select_db($database_name);
 
 
-$sql_query = "SELECT email FROM users";
+$sql_query = "SELECT email,id FROM users";
 $query_result = mysql_query($sql_query);
 $result_object = array();
 $current_row = mysqli_fetch_assoc($query_result);
@@ -29,7 +29,10 @@ $var = 0;
 $var = 1;
 }
 ?>
-<script> alert('<?php echo $current_row['email'] ?>'); </script>
+
+<script> alert('<?php echo $var; ?>'); </script>
+
+<script> alert('<?php echo $current_row['email']; ?>'); </script>
 
 <!doctype html>
 <head  lang="he">

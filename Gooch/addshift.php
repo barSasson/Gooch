@@ -11,7 +11,6 @@ $query_result = mysql_query($sql_query);
 $result_object = array();
 $current_row = mysqli_fetch_assoc($query_result);
   
-}
 
 ?>
 

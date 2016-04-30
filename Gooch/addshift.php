@@ -29,7 +29,7 @@ $var = 0;
 $var = 1;
 }
 ?>
-<script> alert('<?php echo $var ?>'); </script>
+<script> alert('<?php echo $current_row['email'] ?>'); </script>
 
 <!doctype html>
 <head  lang="he">

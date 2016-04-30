@@ -11,10 +11,15 @@ $query_result = mysql_query($sql_query);
 $result_object = array();
 $current_row = mysqli_fetch_assoc($query_result);
   
+if (mysql_num_rows($query_result) == 0)
+{
+echo "<script> alert('no result')</script>"
+} else {
+echo "<script> alert('".$current_row."')</script>"
 
+}
 ?>
 
-<script> alert('<?php  echo $current_row['id'];  ?>')</script>
 <!doctype html>
 <head  lang="he">
 <title>Gooch</title>

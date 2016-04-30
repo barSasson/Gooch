@@ -1,5 +1,4 @@
 <?php
-<?php
 require_once('config.php'); 
 
 
@@ -19,12 +18,6 @@ while($first_row_in_query_result = mysql_fetch_assoc($query_result))
 
 ?>
 
-
-
-
-
-?>
-<script> alert('<?php echo mysql_num_rows($query_result); ?>'); </script>
 
 <!doctype html>
 <head  lang="he">

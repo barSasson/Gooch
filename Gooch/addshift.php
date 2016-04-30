@@ -16,12 +16,14 @@ if (!$server_connect_response) {
  
 mysql_select_db($database_name);
 
-$sql_query = "SELECT email FROM users WHERE email='bar.sasson@gmail.com'";
+$sql_query = "SELECT email FROM users";
 $query_result = mysql_query($sql_query);
 echo mysql_num_rows($query_result);
 var_dump($query_result);
 $row = mysql_fetch_assoc($result);
+print_r($row);
 var_dump($row);
+
 
 
 ?>

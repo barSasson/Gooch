@@ -18,11 +18,7 @@ while($curr_row_in_query = mysql_fetch_assoc($query_result))
 }
 mysql_close($server_connect_response);
 
-session_start();
-if(!isset($_SESSION["loggedin"]))
-{
-	header("Location: ./index.php");	
-}
+
 ?>
 
 

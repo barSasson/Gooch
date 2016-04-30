@@ -368,10 +368,10 @@ input[type=range]:focus::-ms-fill-upper {
 				</div><!-- /.col-md-4 -->
 				
 				
-					<div class="col-md-4">
+					<div class="col-md-4"  align="center">
             <div class="jumbotron">
              <div class="container">
-             <p>Latest Shifts</p>
+             <p>Latest Shift</p>
              </div>
            </div>
 					</div><!-- /.col-md-4 -->

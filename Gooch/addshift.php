@@ -16,13 +16,17 @@ if (!$server_connect_response) {
  
 mysql_select_db($database_name);
 
-$sql_query = "SELECT id FROM users";
+$sql_query = "SELECT password,id FROM users";
 $query_result = mysql_query($sql_query);
-$result_object = array();
 $current_row = mysqli_fetch_assoc($query_result);
 
   if (mysql_num_rows($query_result) > 0) {
-   echo $row['id'];
+   echo $current_row['id'];
+   $current_row = mysqli_fetch_assoc($query_result);
+   echo $current_row['id'];
+   $current_row = mysqli_fetch_assoc($query_result);
+   echo $current_row['id'];
+
 }
 else
 {

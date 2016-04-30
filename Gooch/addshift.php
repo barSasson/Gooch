@@ -16,7 +16,7 @@ while($current_row = mysqli_fetch_assoc($query_result)) {
 ?>
 
 
-<script>alert("<?php echo  json_encode($result_object); ?>")</script>
+<script>alert("<?php echo  json_encode($result_object); echo  $result_object ;  $current_row['id'] ;?>")</script>
 <!doctype html>
 <head  lang="he">
 <title>Gooch</title>

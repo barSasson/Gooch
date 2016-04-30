@@ -40,6 +40,21 @@ if(!isset($_SESSION["loggedin"]))
 <link rel="stylesheet" href="css/datepicker.css">
 <style>
 
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
 #glyphicon-add, #glyphicon-minus {
     font-size: 50px;
 }
@@ -221,7 +236,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .default-input-style {
-	min-width:50px;
+	min-width:30px;
 	color: #d4a449;
 	margin-bottom: 9px;
 	font-size: x-small;

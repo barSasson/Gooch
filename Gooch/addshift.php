@@ -1,7 +1,20 @@
 <?php
+session_start();
+if(!isset($_SESSION["loggedin"]))
+header("Location: ./index.php");
 
-require_once('config.php');
+$servername = "127.9.124.2:3306";
+$server_login_username = "adminUbfgc62";
+$server_login_password = "f_kHaNi63ccf";
+$database_name = "dizz";
+// Create connection
+$server_connect_response = mysql_connect($servername, $server_login_username, $server_login_password);
 
+if (!$server_connect_response) {
+ die("Database connection failed " . mysql_error());
+ }
+ 
+mysql_select_db($database_name);
 
 $sql_query = "SELECT id FROM users";
 $query_result = mysql_query($sql_query);
@@ -9,7 +22,11 @@ $result_object = array();
 $current_row = mysqli_fetch_assoc($query_result);
 
   if (mysql_num_rows($query_result) > 0) {
-   echo $current_row['id'];
+   echo $row['id'];
+}
+else
+{
+	echo 'there is no data';
 }
 
 mysql_close();

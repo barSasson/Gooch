@@ -248,7 +248,6 @@ input[type=range]:focus::-ms-fill-upper {
 	border-color: #9c702b;
 }
 
-:checked + span { color: #2b8eff; }
 .default-input-style:hover
 {
 		color: #2b8eff;

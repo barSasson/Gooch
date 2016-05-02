@@ -363,11 +363,14 @@ input[type=range]:focus::-ms-fill-upper {
 					<div class="jumbotron">
 						
 						<div class="input-group" id="hours-input"></div>
-						<div class="AddRemoveControlWrapper" class="" role="group">
-							<div id="glyphicon-add" class="glyphicon glyphicon-plus" style="cursor:pointer" onclick="appendWaiterPicker();"></div>
-							<div class="v-hr"></div>
-							<div id="glyphicon-minus" class="glyphicon glyphicon-minus" style="cursor:pointer" onclick="removeLastWaiterPicker()"></div>
-						</div><!-- /.AddRemoveControlWrapper -->
+						<div class="btn-group" data-toggle="buttons">
+              <label class="btn default-input-style" style="padding: 10px;">
+                <div id="glyphicon-add" class="glyphicon glyphicon-plus" style="cursor:pointer" onclick="appendWaiterPicker();"></div>
+              </label>
+              <label class="btn default-input-style"  style="padding: 10px;">
+                <div id="glyphicon-minus" class="glyphicon glyphicon-minus" style="cursor:pointer" onclick="removeLastWaiterPicker()"></div>
+              </label>
+            </div>
 					</div><!-- /.jumbotron -->
 				</div><!-- /.col-md-4 -->
 				

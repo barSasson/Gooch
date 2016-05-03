@@ -66,9 +66,7 @@ body
     background-color:#ad8258;
     color: #cdcdcd;
   	padding-top: 70px;
-    font: 100 1em/1.5em 'Lato';
     font: Ultra-Light 100 1em/1.5em 'Lato';
-    font: Ultra-Light 100 1em/1.5em 'Lato', sans-serif;
 
 }
 

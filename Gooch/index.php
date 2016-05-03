@@ -99,7 +99,13 @@ border-color: #aaaaaa;
 				
 										
 <?php
-if (isset($_GET["login_failed"]))
+
+session_start();
+if(isset($_SESSION["loggedin"]))
+{
+	header("Location: ./addshift.php");	
+}
+else if (isset($_GET["login_failed"]))
 {
 echo "<div class='alert alert-danger'>";
 echo "<strong>Login Failed!</strong> The user name or password is incorrect";

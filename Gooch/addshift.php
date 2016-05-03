@@ -68,7 +68,7 @@ body
 	padding-top: 70px;
 }
 
-h1, p {
+ p {
     font: 100 1em/1.5em 'Lato';
     font: Ultra-Light 100 1em/1.5em 'Lato';
     font: Ultra-Light 100 1em/1.5em 'Lato', sans-serif;

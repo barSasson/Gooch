@@ -69,6 +69,8 @@ body
 }
 
 h1, p {
+    font: 100 1em/1.5em 'Lato';
+    font: Ultra-Light 100 1em/1.5em 'Lato';
     font: Ultra-Light 100 1em/1.5em 'Lato', sans-serif;
 }
 
@@ -76,8 +78,6 @@ h1
 {
     padding: 5px;
 }
-
-
 .jumbotron {
    background-color: #373f39;
     margin-top:20px;

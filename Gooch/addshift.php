@@ -76,7 +76,7 @@ body
 
 h1
 {
-  font-family: "Lato"
+  font-family: "Lato";
     padding: 5px;
 }
 .jumbotron {

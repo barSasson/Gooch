@@ -65,7 +65,9 @@ body
 {
     background-color:#ad8258;
     color: #cdcdcd;
-	padding-top: 70px;
+  	padding-top: 70px;
+    font: Ultra-Light 100 1em/1.5em 'Lato', sans-serif;
+    
 }
 
  p {

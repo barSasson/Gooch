@@ -263,7 +263,10 @@ input[type=range]:focus::-ms-fill-upper {
 		color: #2b8eff;
 }
 
-
+.nav
+{
+  font-family: "Lato";
+}
 
 @media (max-width: 880px) {
     .navbar-header {
@@ -275,7 +278,6 @@ input[type=range]:focus::-ms-fill-upper {
     .navbar-collapse {
         border-top: 1px solid transparent;
         box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-        font-family: "Lato";
     }
     .navbar-collapse.collapse {
         display: none!important;

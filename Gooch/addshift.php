@@ -38,6 +38,7 @@ if(!isset($_SESSION["loggedin"]))
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/selectize.default.css">
 <link rel="stylesheet" href="css/datepicker.css">
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <style>
 
 ::-webkit-input-placeholder {
@@ -64,9 +65,11 @@ body
 {
     background-color:#ad8258;
     color: #cdcdcd;
-	padding-top: 70px; 
+	padding-top: 70px;
+	font-family: Lato;
 
 }
+
 
 h1{
     padding: 5px;

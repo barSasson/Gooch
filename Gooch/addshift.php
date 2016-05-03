@@ -66,7 +66,6 @@ body
     background-color:#ad8258;
     color: #cdcdcd;
   	padding-top: 70px;
-    font: Ultra-Light 100 1em/1.5em 'Lato';
 
 }
 
@@ -276,6 +275,7 @@ input[type=range]:focus::-ms-fill-upper {
     .navbar-collapse {
         border-top: 1px solid transparent;
         box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        font-family: "Lato";
     }
     .navbar-collapse.collapse {
         display: none!important;
@@ -321,7 +321,7 @@ input[type=range]:focus::-ms-fill-upper {
       <a class="brand-small" href="#">Gooch</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
         <li class="active"><a href="#">Add Shift</a></li>
          <li><a href="#">Latest Shift</a></li>

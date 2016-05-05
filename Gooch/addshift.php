@@ -383,12 +383,12 @@ input[type=range]:focus::-ms-fill-upper {
 					<div class="jumbotron">
 						<div class="container">
 							<p>Tips</p>
-							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="Total Tips" style='width:inherit text-align: center; color: #ffffff'>
+							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="Total Tips" style='text-align: center; color: #ffffff'>
 						</div>
 						<div class="container">
 							<p>Date</p>
 							<div id="datePickerContainer">
-								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:inherit; text-align: center; color: #ffffff'>
+								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:40%; text-align: center; color: #ffffff'>
 							</div>
 						</div>
 						<div class="container">

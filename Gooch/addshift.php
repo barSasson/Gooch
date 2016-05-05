@@ -69,10 +69,6 @@ body
 
 }
 
- p {
-   
-}
-
 h1
 {
     padding: 5px;

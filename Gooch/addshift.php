@@ -65,6 +65,7 @@ body
     background-color:#ad8258;
     color: #cdcdcd;
   	padding-top: 70px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 }
 

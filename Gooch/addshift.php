@@ -302,9 +302,9 @@ input[type=range]:focus::-ms-fill-upper {
         overflow: hidden!important;
     }
 }
- .btn-group>.btn:hover
+ .btn-group>.btn
     {
-        z-index: 0;
+        overflow: hidden;
     }
 </style>
 

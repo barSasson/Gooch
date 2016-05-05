@@ -238,6 +238,17 @@ input[type=range]:focus::-ms-fill-upper {
 	margin-top: 20px;
 }
 
+.default-input-style {
+	min-width:30px;
+	color: #d4a449;
+	margin-bottom: 9px;
+	font-size: x-small;
+	background-color: transparent;
+    transition: all .5s;
+	border-width: 1px;
+	border-color: #9c702b;
+}
+
 :checked + span { color: #2b8eff;  }
 .default-input-style:hover
 {
@@ -378,6 +389,9 @@ input[type=range]:focus::-ms-fill-upper {
 							<p>Date</p>
 							<div id="datePickerContainer">
 								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
+                <label class="btn default-input-style  col-xs-6">
+                  <input type="radio" name="shift-type" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
+                </label>
 							</div>
 						</div>
 						<div class="container">

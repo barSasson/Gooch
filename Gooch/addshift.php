@@ -115,7 +115,6 @@ h1
 .form-control
 {
    background-color: inherit;
-   margin-left: 7px;
 }
 
 .waiter-name-input , #tips-input
@@ -384,7 +383,7 @@ input[type=range]:focus::-ms-fill-upper {
 					<div class="jumbotron">
 						<div class="container">
 							<p>Tips</p>
-							<input type="number" class="default-input-style" id="tips-input" placeholder="Total Tips">
+							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="Total Tips">
 						</div>
 						<div class="container">
 							<p>Date</p>

@@ -388,7 +388,7 @@ input[type=range]:focus::-ms-fill-upper {
 						<div class="container">
 							<p>Date</p>
 							<div id="datePickerContainer">
-								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class=" form-control default-input-style" type="text" style='text-align: center; color: #ffffff'>
+								<input id='datePicker' data-provide='datepicker' data-date-class="datepicker form-control default-input-style" type="text" style='text-align: center; color: #ffffff'>
 							</div>
 						</div>
 						<div class="container">

@@ -305,6 +305,7 @@ input[type=range]:focus::-ms-fill-upper {
  .btn-group>.btn
     {
         white-space: normal;
+        height: inherit;
     }
 </style>
 

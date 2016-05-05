@@ -38,7 +38,6 @@ if(!isset($_SESSION["loggedin"]))
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/selectize.default.css">
 <link rel="stylesheet" href="css/datepicker.css">
-<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
 <style>
 
 ::-webkit-input-placeholder {
@@ -338,7 +337,7 @@ input[type=range]:focus::-ms-fill-upper {
     <div class="jumbotron">
       <div class="container" style="text-align: center">
         <h1 class="display-3"">Add New Shift</h1>
-        <p class="lead">
+        <p>
 			Here you can add a new shift;
 			please first enter the working hours for each waiter in the shift, then enter the total amount of tips.
 			You may also change the number of waiters using the plus/minus controls below,

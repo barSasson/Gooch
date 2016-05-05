@@ -58,16 +58,7 @@ if(!isset($_SESSION["loggedin"]))
 #glyphicon-add, #glyphicon-minus {
     font-size: 50px;
 }
-@font-face {
-  font-family: MyHelvetica;
-  src: local("Helvetica Neue Bold"),
-       local("HelveticaNeue-Bold"),
-       local("HelveticaNeue"),
-       local("Helvetica Neue"),
 
-       url(fonts/HelveticaNeue.ttf);
-  font-weight: bold;
-}
 .jumbotron p {
   margin-bottom: 15px;
   font-size: 21px;
@@ -80,7 +71,7 @@ if(!isset($_SESSION["loggedin"]))
 }
 body
 {
-  font-family: inherit, "MyHelvetica";
+  font-family: inherit;
     background-color:#ad8258;
     color: #cdcdcd;
   	padding-top: 70px;

@@ -70,14 +70,11 @@ body
 }
 
  p {
-    font: 100 1em/1.5em 'Lato';
-    font: Ultra-Light 100 1em/1.5em 'Lato';
-    font: Ultra-Light 100 1em/1.5em 'Lato', sans-serif;
+   
 }
 
 h1
 {
-  font-family: "Lato";
     padding: 5px;
 }
 .jumbotron {

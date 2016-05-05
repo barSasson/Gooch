@@ -304,7 +304,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
  .btn-group>.btn
     {
-        overflow: hidden;
+        overflow:scroll;
     }
 </style>
 

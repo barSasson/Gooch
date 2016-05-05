@@ -406,12 +406,12 @@ input[type=range]:focus::-ms-fill-upper {
 								</label>
 							</div>
 							<div class="btn-group" data-toggle="buttons">
-								<label class="btn default-input-style active col-xs-6">
+								<a class="btn default-input-style active col-xs-6">
 									<input type="radio" name="checker-exists" id="checker-exists-input" checked autocomplete="off"/><span>Checker Enabled</span>
-								</label>
-								<label class="btn default-input-style col-xs-6">
+								</a>
+								<a class="btn default-input-style col-xs-6">
 									<input type="radio" name="checker-exists" id="checker-not-exists-input" autocomplete="off"/><span>Checker Disabled</span>
-								</label>
+								</a>
 							</div>
 						</div>
 						<br><br>

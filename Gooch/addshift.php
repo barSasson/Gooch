@@ -302,7 +302,10 @@ input[type=range]:focus::-ms-fill-upper {
         overflow: hidden!important;
     }
 }
-
+ .btn-group>.btn:hover
+    {
+        z-index: 0;
+    }
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

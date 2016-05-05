@@ -71,7 +71,6 @@ body
 
 h1
 {
-  font-family: "Lato";
     padding: 5px;
 }
 .jumbotron {
@@ -257,10 +256,6 @@ input[type=range]:focus::-ms-fill-upper {
 		color: #2b8eff;
 }
 
-.nav
-{
-  font-family: "Lato";
-}
 
 @media (max-width: 880px) {
     .navbar-header {

@@ -238,17 +238,6 @@ input[type=range]:focus::-ms-fill-upper {
 	margin-top: 20px;
 }
 
-.default-input-style {
-	min-width:30px;
-	color: #d4a449;
-	margin-bottom: 9px;
-	font-size: x-small;
-	background-color: transparent;
-    transition: all .5s;
-	border-width: 1px;
-	border-color: #9c702b;
-}
-
 :checked + span { color: #2b8eff;  }
 .default-input-style:hover
 {

@@ -60,9 +60,7 @@ if(!isset($_SESSION["loggedin"]))
 }
 @font-face {
   font-family: MyHelvetica;
-  src: local("Helvetica Neue Bold"),
-       local("HelveticaNeue-Bold"),
-       local("HelveticaNeue"),
+  src: 
        local("Helvetica Neue"),
 
        url(fonts/HelveticaNeue.ttf);
@@ -84,7 +82,6 @@ body
     background-color:#ad8258;
     color: #cdcdcd;
   	padding-top: 70px;
-
 }
 
 h1

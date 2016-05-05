@@ -304,7 +304,8 @@ input[type=range]:focus::-ms-fill-upper {
 }
  .btn-group>.btn
     {
-        white-space: initial;
+        white-space: nowrap;
+        overflow: hidden;
 
     }
 </style>

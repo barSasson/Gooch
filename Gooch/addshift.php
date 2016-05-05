@@ -115,6 +115,7 @@ h1
 .form-control
 {
    background-color: inherit;
+   margin-left: 7px;
 }
 
 .waiter-name-input , #tips-input
@@ -236,6 +237,14 @@ input[type=range]:focus::-ms-fill-upper {
     padding: 10px;
 	width: 150px;
 	margin-top: 20px;
+}
+
+.v-hr {
+    content: "";
+    display: inline-block;
+    width: 0px;
+    height: 50px;
+	border: 2px solid #305da6;
 }
 
 .default-input-style {
@@ -383,12 +392,12 @@ input[type=range]:focus::-ms-fill-upper {
 					<div class="jumbotron">
 						<div class="container">
 							<p>Tips</p>
-							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="Total Tips" style='text-align: center; color: #ffffff'>
+							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="Total Tips">
 						</div>
 						<div class="container">
 							<p>Date</p>
 							<div id="datePickerContainer">
-								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:40%; text-align: center; color: #ffffff'>
+								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
 							</div>
 						</div>
 						<div class="container">

@@ -239,14 +239,6 @@ input[type=range]:focus::-ms-fill-upper {
 	margin-top: 20px;
 }
 
-.v-hr {
-    content: "";
-    display: inline-block;
-    width: 0px;
-    height: 50px;
-	border: 2px solid #305da6;
-}
-
 .default-input-style {
 	min-width:30px;
 	color: #d4a449;
@@ -392,7 +384,7 @@ input[type=range]:focus::-ms-fill-upper {
 					<div class="jumbotron">
 						<div class="container">
 							<p>Tips</p>
-							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="Total Tips">
+							<input type="number" class="default-input-style" id="tips-input" placeholder="Total Tips">
 						</div>
 						<div class="container">
 							<p>Date</p>

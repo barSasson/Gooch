@@ -409,7 +409,7 @@ input[type=range]:focus::-ms-fill-upper {
 									<input type="radio" name="shift-type" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
 								</label>
 							</div>
-							<div class="btn-group" data-toggle="buttons">
+							<div class="btn-group-justified" data-toggle="buttons">
 								<label class="btn default-input-style active col-xs-6">
 									<input type="radio" name="checker-exists" id="checker-exists-input" checked autocomplete="off"/><span>Checker Enabled</span>
 								</label>

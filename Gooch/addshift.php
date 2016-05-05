@@ -388,10 +388,7 @@ input[type=range]:focus::-ms-fill-upper {
 						<div class="container">
 							<p>Date</p>
 							<div id="datePickerContainer">
-								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
-                <label class="btn default-input-style  col-xs-6">
-                  <input type="radio" name="shift-type" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
-                </label>
+								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class=" form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
 							</div>
 						</div>
 						<div class="container">

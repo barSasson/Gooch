@@ -66,7 +66,7 @@ if(!isset($_SESSION["loggedin"]))
 }
 
 .jumbotron h1 {
-  font-weight: 101;
+  font-weight: 90;
 }
 body
 {

@@ -398,10 +398,10 @@ input[type=range]:focus::-ms-fill-upper {
 						<div class="container">
 							<p>Extra Data</p>		
 							<div class="btn-group" data-toggle="buttons">
-								<label class="btn default-input-style active">
+								<label class="btn default-input-style active  col-xs-6">
 									<input type="radio" name="shift-type" id="morning-shift-input" autocomplete="off"/><span>Morning Shift</span>
 								</label>
-								<label class="btn default-input-style">
+								<label class="btn default-input-style  col-xs-6">
 									<input type="radio" name="shift-type" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
 								</label>
 							</div>

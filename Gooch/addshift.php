@@ -65,6 +65,11 @@ if(!isset($_SESSION["loggedin"]))
   font-weight: 100;
 }
 
+.jumbotron h1 {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 150;
+}
 body
 {
     background-color:#ad8258;

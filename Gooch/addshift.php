@@ -59,13 +59,17 @@ if(!isset($_SESSION["loggedin"]))
     font-size: 50px;
 }
 
+.jumbotron p {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 200;
+}
 
 body
 {
     background-color:#ad8258;
     color: #cdcdcd;
   	padding-top: 70px;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 }
 

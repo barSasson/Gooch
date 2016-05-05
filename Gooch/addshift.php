@@ -80,6 +80,7 @@ if(!isset($_SESSION["loggedin"]))
 }
 body
 {
+  font-family: "MyHelvetica";
     background-color:#ad8258;
     color: #cdcdcd;
   	padding-top: 70px;

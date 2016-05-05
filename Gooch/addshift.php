@@ -71,10 +71,10 @@ if(!isset($_SESSION["loggedin"]))
 }
 body
 {
-  font-family: inherit;
     background-color:#ad8258;
     color: #cdcdcd;
   	padding-top: 70px;
+
 }
 
 h1
@@ -83,8 +83,8 @@ h1
 }
 .jumbotron {
    background-color: #373f39;
-   margin-top:20px;
-	 padding: 10%;
+    margin-top:20px;
+	padding: 10%;
 }
 .navbar-collapse {
     max-height: 100% !important;

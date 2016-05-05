@@ -338,7 +338,7 @@ input[type=range]:focus::-ms-fill-upper {
     <div class="jumbotron">
       <div class="container" style="text-align: center">
         <h1 class="display-3"">Add New Shift</h1>
-        <p>
+        <p class="lead">
 			Here you can add a new shift;
 			please first enter the working hours for each waiter in the shift, then enter the total amount of tips.
 			You may also change the number of waiters using the plus/minus controls below,

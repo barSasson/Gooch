@@ -151,17 +151,19 @@ input[type=range]::-webkit-slider-thumb {
   border: 0px solid #000000;
   height: 35px;
   width: 39px;
-  border-radius: 7px;
-   background: #b66d22;
   opacity: 0.8;
-  border-color: #ffffff;
-  border-width: 2px;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -10px;
+   
+  border-radius: 7px;
+  
+   border-color: #ffffff;
+  background: #2b8eff;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #576a54;
+    background: #be7622;
+
 }
 input[type=range]::-moz-range-track {
   width: 100%;
@@ -169,51 +171,57 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  border-width: 1px;
-background: #be7622;
+  
+  background: #be7622;
 }
 input[type=range]::-moz-range-thumb {
   height: 35px;
   width: 39px;
-  background: #2b8eff;
   opacity: 0.8;
-  border-color: #ffffff;
-  border-width: 2px;
   cursor: pointer;
+  
+  border-color: #ffffff;
+  background: #2b8eff;
+  border-width: 2px;
 }
 input[type=range]::-ms-track {
   width: 100%;
   height: 12.8px;
   cursor: pointer;
   animate: 0.2s;
+  border-width: 39px 0;
+  
   background: transparent;
   border-color: transparent;
-  border-width: 39px 0;
   color: transparent;
 }
 input[type=range]::-ms-fill-lower {
-  background: #a62c1c;
   border: 0px solid #000101;
-  border-radius: 50px;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+
+  border-radius: 50px;
+  background: #a62c1c;
+  
 }
 input[type=range]::-ms-fill-upper {
-  background: #a62c1c;
   border: 0px solid #000101;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  
+  background: #a62c1c;
 }
 input[type=range]::-ms-thumb {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 0px solid #000000;
   height: 35px;
   width: 39px;
+  cursor: pointer;
+  margin-top: 2px;
+  
   border-radius: 7px;
-   background: #b66d22;
+  background: #b66d22;
   opacity: 0.8;
   border-color: #ffffff;
   border-width: 2px;
-  cursor: pointer;
-  margin-top: 2px;
 }
 input[type=range]:focus::-ms-fill-lower {
   background: #a62c1c;

@@ -15,14 +15,14 @@ if (!$query_result) {
 
 while($curr_row_in_query = mysql_fetch_assoc($query_result))
 {
-	$query_result_array[] = $curr_row_in_query;
+  $query_result_array[] = $curr_row_in_query;
 }
 mysql_close($server_connect_response);
 
 session_start();
 if(!isset($_SESSION["loggedin"]))
 {
-	header("Location: ./index.php");	
+  header("Location: ./index.php");  
 }
 ?>
 
@@ -73,7 +73,7 @@ body
 {
     background-color:#ad8258;
     color: #cdcdcd;
-  	padding-top: 70px;
+    padding-top: 70px;
 
 }
 
@@ -84,21 +84,21 @@ h1
 .jumbotron {
    background-color: #373f39;
     margin-top:20px;
-	padding: 10%;
+  padding: 10%;
 }
 .navbar-collapse {
     max-height: 100% !important;
 }
 .brand-small, .brand-small:checked, .brand-small:visited, .brand-small:link  {
-	color: #ededed; font-family: League Script;
-	font-size: 35px;
+  color: #ededed; font-family: League Script;
+  font-size: 35px;
     margin-left: 10px;
     margin-right: 30px;
     text-decoration: none;
 }
 .brand-small:hover {
-	color: #ffffff; font-family: League Script;
-	font-size: 35px;
+  color: #ffffff; font-family: League Script;
+  font-size: 35px;
     text-decoration: none;
 }
 
@@ -120,8 +120,8 @@ h1
 
 .waiter-name-input , #tips-input
 {
-	width: 200px;
-	color: white;
+  width: 200px;
+  color: white;
 }
 
 .white, .white a {
@@ -144,8 +144,10 @@ input[type=range]::-webkit-slider-runnable-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  background: #576a54	;
   border: 0px solid #000101;
+  
+  
+  background: #be7622;
 }
 input[type=range]::-webkit-slider-thumb {
   border: 0px solid #000000;
@@ -159,7 +161,8 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 7px;
   
    border-color: #ffffff;
-  background: #2b8eff;
+   background: #2b8eff;
+   border-width: 2px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
     background: #be7622;
@@ -241,26 +244,26 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .add-remove-control {
-	padding-top: 20px;
+  padding-top: 20px;
 }
 .add-remove-control .default-input-style:hover {
-	color: 	#9c702b;
+  color:  #9c702b;
 }
 .default-input-style {
-	min-width:30px;
-	color: #d4a449;
-	margin-bottom: 9px;
-	font-size: x-small;
-	background-color: transparent;
+  min-width:30px;
+  color: #d4a449;
+  margin-bottom: 9px;
+  font-size: x-small;
+  background-color: transparent;
     transition: all .5s;
-	border-width: 1px;
-	border-color: #9c702b;
+  border-width: 1px;
+  border-color: #9c702b;
 }
 
 :checked + span { color: #2b8eff;  }
 .default-input-style:hover
 {
-		color: #2b8eff;
+    color: #2b8eff;
 }
 
 
@@ -337,7 +340,7 @@ input[type=range]:focus::-ms-fill-upper {
          <li>
            <form class="navbar-form" role="search">
             <div class="input-group">
-					<input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="Search">
                     <span class="glyphicon glyphicon-search white form-control-feedback"></span>
             </div>
             </form>
@@ -353,32 +356,32 @@ input[type=range]:focus::-ms-fill-upper {
       <div class="container" style="text-align: center">
         <h1 class="display-3"">Add New Shift</h1>
         <p>
-			Here you can add a new shift;
-			please first enter the working hours for each waiter in the shift, then enter the total amount of tips.
-			You may also change the number of waiters using the plus/minus controls below,
-			and also specify a different date from current one by the date picker.
+      Here you can add a new shift;
+      please first enter the working hours for each waiter in the shift, then enter the total amount of tips.
+      You may also change the number of waiters using the plus/minus controls below,
+      and also specify a different date from current one by the date picker.
         </p>
-			<a href="#" class="btn btn-lg  default-input-style">Edit Shift</a>
-			<a href="#" class="btn btn-lg default-input-style">Latest Shifts</a>
+      <a href="#" class="btn btn-lg  default-input-style">Edit Shift</a>
+      <a href="#" class="btn btn-lg default-input-style">Latest Shifts</a>
 
       </div><!-- .contaner -->
     </div><!-- /.jumbotron -->
 
-	<html>
-	<head>
-		<title></title>
-	</head>
+  <html>
+  <head>
+    <title></title>
+  </head>
 
-	<body>
-		<div class="container">
-			<!-- Example row of columns -->
+  <body>
+    <div class="container">
+      <!-- Example row of columns -->
 
-			<div class="row">
-				<div class="col-md-4" align="center">
-					<div class="jumbotron">
-						
-						<div class="input-group" id="hours-input"></div>
-						<div class="btn-group add-remove-control" data-toggle="buttons">
+      <div class="row">
+        <div class="col-md-4" align="center">
+          <div class="jumbotron">
+            
+            <div class="input-group" id="hours-input"></div>
+            <div class="btn-group add-remove-control" data-toggle="buttons">
               <label class="btn default-input-style" style="padding: 10px;">
                 <div id="glyphicon-add" class="glyphicon glyphicon-plus" style="cursor:pointer" onclick="appendWaiterPicker();"></div>
               </label>
@@ -386,67 +389,67 @@ input[type=range]:focus::-ms-fill-upper {
                 <div id="glyphicon-minus" class="glyphicon glyphicon-minus" style="cursor:pointer" onclick="removeLastWaiterPicker()"></div>
               </label>
             </div>
-					</div><!-- /.jumbotron -->
-				</div><!-- /.col-md-4 -->
-				
-				<div class="col-md-4" align="center">
-					<div class="jumbotron">
-						<div class="container">
-							<p>Tips</p>
-							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="Total Tips">
-						</div>
-						<div class="container">
-							<p>Date</p>
-							<div id="datePickerContainer">
-								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
-							</div>
-						</div>
-						<div class="container">
-							<p>Extra Data</p>		
-							<div class="btn-group" data-toggle="buttons">
-								<label class="btn default-input-style active  col-xs-6">
-									<input type="radio" name="shift-type" id="morning-shift-input" autocomplete="off"/><span>Morning Shift</span>
-								</label>
-								<label class="btn default-input-style  col-xs-6">
-									<input type="radio" name="shift-type" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
-								</label>
-							</div>
-							<div class="btn-group" data-toggle="buttons">
-								<label class="btn default-input-style active col-xs-6">
-									<input type="radio" name="checker-exists" id="checker-exists-input" checked autocomplete="off"/><span>Checker Enabled</span>
-								</label>
-								<label class="btn default-input-style col-xs-6">
-									<input type="radio" name="checker-exists" id="checker-not-exists-input" autocomplete="off"/><span>Checker Disabled</span>
-								</label>
-							</div>
-						</div>
-						<br><br>
-						<input type="submit" class="btn default-input-style btn-lg" value="Submit Shift" style="width: 50%;">
+          </div><!-- /.jumbotron -->
+        </div><!-- /.col-md-4 -->
+        
+        <div class="col-md-4" align="center">
+          <div class="jumbotron">
+            <div class="container">
+              <p>Tips</p>
+              <input type="number" class="form-control default-input-style" id="tips-input" placeholder="Total Tips">
+            </div>
+            <div class="container">
+              <p>Date</p>
+              <div id="datePickerContainer">
+                <input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
+              </div>
+            </div>
+            <div class="container">
+              <p>Extra Data</p>   
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn default-input-style active  col-xs-6">
+                  <input type="radio" name="shift-type" id="morning-shift-input" autocomplete="off"/><span>Morning Shift</span>
+                </label>
+                <label class="btn default-input-style  col-xs-6">
+                  <input type="radio" name="shift-type" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
+                </label>
+              </div>
+              <div class="btn-group" data-toggle="buttons">
+                <label class="btn default-input-style active col-xs-6">
+                  <input type="radio" name="checker-exists" id="checker-exists-input" checked autocomplete="off"/><span>Checker Enabled</span>
+                </label>
+                <label class="btn default-input-style col-xs-6">
+                  <input type="radio" name="checker-exists" id="checker-not-exists-input" autocomplete="off"/><span>Checker Disabled</span>
+                </label>
+              </div>
+            </div>
+            <br><br>
+            <input type="submit" class="btn default-input-style btn-lg" value="Submit Shift" style="width: 50%;">
 
-					</div><!-- /.jumbotron -->
-				</div><!-- /.col-md-4 -->
-				
-				
-					<div class="col-md-4"  align="center">
+          </div><!-- /.jumbotron -->
+        </div><!-- /.col-md-4 -->
+        
+        
+          <div class="col-md-4"  align="center">
             <div class="jumbotron">
              <div class="container">
              <p>Latest Shift</p>
              </div>
            </div>
-					</div><!-- /.col-md-4 -->
+          </div><!-- /.col-md-4 -->
 
-					<div class="col-md-4">
-						
-					</div><!-- /.col-md-4 -->
-				</div><!-- /.row -->
-			<hr>
+          <div class="col-md-4">
+            
+          </div><!-- /.col-md-4 -->
+        </div><!-- /.row -->
+      <hr>
 
-			<footer>
-				<p>© Company 2015</p>
-			</footer>
-		</div><!-- /container -->
-	</body>
-	</html>
+      <footer>
+        <p>© Company 2015</p>
+      </footer>
+    </div><!-- /container -->
+  </body>
+  </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
@@ -459,50 +462,50 @@ input[type=range]:focus::-ms-fill-upper {
 const initialNumOfWaiters = 6;
 var numOfWaiters = 0;
 var completionOptions = <?php echo json_encode($query_result_array); ?>;
-			   
+         
 for(var i=0; i<initialNumOfWaiters; i++)
 {
-	appendWaiterPicker();
+  appendWaiterPicker();
 }
 
 
 function appendWaiterPicker() {
-	var htmlSelectHoursCode = "<div id='hours-picker-wrapper" + numOfWaiters + "'>";
-	htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ numOfWaiters +"'>6</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>  [Hours]</small><center>";
+  var htmlSelectHoursCode = "<div id='hours-picker-wrapper" + numOfWaiters + "'>";
+  htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ numOfWaiters +"'>6</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>  [Hours]</small><center>";
     htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' id='hour-"+ numOfWaiters +"-input'oninput='rangevalue"+ numOfWaiters +".value=value'/><br>";
-	htmlSelectHoursCode += "<center>";
-	htmlSelectHoursCode += "<select id='waiter-select"+ numOfWaiters +"' class='waiter-name-input'>";
-	htmlSelectHoursCode += "<option value=''>Waiter Name</option>";
-	
-	for(var j =0; j < completionOptions.length; ++j)
-	{
-		htmlSelectHoursCode += "<option value='" + completionOptions[j].id + "'>" + completionOptions[j].username_heb  + "</option>";
-	}
-	
-	htmlSelectHoursCode += "</select>";
-	htmlSelectHoursCode += "<div id='result" + numOfWaiters + "'></div>";
-	htmlSelectHoursCode += "</center>";
-	htmlSelectHoursCode += "</br>"
-	htmlSelectHoursCode += "</div>"
-	
-	
-	$("#hours-input").append(htmlSelectHoursCode);
-	$('#waiter-select' + numOfWaiters).selectize({
-		maxItems:1,
-		create: false,
-		sortField: 'text'
-		});
-	numOfWaiters++;
+  htmlSelectHoursCode += "<center>";
+  htmlSelectHoursCode += "<select id='waiter-select"+ numOfWaiters +"' class='waiter-name-input'>";
+  htmlSelectHoursCode += "<option value=''>Waiter Name</option>";
+  
+  for(var j =0; j < completionOptions.length; ++j)
+  {
+    htmlSelectHoursCode += "<option value='" + completionOptions[j].id + "'>" + completionOptions[j].username_heb  + "</option>";
+  }
+  
+  htmlSelectHoursCode += "</select>";
+  htmlSelectHoursCode += "<div id='result" + numOfWaiters + "'></div>";
+  htmlSelectHoursCode += "</center>";
+  htmlSelectHoursCode += "</br>"
+  htmlSelectHoursCode += "</div>"
+  
+  
+  $("#hours-input").append(htmlSelectHoursCode);
+  $('#waiter-select' + numOfWaiters).selectize({
+    maxItems:1,
+    create: false,
+    sortField: 'text'
+    });
+  numOfWaiters++;
 
 }
 
 function removeLastWaiterPicker() {
-	if (numOfWaiters >= 1) {
-			numOfWaiters--;
-		var elementToRemove = document.getElementById("hours-picker-wrapper" + numOfWaiters);
-		elementToRemove.parentNode.removeChild(elementToRemove);
-	}
-	
+  if (numOfWaiters >= 1) {
+      numOfWaiters--;
+    var elementToRemove = document.getElementById("hours-picker-wrapper" + numOfWaiters);
+    elementToRemove.parentNode.removeChild(elementToRemove);
+  }
+  
 }
 
 $('#datePicker').datepicker({
@@ -514,13 +517,13 @@ $('#datePicker').datepicker({
 var currentDate = new Date();
 var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
 if (currentDate.getHours() >= 10){
-	 $('#datePicker').datepicker('setDate', currentDate);
-	 $("#morning-shift-input").checked = true;
-	 document.getElementById("morning-shift-input").checked = true;
+   $('#datePicker').datepicker('setDate', currentDate);
+   $("#morning-shift-input").checked = true;
+   document.getElementById("morning-shift-input").checked = true;
 }
 else {
-	$('#datePicker').datepicker('setDate', yesterday);
-	document.getElementById("evening-shift-input").checked = true;
+  $('#datePicker').datepicker('setDate', yesterday);
+  document.getElementById("evening-shift-input").checked = true;
 }
  
   

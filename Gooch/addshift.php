@@ -231,7 +231,7 @@ input[type=range]:focus::-ms-fill-lower {
   background: #be7622;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #be7622;
+  background: #a62c1c;
 }
 
 
@@ -473,7 +473,7 @@ for(var i=0; i<initialNumOfWaiters; i++)
 function appendWaiterPicker() {
   var htmlSelectHoursCode = "<div id='hours-picker-wrapper" + numOfWaiters + "'>";
   htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ numOfWaiters +"'>6</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>  [Hours]</small><center>";
-    htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' id='hour-"+ numOfWaiters +"-input' oninput='rangevalue"+ numOfWaiters +".value=value'/><br>";
+    htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' id='hour-"+ numOfWaiters +"-input' oninput='updateHourOutput("+ numOfWaiters +",this.value) '/><br>";
   htmlSelectHoursCode += "<center>";
   htmlSelectHoursCode += "<select id='waiter-select"+ numOfWaiters +"' class='waiter-name-input'>";
   htmlSelectHoursCode += "<option value=''>Waiter Name</option>";
@@ -496,12 +496,14 @@ function appendWaiterPicker() {
     create: false,
     sortField: 'text'
     });
-  
-  $("#hour-" + numOfWaiters +"-input").step = 0.25;
   numOfWaiters++;
 
 }
 
+function updateHourOutput(outputid, newValue)
+{
+  document.getElementById("rangevalue"+outputid).innerHTML = newValue;
+}
 function removeLastWaiterPicker() {
   if (numOfWaiters >= 1) {
       numOfWaiters--;
@@ -528,8 +530,6 @@ else {
   $('#datePicker').datepicker('setDate', yesterday);
   document.getElementById("evening-shift-input").checked = true;
 }
- 
-  
 </script>
 
 </body>

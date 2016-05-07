@@ -145,9 +145,7 @@ input[type=range]::-webkit-slider-runnable-track {
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 0px solid #000101;
-
-
-  background: #a7772e;
+  background: #be7622;
 }
 input[type=range]::-webkit-slider-thumb {
   border: 0px solid #000000;

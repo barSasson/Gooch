@@ -145,7 +145,8 @@ input[type=range]::-webkit-slider-runnable-track {
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 0px solid #000101;
-  background: #cd9735;
+  
+  background:  #be7622; ;
 }
 input[type=range]::-webkit-slider-thumb {
   border: 0px solid #000000;
@@ -159,11 +160,12 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 7px;
   
    border-color: #ffffff;
-   background: #2b8eff;
-   border-width: 2px;
+  background: #2b8eff;
+    border-width: 2px;
+
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #be7622;
+    background:  #be7622;;
 
 }
 input[type=range]::-moz-range-track {
@@ -173,9 +175,7 @@ input[type=range]::-moz-range-track {
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   
-  opacity: 0.7;
-  border-width:4px;
-  background: #be7622;
+  background: #be7622;;
 }
 input[type=range]::-moz-range-thumb {
   height: 35px;
@@ -203,14 +203,14 @@ input[type=range]::-ms-fill-lower {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
 
   border-radius: 50px;
-  background: #a62c1c;
+  background:  #be7622;;
   
 }
 input[type=range]::-ms-fill-upper {
   border: 0px solid #000101;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   
-  background: #a62c1c;
+  background:  #be7622;
 }
 input[type=range]::-ms-thumb {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
@@ -221,16 +221,17 @@ input[type=range]::-ms-thumb {
   margin-top: 2px;
   
   border-radius: 7px;
-  background: #b66d22;
   opacity: 0.8;
+  
   border-color: #ffffff;
+  background: #2b8eff;
   border-width: 2px;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #a62c1c;
+  background: #be7622;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #a62c1c;
+  background: #be7622;
 }
 
 
@@ -472,7 +473,7 @@ for(var i=0; i<initialNumOfWaiters; i++)
 function appendWaiterPicker() {
   var htmlSelectHoursCode = "<div id='hours-picker-wrapper" + numOfWaiters + "'>";
   htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ numOfWaiters +"'>6</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>  [Hours]</small><center>";
-    htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' id='hour-"+ numOfWaiters +"-input'oninput='rangevalue"+ numOfWaiters +".value=value'/><br>";
+    htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' id='hour-"+ numOfWaiters +"-input' oninput='rangevalue"+ numOfWaiters +".value=value'/><br>";
   htmlSelectHoursCode += "<center>";
   htmlSelectHoursCode += "<select id='waiter-select"+ numOfWaiters +"' class='waiter-name-input'>";
   htmlSelectHoursCode += "<option value=''>Waiter Name</option>";
@@ -495,6 +496,8 @@ function appendWaiterPicker() {
     create: false,
     sortField: 'text'
     });
+  
+  $("#hour-" + numOfWaiters +"-input").step = 0.25;
   numOfWaiters++;
 
 }

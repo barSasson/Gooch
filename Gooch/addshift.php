@@ -146,7 +146,7 @@ input[type=range]::-webkit-slider-runnable-track {
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   border: 0px solid #000101;
   
-  
+    opacity: 0.7;
   background: #be7622;
 }
 input[type=range]::-webkit-slider-thumb {
@@ -175,6 +175,8 @@ input[type=range]::-moz-range-track {
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
   
+  opacity: 0.7;
+  border-width:4px;
   background: #be7622;
 }
 input[type=range]::-moz-range-thumb {

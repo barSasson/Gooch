@@ -310,7 +310,6 @@ input[type=range]:focus::-ms-fill-upper {
     }
 </style>
 
-
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
@@ -326,7 +325,7 @@ input[type=range]:focus::-ms-fill-upper {
       <a class="brand-small" href="#">Gooch</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
         <li class="active"><a href="#">Add Shift</a></li>
          <li><a href="#">Latest Shift</a></li>
@@ -334,7 +333,7 @@ input[type=range]:focus::-ms-fill-upper {
          <li><a href="#">Show Statistics</a></li>
          <li><a href="#">Chat</a></li>
          <li><a href="#">Edit Profile</a></li>
-         <li><a href="#">Logout</a></li>
+         <li><a href="./logout.php">Logout</a></li>
          <li>
            <form class="navbar-form" role="search">
             <div class="input-group">

@@ -38,6 +38,278 @@ if(!isset($_SESSION["loggedin"]))
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/selectize.default.css">
 <link rel="stylesheet" href="css/datepicker.css">
+<style>
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+#glyphicon-add, #glyphicon-minus {
+    font-size: 50px;
+}
+
+.jumbotron p {
+  margin-bottom: 15px;
+  font-size: 21px;
+  font-weight: 100;
+}
+
+.jumbotron h1 {
+  margin-bottom: 15px;
+  font-weight: 101;
+}
+body
+{
+    background-color:#ad8258;
+    color: #cdcdcd;
+  	padding-top: 70px;
+
+}
+
+h1
+{
+    padding: 5px;
+}
+.jumbotron {
+   background-color: #373f39;
+    margin-top:20px;
+	padding: 10%;
+}
+.navbar-collapse {
+    max-height: 100% !important;
+}
+.brand-small, .brand-small:checked, .brand-small:visited, .brand-small:link  {
+	color: #ededed; font-family: League Script;
+	font-size: 35px;
+    margin-left: 10px;
+    margin-right: 30px;
+    text-decoration: none;
+}
+.brand-small:hover {
+	color: #ffffff; font-family: League Script;
+	font-size: 35px;
+    text-decoration: none;
+}
+
+.navbar-header:checked
+{
+    text-decoration: none;
+}
+
+.input-group
+{
+    width: 96%;
+}
+
+.form-control
+{
+   background-color: inherit;
+   margin-left: 7px;
+}
+
+.waiter-name-input , #tips-input
+{
+	width: 200px;
+	color: white;
+}
+
+.white, .white a {
+  color: #fff;
+}
+
+
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12.8px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #576a54	;
+  border: 0px solid #000101;
+}
+input[type=range]::-webkit-slider-thumb {
+  border: 0px solid #000000;
+  height: 35px;
+  width: 39px;
+  border-radius: 7px;
+   background: #b66d22;
+  opacity: 0.8;
+  border-color: #ffffff;
+  border-width: 2px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -10px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #576a54;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12.8px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #576a54;
+}
+input[type=range]::-moz-range-thumb {
+  height: 35px;
+  width: 39px;
+  background: #b66d22;
+  opacity: 0.8;
+  border-color: #ffffff;
+  border-width: 2px;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 12.8px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 39px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #a62c1c;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #a62c1c;
+  border: 0px solid #000101;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 35px;
+  width: 39px;
+  border-radius: 7px;
+   background: #b66d22;
+  opacity: 0.8;
+  border-color: #ffffff;
+  border-width: 2px;
+  cursor: pointer;
+  margin-top: 2px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #a62c1c;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #a62c1c;
+}
+
+
+.range-value-style {
+  text-align: center;
+  font-size: 30px;
+  display: block;
+  width: 100%;
+  color: #FFFFFF;
+  font-family: monospace;
+}
+
+.AddRemoveControlWrapper {
+	  border-radius: 25px;
+    border: 5px solid #305da6;
+    padding: 10px;
+	width: 150px;
+	margin-top: 20px;
+}
+
+.v-hr {
+    content: "";
+    display: inline-block;
+    width: 0px;
+    height: 50px;
+	border: 2px solid #305da6;
+}
+
+.default-input-style {
+	min-width:30px;
+	color: #d4a449;
+	margin-bottom: 9px;
+	font-size: x-small;
+	background-color: transparent;
+    transition: all .5s;
+	border-width: 1px;
+	border-color: #9c702b;
+}
+
+:checked + span { color: #2b8eff;  }
+.default-input-style:hover
+{
+		color: #2b8eff;
+}
+
+
+@media (max-width: 880px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in { 
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
+ .btn-group>.btn
+    {
+        white-space: nowrap;
+        overflow: hidden;
+
+    }
+</style>
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
@@ -54,7 +326,7 @@ if(!isset($_SESSION["loggedin"]))
       <a class="brand-small" href="#">Gooch</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
         <li class="active"><a href="#">Add Shift</a></li>
          <li><a href="#">Latest Shift</a></li>
@@ -62,7 +334,7 @@ if(!isset($_SESSION["loggedin"]))
          <li><a href="#">Show Statistics</a></li>
          <li><a href="#">Chat</a></li>
          <li><a href="#">Edit Profile</a></li>
-         <li><a href="./logout.php">Logout</a></li>
+         <li><a href="#">Logout</a></li>
          <li>
            <form class="navbar-form" role="search">
             <div class="input-group">

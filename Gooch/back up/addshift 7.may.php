@@ -169,13 +169,12 @@ input[type=range]::-moz-range-track {
   cursor: pointer;
   animate: 0.2s;
   box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  border-width: 1px;
-background: #be7622;
+  background: #576a54;
 }
 input[type=range]::-moz-range-thumb {
   height: 35px;
   width: 39px;
-  background: #2b8eff;
+  background: #b66d22;
   opacity: 0.8;
   border-color: #ffffff;
   border-width: 2px;
@@ -232,12 +231,22 @@ input[type=range]:focus::-ms-fill-upper {
   font-family: monospace;
 }
 
-.add-remove-control {
-	padding-top: 20px;
+.AddRemoveControlWrapper {
+	  border-radius: 25px;
+    border: 5px solid #305da6;
+    padding: 10px;
+	width: 150px;
+	margin-top: 20px;
 }
-.add-remove-control .default-input-style:hover {
-	color: 	#9c702b;
+
+.v-hr {
+    content: "";
+    display: inline-block;
+    width: 0px;
+    height: 50px;
+	border: 2px solid #305da6;
 }
+
 .default-input-style {
 	min-width:30px;
 	color: #d4a449;
@@ -301,7 +310,6 @@ input[type=range]:focus::-ms-fill-upper {
     }
 </style>
 
-
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
@@ -317,7 +325,7 @@ input[type=range]:focus::-ms-fill-upper {
       <a class="brand-small" href="#">Gooch</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
         <li class="active"><a href="#">Add Shift</a></li>
          <li><a href="#">Latest Shift</a></li>
@@ -325,7 +333,7 @@ input[type=range]:focus::-ms-fill-upper {
          <li><a href="#">Show Statistics</a></li>
          <li><a href="#">Chat</a></li>
          <li><a href="#">Edit Profile</a></li>
-         <li><a href="#">Logout</a></li>
+         <li><a href="./logout.php">Logout</a></li>
          <li>
            <form class="navbar-form" role="search">
             <div class="input-group">
@@ -338,7 +346,6 @@ input[type=range]:focus::-ms-fill-upper {
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
@@ -370,7 +377,7 @@ input[type=range]:focus::-ms-fill-upper {
 					<div class="jumbotron">
 						
 						<div class="input-group" id="hours-input"></div>
-						<div class="btn-group add-remove-control" data-toggle="buttons">
+						<div class="btn-group" data-toggle="buttons">
               <label class="btn default-input-style" style="padding: 10px;">
                 <div id="glyphicon-add" class="glyphicon glyphicon-plus" style="cursor:pointer" onclick="appendWaiterPicker();"></div>
               </label>

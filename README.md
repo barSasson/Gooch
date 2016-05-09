@@ -1,2 +1,1 @@
-# LanguageTextSwitcher
-# LanguageTextSwitcher
+# Mobile web application for calculating tips and get statistics

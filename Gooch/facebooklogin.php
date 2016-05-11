@@ -9,6 +9,8 @@ $helper = $fb->getJavaScriptHelper();
 
 try {
   $accessToken = $helper->getAccessToken();
+  $response = $fb->get('/me');
+  $userNode = $response->getGraphUser();
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   // When Graph returns an error
   echo 'Graph returned an error: ' . $e->getMessage();

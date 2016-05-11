@@ -1,8 +1,8 @@
 <?php
-$servername = "127.9.124.2:3306";
-$server_login_username = "adminUbfgc62";
-$server_login_password = "f_kHaNi63ccf";
-$database_name = "dizz";
+$servername = "127.7.203.2:3306";
+$server_login_username = "adminGeMF3HG";
+$server_login_password = "_kTYqdlwMtE9";
+$database_name = "tips";
 // Create connection
 $server_connect_response = mysql_connect($servername, $server_login_username, $server_login_password);
 if (!$server_connect_response) {

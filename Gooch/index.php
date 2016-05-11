@@ -123,11 +123,7 @@ echo "</div>";
 </body>
 <script>
   
-   function checkLoginState() {
-	    FB.getLoginStatus(function(response) {
-	      statusChangeCallback(response);
-	    });
-	  }
+  
    window.fbAsyncInit = function() {
     FB.init({
       appId      : '123851931358081',
@@ -155,14 +151,15 @@ echo "</div>";
 
 // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    	window.location.assign("./facebooklogin.php");
-  	
+
     console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
+    window.location.assign("./facebooklogin.php");
+
       // Logged into your app and Facebook.
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.

@@ -35,6 +35,8 @@ if (isset($accessToken)) {
 }
 else
 {
+  echo "<script>alert('in facebook login page');</script>";
+  
 header("Location: ./index.php?login_failed");
 }
 

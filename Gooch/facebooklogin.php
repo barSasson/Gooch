@@ -19,7 +19,6 @@ try {
 }
 if (isset($accessToken)) {
   echo "loggedin";
-	header("Location: ./addshift.php");
 }
 else
 {

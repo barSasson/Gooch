@@ -22,7 +22,6 @@ try {
 var_dump($helper);
 if (isset($accessToken)) {
 	header("Location: ./addshift.php");
-  header(string)
 }
 else
 {

@@ -9,6 +9,8 @@ $helper = $fb->getJavaScriptHelper();
 
 try {
   $accessToken = $helper->getAccessToken();
+  $response = $fb->get('/me');
+  $userNode = $response->getGraphUser();
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   // When Graph returns an error
   echo 'Graph returned an error: ' . $e->getMessage();
@@ -26,10 +28,11 @@ try {
 
 
 if (isset($accessToken)) {
+   var_dump($userNode);
+  
   echo "<script>alert('in facebook login page');</script>";
 	$_SESSION["loggedin"] = true;
    $_SESSION['user_id'] = 5;
-   var_dump($userNode);
 	header("Location: ./addshift.php");
 }
 else

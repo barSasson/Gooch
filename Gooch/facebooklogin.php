@@ -28,6 +28,7 @@ try {
 
 
 if (isset($accessToken)) {
+  echo "<script>alert('in facebook login page');</script>";
 	$_SESSION["loggedin"] = true;
    $_SESSION['user_id'] = $userNode->getId();
 	header("Location: ./addshift.php");

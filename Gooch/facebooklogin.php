@@ -30,7 +30,7 @@ if (isset($accessToken)) {
 	$_SESSION["loggedin"] = true;
    $_SESSION['user_id'] = 5;
    var_dump($userNode);
-	//header("Location: ./addshift.php");
+	header("Location: ./addshift.php");
 }
 else
 {

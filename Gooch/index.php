@@ -91,11 +91,13 @@ border-color: #aaaaaa;
 <div class="container">
 	<div class="login-container">
 		<h1>Gooch</h1>
-        		<form class="login-inner-container" action="login.php" method="post">
+        		<form class="login-inner-container" action="facebooklogin.php" method="post">
     				<input type="text" class="form-control input-lg username-txt" name="username-input" placeholder="User Name">
     				<input type="password" class="form-control input-lg password-txt" name="password-input" placeholder="Password">
 					<input class="btn btn-lg btn-block login-btn" type="submit" value="Login">
 				</form>
+									<button class="btn btn-md  halfWidth-btn"><div class="fb-login-button"   tag= "facebook-jssdk" style=" margin-right: 10px;" data-max-rows="2" data-size="icon" data-show-faces="false" data-auto-logout-link="true"  scope="public_profile,email"> </div>Facebook Login</button><div id="status">sdsd</div>
+
 				
 										
 <?php
@@ -119,4 +121,61 @@ echo "</div>";
 	</div>
 </div>
 </body>
+<script>
+  
+   function checkLoginState() {
+	    FB.getLoginStatus(function(response) {
+	      statusChangeCallback(response);
+	    });
+	  }
+   window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '123851931358081',
+      xfbml      : true,
+      cookie : true, 
+      version    : 'v2.6'
+
+    });
+
+    FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  	});
+
+  
+  };
+
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+// This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+
+    }
+  }
+
+</script>
+
+<div id="fb-root"></div>
+
+
+
 </html>

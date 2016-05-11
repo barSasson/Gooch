@@ -21,7 +21,12 @@ try {
 }
 var_dump($helper);
 if (isset($accessToken)) {
-  echo 'ddd';
+	header("Location: ./addshift.php");
+  header(string)
+}
+else
+{
+	header("Location: ./index.php?login_failed");
 }
 
 ?>

@@ -1,14 +1,4 @@
 
-<?php
-
-$fb = new Facebook\Facebook(array('app_id' => '123851931358081','app_secret' => '5a3f6c3d3f10f796de6efbd88783b804','default_graph_version' => 'v2.5'));
-
-$helper = $fb->getRedirectLoginHelper();
-
-$permissions = ['email']; // Optional permissions
-$loginUrl = $helper->getLoginUrl('./fb-callback.php', $permissions);
-echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -125,9 +115,6 @@ echo "<div class='alert alert-danger'>";
 echo "<strong>Login Failed!</strong> The user name or password is incorrect";
 echo "</div>";
 }
-
-
-
 
 ?>
 					

@@ -1,6 +1,5 @@
 <?php
 require_once('config.php'); 
-require_once __DIR__ . '/Facebook/autoload.php';
 $safe_username_input = mysql_real_escape_string($_POST["username-input"]);
 $safe_password_input = $_POST["password-input"];
 $input_was_given = isset($_POST["password-input"]) && isset($_POST["username-input"]);

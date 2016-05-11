@@ -169,7 +169,7 @@ echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-    window.location.assign("./facebooklogin.php");
+    //window.location.assign("./facebooklogin.php");
 
       // Logged into your app and Facebook.
     } else if (response.status === 'not_authorized') {

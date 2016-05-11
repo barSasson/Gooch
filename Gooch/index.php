@@ -113,6 +113,17 @@ echo "<div class='alert alert-danger'>";
 echo "<strong>Login Failed!</strong> The user name or password is incorrect";
 echo "</div>";
 }
+
+
+
+$fb = new Facebook\Facebook(array('app_id' => '123851931358081','app_secret' => '5a3f6c3d3f10f796de6efbd88783b804','default_graph_version' => 'v2.5'));
+
+$helper = $fb->getRedirectLoginHelper();
+
+$permissions = ['email']; // Optional permissions
+$loginUrl = $helper->getLoginUrl('./fb-callback.php', $permissions);
+echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+
 ?>
 					
 
@@ -124,52 +135,6 @@ echo "</div>";
 <script>
   
   
-   window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '123851931358081',
-      xfbml      : true,
-      cookie : true, 
-      version    : 'v2.6'
-
-    });
-
-    FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  	});
-
-  
-  };
-
-
-  (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=123851931358081";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-// This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-    window.location.assign("./facebooklogin.php");
-
-      // Logged into your app and Facebook.
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-
-    }
-  }
 
 </script>
 

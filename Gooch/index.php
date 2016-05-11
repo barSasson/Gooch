@@ -1,3 +1,15 @@
+
+<?php
+
+$fb = new Facebook\Facebook(array('app_id' => '123851931358081','app_secret' => '5a3f6c3d3f10f796de6efbd88783b804','default_graph_version' => 'v2.5'));
+
+$helper = $fb->getRedirectLoginHelper();
+
+$permissions = ['email']; // Optional permissions
+$loginUrl = $helper->getLoginUrl('./fb-callback.php', $permissions);
+echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,13 +126,8 @@ echo "<strong>Login Failed!</strong> The user name or password is incorrect";
 echo "</div>";
 }
 
-$fb = new Facebook\Facebook(array('app_id' => '123851931358081','app_secret' => '5a3f6c3d3f10f796de6efbd88783b804','default_graph_version' => 'v2.5'));
 
-$helper = $fb->getRedirectLoginHelper();
 
-$permissions = ['email']; // Optional permissions
-$loginUrl = $helper->getLoginUrl('./fb-callback.php', $permissions);
-echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
 
 ?>
 					
@@ -167,7 +174,7 @@ echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-    //window.location.assign("./facebooklogin.php");
+    window.location.assign("./facebooklogin.php");
 
       // Logged into your app and Facebook.
     } else if (response.status === 'not_authorized') {

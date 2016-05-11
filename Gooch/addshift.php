@@ -26,7 +26,7 @@ if(!isset($_SESSION["loggedin"]))
 }
 ?>
 
-
+alert('<?php  echo $_SESSION['user_id'] ; ?>');
 <!doctype html>
 <head  lang="he">
 <title>Gooch</title>

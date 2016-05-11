@@ -8,6 +8,8 @@ $helper = $fb->getJavaScriptHelper();
 
 try {
   $accessToken = $helper->getAccessToken();
+  $response = $fb->get('/me');
+  $userNode = $response->getGraphUser();
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   // When Graph returns an error
   echo 'Graph returned an error: ' . $e->getMessage();
@@ -17,11 +19,21 @@ try {
   echo 'Facebook SDK returned an error: ' . $e->getMessage();
   exit;
 }
+
+
+
+
+
+
+
 if (isset($accessToken)) {
-  echo "loggedin";
+	$_SESSION["loggedin"] = true;
+   $_SESSION['user_id'] = $userNode->getId();
+	header("Location: ./addshift.php");
 }
 else
 {
+header("Location: ./index.php?login_failed");
 }
 
 ?>

@@ -23,7 +23,6 @@ if (isset($accessToken)) {
 }
 else
 {
-	header("Location: ./index.php?login_failed");
 }
 
 ?>

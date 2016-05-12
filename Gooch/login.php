@@ -5,7 +5,7 @@ $safe_password_input = $_POST["password-input"];
 $input_was_given = isset($_POST["password-input"]) && isset($_POST["username-input"]);
 
 
-$sql_query = "SELECT password,id FROM users WHERE username='".$safe_username_input."'";
+$sql_query = "SELECT password,id,username_heb FROM users WHERE username='".$safe_username_input."'";
 $query_result = mysql_query($sql_query);
 if (!$query_result) {
     echo "DB Error, could not process the query\n";
@@ -21,6 +21,7 @@ if($input_was_given && $password_is_matching)
    session_start();
    $_SESSION['loggedin'] = true;
    $_SESSION['user_id'] = $first_row_in_query_result['id'];
+   $_SESSION['name'] = $first_row_in_query_result['username_heb'];
    header("Location: ./addshift.php");
 }
 else

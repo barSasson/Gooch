@@ -1,4 +1,16 @@
 
+<?php
+session_start();
+
+require_once __DIR__ . '/facebook-sdk-v5/autoload.php';
+
+$fb = new Facebook\Facebook(array('app_id' => '123851931358081','app_secret' => '5a3f6c3d3f10f796de6efbd88783b804','default_graph_version' => 'v2.5'));
+
+$helper = $fb->getRedirectLoginHelper();
+
+$permissions = ['email']; // Optional permissions
+$loginUrl = $helper->getLoginUrl('http://localhost/Gooch/fb_callback.php', $permissions);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,24 +99,30 @@ border-color: #aaaaaa;
 		padding: 8px;
 	}
 }
+
+.btn-social{position:relative;padding-left:44px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; margin-bottom: 10px;}.btn-social>:first-child{position:absolute;left:0;top:0;bottom:0;width:32px;line-height:34px;font-size:1.6em;text-align:center;border-right:1px solid rgba(0,0,0,0.2)}
+.btn-facebook{color:#0f618b;background-color:transparent;border-color: #0f618b;font-size:small; height:35px; width: 300px; padding: 8px; }.btn-facebook:focus,.btn-facebook.focus{color:#fff;background-color:#2d4373;border-color:rgba(0,0,0,0.2)}
+
 </style>
+<link rel="stylesheet" href="font-awesome-4.6.2/css/font-awesome.css">
+
 </head>
 <body>
 <div class="container">
+
 	<div class="login-container">
 		<h1>Gooch</h1>
-        		<form class="login-inner-container" action="login.php" method="post">
-    				<input type="text" class="form-control input-lg username-txt" name="username-input" placeholder="User Name">
-    				<input type="password" class="form-control input-lg password-txt" name="password-input" placeholder="Password">
-					<input class="btn btn-lg btn-block login-btn" type="submit" value="Login">
-				</form>
-									<button class="btn btn-md  halfWidth-btn"><div class="fb-login-button"   tag= "facebook-jssdk" style=" margin-right: 10px;" data-max-rows="2" data-size="icon" data-show-faces="false" data-auto-logout-link="true"  scope="public_profile,email"> </div>Facebook Login</button><div id="status">sdsd</div>
+		<form class="login-inner-container" action="login.php" method="post">
+			<input type="text" class="form-control input-lg username-txt" name="username-input" placeholder="User Name">
+			<input type="password" class="form-control input-lg password-txt" name="password-input" placeholder="Password">
+			<input class="btn btn-lg btn-block login-btn" style="font-size: medium;" type="submit" value="Login">
+		</form>
+								
 
 				
 										
 <?php
 
-session_start();
 if(isset($_SESSION["loggedin"]))
 {
 	header("Location: ./addshift.php");	
@@ -117,10 +135,17 @@ echo "</div>";
 }
 
 ?>
-					
-
-			<a href="#" class="btn btn-md  halfWidth-btn">Register</a>
-			<a href="#" class="btn btn-md  halfWidth-btn">Forgot your password?</a>
+		<ul style="list-style: none; padding-left:0;">
+			<li>
+				<a href=<?php echo htmlspecialchars($loginUrl) ;?>>
+				<button class="btn  btn-facebook   btn-social "><img  style="padding-top: 1px;"src="http://beachready365.com/wp-content/icons/facebook.png">Login With Facebook
+				</button>
+				<a/>
+			</li>
+			<li><a href="#" class="btn btn-md  halfWidth-btn">Register</a></li>
+			<li><a href="#" class="btn btn-md  halfWidth-btn">Forgot your password?</a> </li>
+		</ul>
+				
 	</div>
 </div>
 </body>
@@ -161,7 +186,7 @@ echo "</div>";
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-    window.location.assign("./facebooklogin.php");
+    //window.location.assign("./facebooklogin.php");
 
       // Logged into your app and Facebook.
     } else if (response.status === 'not_authorized') {

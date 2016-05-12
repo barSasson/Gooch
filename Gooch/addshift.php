@@ -24,9 +24,24 @@ if(!isset($_SESSION["loggedin"]))
 {
 	header("Location: ./index.php");	
 }
+
+if(isset($_SESSION['fb_access_token']))
+{
+  require_once __DIR__ . '/facebook-sdk-v5/autoload.php';
+
+  $fb = new Facebook\Facebook(array('app_id' => '123851931358081','app_secret' => '5a3f6c3d3f10f796de6efbd88783b804','default_graph_version' => 'v2.5'));
+
+  $response = $fb->get('/me?fields=id,picture', $_SESSION['fb_access_token']);
+  $user = $response->getGraphUser();
+  $picUrl = $user->getPicture()['url'];
+}
+else
+{
+  $picUrl = 'http://lingvoteka.com/Media/Default/Avatar/noavatar.jpg';
+}
+
 ?>
 
-alert('<?php  echo $_SESSION['user_id'] ; ?>');
 <!doctype html>
 <head  lang="he">
 <title>Gooch</title>
@@ -368,6 +383,7 @@ input[type=range]:focus::-ms-fill-upper {
          <li><a href="#">Chat</a></li>
          <li><a href="#">Edit Profile</a></li>
          <li><a href="./logout.php">Logout</a></li>
+         <li><a href="#"><?php echo "<img style='margin-right:10px;' height='27' width='27' src='" .$picUrl. "'>"; ?><small>Hi, <?php echo $_SESSION['name']; ?></small></a></li>
          <li>
            <form class="navbar-form" role="search">
             <div class="input-group">

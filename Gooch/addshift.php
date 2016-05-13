@@ -354,11 +354,11 @@ input[type=range]:focus::-ms-fill-upper {
     }
 }
 input:-moz-read-only { /* For Firefox */
-    background-color: inherit;
+    background-color: transparent;
 }
 
 input:read-only { 
-    background-color: inherit;
+    background-color: transparent;
 }
 </style>
 

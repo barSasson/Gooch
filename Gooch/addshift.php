@@ -447,7 +447,7 @@ input[type=range]:focus::-ms-fill-upper {
 						</div>
 						<div class="container">
 							<p>Date</p>
-							<div id="datePickerContainer">
+							<div id="datePickerContainer" readonly='readonly'>
 								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
 							</div>
 						</div>
@@ -574,7 +574,6 @@ function removeLastWaiterPicker() {
 
 $('#datePicker').datepicker({
   container:'#datePickerContainer',
-   disableTouchKeyboard: false,
   orientation: "left",
   autoclose: true
 });

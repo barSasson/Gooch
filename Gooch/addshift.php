@@ -353,13 +353,7 @@ input[type=range]:focus::-ms-fill-upper {
        text-align: center;
     }
 }
-input:-moz-read-only { /* For Firefox */
-    background-color: transparent;
-}
 
-input:read-only { 
-    background-color: transparent;
-}
 </style>
 
 
@@ -582,7 +576,9 @@ $('#datePicker').datepicker({
   container:'#datePickerContainer',
   orientation: "left",
   autoclose: true
-  
+});
+$('#datepick').keydown(function(e){
+    e.preventDefault();
 });
 var currentDate = new Date();
 var yesterday = new Date(new Date().setDate(new Date().getDate()-1));

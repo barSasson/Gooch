@@ -521,7 +521,7 @@ for(var i=0; i<initialNumOfWaiters; i++)
 function appendWaiterPicker() {
 	var htmlSelectHoursCode = "<div class='hours-picker-wrapper' id='hours-picker-wrapper" + numOfWaiters + "'>";
 	htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ numOfWaiters +"'>6</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>  [Hours]</small><center>";
-    htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25'  readonly="readonly" style='margin-left: 6px' id='hour-"+ numOfWaiters +"-input' oninput='updateHourOutput("+ numOfWaiters +",this.value) '/><br>";
+    htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' id='hour-"+ numOfWaiters +"-input' oninput='updateHourOutput("+ numOfWaiters +",this.value) '/><br>";
 	htmlSelectHoursCode += "<center>";
 	htmlSelectHoursCode += "<select id='waiter-select"+ numOfWaiters +"' class='waiter-name-input'>";
 	htmlSelectHoursCode += "<option value=''>Waiter Name</option>";

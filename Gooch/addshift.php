@@ -353,7 +353,13 @@ input[type=range]:focus::-ms-fill-upper {
        text-align: center;
     }
 }
+input:-moz-read-only { /* For Firefox */
+    background-color: inherit;
+}
 
+input:read-only { 
+    background-color: inherit;
+}
 </style>
 
 

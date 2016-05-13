@@ -354,6 +354,11 @@ input[type=range]:focus::-ms-fill-upper {
     }
 }
 
+input[readonly]
+{
+      background-color: transparent!important;
+}
+
 </style>
 
 
@@ -447,8 +452,8 @@ input[type=range]:focus::-ms-fill-upper {
 						</div>
 						<div class="container">
 							<p>Date</p>
-							<div id="datePickerContainer" readonly='readonly'>
-								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
+							<div id="datePickerContainer" >
+								<input id='datePicker' data-provide='datepicker' readonly='readonly' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
 							</div>
 						</div>
 						<div class="container">

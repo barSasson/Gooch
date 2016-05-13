@@ -448,7 +448,7 @@ input[type=range]:focus::-ms-fill-upper {
 						<div class="container">
 							<p>Date</p>
 							<div id="datePickerContainer">
-								<input id='datePicker' data-provide='datepicker' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
+								<input id='datePicker' data-provide='datepicker'  readonly="readonly" data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
 							</div>
 						</div>
 						<div class="container">
@@ -574,12 +574,11 @@ function removeLastWaiterPicker() {
 
 $('#datePicker').datepicker({
   container:'#datePickerContainer',
+   disableTouchKeyboard: false,
   orientation: "left",
   autoclose: true
 });
-$('#datepick').keydown(function(e){
-    e.preventDefault();
-});
+
 var currentDate = new Date();
 var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
 if (currentDate.getHours() >= 10){

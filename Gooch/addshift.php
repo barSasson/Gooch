@@ -353,7 +353,10 @@ input[type=range]:focus::-ms-fill-upper {
        text-align: center;
     }
 }
-
+input[readonly]
+{
+    background-color:blue;
+}
 </style>
 
 

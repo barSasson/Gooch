@@ -1,7 +1,5 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
-session_start();
-
 require_once('config.php'); 
 
 
@@ -21,6 +19,7 @@ while($curr_row_in_query = mysql_fetch_assoc($query_result))
 }
 mysql_close($server_connect_response);
 
+session_start();
 if(!isset($_SESSION["loggedin"]))
 {
 	header("Location: ./index.php");	
@@ -38,7 +37,7 @@ if(isset($_SESSION['fb_access_token']))
 }
 else
 {
-  $picUrl = 'imgs/noavatar.jpg';
+  $picUrl = 'http://lingvoteka.com/Media/Default/Avatar/noavatar.jpg';
 }
 
 ?>
@@ -55,13 +54,7 @@ else
 <link rel="stylesheet" href="css/selectize.default.css">
 <link rel="stylesheet" href="css/datepicker.css">
 <style>
-@media screen and (max-height: 450px)  {
-	.scrollable-menu {
-		height: auto;
-		max-height: 365px;
-		overflow-x: hidden;
-	}
-}
+
 ::-webkit-input-placeholder {
    text-align: center;
 }
@@ -151,11 +144,10 @@ h1
    margin-left: 7px;
 }
 
-.waiter-name-input , #tips-input, .number-input
+.waiter-name-input , #tips-input
 {
 	width: 200px;
-	color: white !important;
-	text-align:center;
+	color: white;
 }
 
 .white, .white a {
@@ -296,18 +288,6 @@ input[type=range]:focus::-ms-fill-upper {
 	border-width: 1px;
 	border-color: #9c702b;
 }
-.err-msg {
-	width: 70%;
-	color: #ffffff;
-	background-color: #993333;
-	margin-top: 9px;
-	font-size: medium;
-	transition: all 0.9s;
-	opacity: 0;
-	border-width:5px;
-	border-color: black;
-	border-width: 3px;
-}
 
 :checked + span { color: #2b8eff;  }
 .default-input-style:hover
@@ -373,27 +353,10 @@ input[type=range]:focus::-ms-fill-upper {
        text-align: center;
     }
 }
-.navbar-brand,
-.navbar-nav li a {
-    line-height: 50px;
-    height: 50px;
-    padding-top: 0;
-}
 
 input[readonly]
 {
-	    background-color: transparent!important;
-}
-.popover-title {
-	background-color: #993333;
-	font-family: cursive;
-    font-size: 15px;
-}
-.popover-content {
-	background-color: #28325a;
-    color: #d8d2ba;
-    font-size: 15px;
-	font-family: Helvetica-Neue;
+      background-color: transparent!important;
 }
 
 </style>
@@ -416,8 +379,8 @@ input[readonly]
       <a class="brand-small" id="brand-text">Gooch</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-center  scrollable-menu" >
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-center" >
         <li class="active"><a href="#">Add Shift</a></li>
          <li><a href="#">Latest Shift</a></li>
          <li><a href="#">Edit Shift</a></li>
@@ -472,10 +435,10 @@ input[readonly]
 						<div class="input-group" id="hours-input"></div>
 						<div class="btn-group add-remove-control" data-toggle="buttons" id="addRemoveControl">
               <label class="btn default-input-style" style="padding: 10px;">
-                <div id="glyphicon-add" class="glyphicon glyphicon-plus" onclick="appendWaiterPicker();"></div>
+                <div id="glyphicon-add" class="glyphicon glyphicon-plus" style="cursor:pointer" onclick="appendWaiterPicker();"></div>
               </label>
               <label class="btn default-input-style"  style="padding: 10px;">
-                <div id="glyphicon-minus" class="glyphicon glyphicon-minus" onclick="removeLastWaiterPicker()"></div>
+                <div id="glyphicon-minus" class="glyphicon glyphicon-minus" style="cursor:pointer" onclick="removeLastWaiterPicker()"></div>
               </label>
             </div>
 					</div><!-- /.jumbotron -->
@@ -485,12 +448,12 @@ input[readonly]
 					<div class="jumbotron">
 						<div class="container">
 							<p>Tips</p>
-							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="<< Total Tips >>">
+							<input type="number" class="form-control default-input-style" id="tips-input" placeholder="<< Total Tips >>" style="text-align:center;">
 						</div>
 						<div class="container">
 							<p>Date</p>
-							<div id="datePickerContainer">
-								<input id='datePicker' data-provide='datepicker' readonly='readonly'  data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md number-input" type="text" style='color: #ffffff'>
+							<div id="datePickerContainer" >
+								<input id='datePicker' data-provide='datepicker' readonly='readonly' data-date-container='#datePickerContainer' class="datepicker form-control default-input-style input-md" type="text" style='width:200px; text-align: center; color: #ffffff'>
 							</div>
 						</div>
 						<div class="container">
@@ -505,23 +468,15 @@ input[readonly]
 							</div>
 							<div class="btn-group" data-toggle="buttons">
 								<label class="btn default-input-style active col-xs-6">
-									<input type="radio" name="checker-exists"  value='on' checked autocomplete="off"/><span>Checker Enabled</span>
+									<input type="radio" name="checker-exists" id="checker-exists-input" checked autocomplete="off"/><span>Checker Enabled</span>
 								</label>
 								<label class="btn default-input-style col-xs-6">
-									<input type="radio" name="checker-exists" value ='off' autocomplete="off"/><span>Checker Disabled</span>
+									<input type="radio" name="checker-exists" id="checker-not-exists-input" autocomplete="off"/><span>Checker Disabled</span>
 								</label>
 							</div>
 						</div>
-						<div class="container">
-							<input type="number" class="form-control default-input-style number-input" id="tips-percent" placeholder="% From Tips">
-						</div>
-						<div class="container">
-							<input type="number" class="form-control default-input-style number-input" id="total-allowance" placeholder="Total Allowance" style="text-align:center;">
-						</div>
-						<div class="container">
-							<p>Tips per Hour: <p id='tips-per-hour'></p></p>
-						</div>
-						<input type="submit" class="btn default-input-style btn-lg" id="submit-button" value="Submit Shift" style="width: 50%; margin-top: 50px;" >
+						<br><br>
+						<input type="submit" class="btn default-input-style btn-lg" value="Submit Shift" style="width: 50%;">
 
 					</div><!-- /.jumbotron -->
 				</div><!-- /.col-lg-4 -->
@@ -531,8 +486,6 @@ input[readonly]
             <div class="jumbotron">
              <div class="container">
              <p>Latest Shift</p>
-			 
-
              </div>
            </div>
 					</div><!-- /.col-lg-4 -->
@@ -560,25 +513,10 @@ input[readonly]
 <script src="js/bootstrap-datepicker.js"></script>
 
 <script>
-const initialNumOfWaiters = 2;
+const initialNumOfWaiters = 6;
 var numOfWaiters = 0;
 var completionOptions = <?php echo json_encode($query_result_array); ?>;
-
-
-var HtmlOptionValuesForWaiterSelect = "<option value=''>Waiter Name</option>";
-for(var j = 0; j < completionOptions.length; ++j)
-{
-	HtmlOptionValuesForWaiterSelect += "<option value='" + completionOptions[j].id + "'>" + completionOptions[j].username_heb  + "</option>";
-}
-HtmlOptionValuesForWaiterSelect += "</select>";
-
-function getHtmlwaiterPicker(pickerId) {
-	var htmlSelectWaiterCode = "<select id='" + pickerId +"' class='waiter-name-input'>";
-	htmlSelectWaiterCode += HtmlOptionValuesForWaiterSelect;
-	htmlSelectWaiterCode += "</select>";
-	return htmlSelectWaiterCode;
-}
-	
+			   
 for(var i=0; i<initialNumOfWaiters; i++)
 {
 	appendWaiterPicker();
@@ -590,48 +528,38 @@ function appendWaiterPicker() {
 	htmlSelectHoursCode += "<output class='range-value-style' id='rangevalue"+ numOfWaiters +"'>6</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>  [Hours]</small><center>";
     htmlSelectHoursCode += "<input type='range' value='6' min='0.25' max='12' step='0.25' style='margin-left: 6px' id='hour-"+ numOfWaiters +"-input' oninput='updateHourOutput("+ numOfWaiters +",this.value) '/><br>";
 	htmlSelectHoursCode += "<center>";
-	htmlSelectHoursCode += getHtmlwaiterPicker("waiter-select" + numOfWaiters);
-	htmlSelectHoursCode += "<div id='err-msg"+ numOfWaiters +"' class='err-msg'><strong>Waiter Already Selected!</strong></div>"
+	htmlSelectHoursCode += "<select id='waiter-select"+ numOfWaiters +"' class='waiter-name-input'>";
+	htmlSelectHoursCode += "<option value=''>Waiter Name</option>";
+	
+	for(var j =0; j < completionOptions.length; ++j)
+	{
+		htmlSelectHoursCode += "<option value='" + completionOptions[j].id + "'>" + completionOptions[j].username_heb  + "</option>";
+	}
+	
+	htmlSelectHoursCode += "</select>";
 	htmlSelectHoursCode += "<div id='result" + numOfWaiters + "'></div>";
-
 	htmlSelectHoursCode += "</center>";
 	htmlSelectHoursCode += "</br>"
 	htmlSelectHoursCode += "</div>"
+	
 
 	$("#hours-input").append(htmlSelectHoursCode);
-	$('#waiter-select' + numOfWaiters).selectize
-	({
+
+	$('#waiter-select' + numOfWaiters).selectize({
 		maxItems:1,
 		create: false,
-		sortField: 'text',
-		onChange: function(value) {
-			var currentElementIndex;
-			var isAlreadySelected = false;
-			for (var i=0; i < numOfWaiters; i++)
-			{	
-				if ($('#waiter-select' + i)[0].selectize != this)
-				{
-					if ($("#waiter-select" + i +" option:selected").val() == value) {
-						isAlreadySelected = true;
-					}
-				}
-				else{
-					currentElementIndex = i;
-				}
-			}
-			if (isAlreadySelected) {
-				this.setValue('');
-				document.getElementById('err-msg' + currentElementIndex).style.opacity= '1' ;
-				setTimeout(function(){document.getElementById('err-msg' + currentElementIndex).style.opacity= '0';}, 1500)
-			}
-		}
-	});
-	
+		sortField: 'text'
+		});
+
+
     var newElement = document.getElementById("hours-picker-wrapper" + numOfWaiters);
     newElement.style.opacity = 1;
-	numOfWaiters++;
-}
 
+    
+
+	numOfWaiters++;
+
+}
 
 function updateHourOutput(outputid, newValue)
 {
@@ -639,18 +567,20 @@ function updateHourOutput(outputid, newValue)
 }
 function removeLastWaiterPicker() {
 	if (numOfWaiters >= 1) {
-		numOfWaiters--;
+			numOfWaiters--;
 		var elementToRemove = document.getElementById("hours-picker-wrapper" + numOfWaiters);
-		elementToRemove.style.opacity = 0;
-		setTimeout(function(){elementToRemove.parentNode.removeChild(elementToRemove);}, 570)
+		
+    elementToRemove.style.opacity = 0;
+		
+    setTimeout(function(){elementToRemove.parentNode.removeChild(elementToRemove);}, 570)
 	}
+	
 }
 
 $('#datePicker').datepicker({
   container:'#datePickerContainer',
   orientation: "left",
   autoclose: true
-  
 });
 
 var currentDate = new Date();
@@ -675,18 +605,16 @@ function touched()
 }
 
 
-function getWaiterArrayDataFromHtml()
+function getData()
 {
 	var waiterHoursArray = [];
 	for (var i=0; i < numOfWaiters; i++){
 		var selectElement = document.getElementById("waiter-select"+ i);
 		var rangeValue = document.getElementById("hour-" + i + "-input").value;
-		if (selectElement.value === "") {
-			throw "All waiters names must be selected"
-		}
+		var selectedIndex = selectElement.selectedIndex;
 			waiterHoursArray[i] = {
-				Id: selectElement.value,
-				Name:selectElement.textContent,
+				Id: selectElement[selectedIndex].value,
+				Name:selectElement[selectedIndex].text,
 				Hours: rangeValue
 			};
 		}
@@ -696,74 +624,37 @@ function getWaiterArrayDataFromHtml()
 
 
 
-
-$('#submit-button').click(function(e){
-
-	try {
-		var waitersHourArray = getWaiterArrayDataFromHtml();
-		var totalTips = $('#tips-input').val();
-		var checkerRadio = $("input[type='radio'][name='checker-exists']:checked");
-		var checkerOn = (checkerRadio.val() == "on");
-		var shiftData = new ShiftData(totalTips, waitersHourArray, checkerOn);
-		shiftData.CalculateTips();
-		$('#tips-per-hour').html(shiftData.GetMoneyPerHour());
-		$('#submit-button').popover("hide");
-	} catch(e) {
-		$('#submit-button').popover({
-			title:"Error!",
-			placement: 'bottom',
-			trigger:'manual',
-		});
-		$('#submit-button').attr('data-content',e);
-	   $('#submit-button').popover("show");
-	}
-});
-
  // i_WaitersHoursArray expecting {Id: ,Name: ,Hours: }
-    function ShiftData(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists)
+    function ShiftData(i_TotalTipsAmount, i_WaitersHoursArray, i_isCheckerExists)
     {
         const k_TaxReductionPerHour = 6;
         const k_CheckersAllowance = 20;
-        this.m_AllowancePercent = 0.12;
         this.m_TotalTipsAmount = i_TotalTipsAmount;
         this.m_WaitersHoursArray = i_WaitersHoursArray;
-        this.m_isCheckerExists = i_IsCheckerExists;
-        this.m_TipsToExclude = 0;
-        this.m_TipsAfterTax = 0;
+        this.m_isCheckerExists = i_isCheckerExists;
+        this.m_TipsToIgnore;
+        this.m_TotalHours = 0;
+        this.m_TipsAfterTax;
         this.m_TotalAllowance = 0;
         this.m_MoneyPerHour = 0;
-        this.m_TotalHours = (function(waitersHoursArray)
-        {
-            var totalHours = 0;
-            for (var i = waitersHoursArray.length - 1; i >= 0; i--) {
-                 totalHours += parseFloat(waitersHoursArray[i].Hours);
-            }
-			
-			return totalHours;
-        })(i_WaitersHoursArray)
-		
+
         
-		if (!i_TotalTipsAmount) {
-			throw "Tips amount must be entered!";
-		}
-		if (!i_WaitersHoursArray) {
-			throw "All waiters names must be selected";
-		}
-		
-		this.TaxReduction = function() { return Math.ceil(k_TaxReductionPerHour * this.m_TotalHours);}
-		this.GetMoneyPerHour = function()
-		{
-			return this.m_MoneyPerHour;
-		}
-		
-		ShiftData.prototype.CalculateTips = function()
+        //abstract
+        this.sumHours = function(i_WaitersHoursArray)
         {
-            
-			this.m_TipsToExclude = this.TipsToExclude();
-			this.m_TotalTipsAmount -= this.m_TipsToExclude;
-			
-            this.m_TipsAfterTax = this.m_TotalTipsAmount - this.TaxReduction();
-			
+            this.m_TotalHours = 0;
+            for (var i = i_WaitersHoursArray.length - 1; i >= 0; i--) {
+                 this.m_TotalHours += parseFloat(i_WaitersHoursArray[i].Hours);
+            }
+        }
+		
+		this.CalculateTips = function()
+        {
+            this.sumHours(this.m_WaitersHoursArray);
+			this.m_TipsToIgnore = this.TipsToIgnore(this.m_TotalTipsAmount);
+			this.m_TotalTipsAmount -= this.m_TipsToIgnore;
+            this.m_TaxReduction = Math.ceil(k_TaxReductionPerHour * this.m_TotalHours);
+            this.m_TipsAfterTax = this.m_TotalTipsAmount - this.m_TaxReduction;
             this.m_TotalAllowance = this.GetTotalAllowance(this.m_TipsAfterTax);
 		    var barAllowance = Math.ceil(this.m_TotalAllowance * 0.25)
             var kitchenAllowance = this.m_TotalAllowance - barAllowance;
@@ -784,93 +675,54 @@ $('#submit-button').click(function(e){
 
             return shiftWaiterData;
         }
-		
-		ShiftData.prototype.addTips = function(i_ShiftWaiterData)
-		{
-			var perHourToAdd = this.m_TipsToExclude / this.m_TotalHours;
-			for (var i = 0; i < i_ShiftWaiterData.length; i++) {
-				i_ShiftWaiterData[i].EarnedInShift += i_ShiftWaiterData[i].Hours * perHourToAdd;
-			}
-		}
-		
-		ShiftData.prototype.GetTotalAllowance = function(i_TipsAfterTax)
-		{
-			return (i_TipsAfterTax * this.m_AllowancePercent);
-		}
-	
-		ShiftData.prototype.DevideTipsAndGetResultArray = function(i_WaitersHoursArray, i_MoneyPerHour)
-		{
-			var shiftWaitersData = [];
-			for (var i = 0; i < i_WaitersHoursArray.length; i++) {
-			shiftWaitersData[i] = {
-				Id: i_WaitersHoursArray[i].Id,
-				Name: i_WaitersHoursArray[i].Name,
-				Hours: i_WaitersHoursArray[i].Hours,
-				EarnedInShift: parseFloat(i_WaitersHoursArray[i].Hours * i_MoneyPerHour)
-			};
-		  }  
-	
-		   return shiftWaitersData;
-		}
-	
-		ShiftData.prototype.devideRemainder = function (i_ShiftWaiterData) {
-			var remainder = 0;
-			for (var i = 0; i < i_ShiftWaiterData.length; i++) {
-				remainder += i_ShiftWaiterData[i].EarnedInShift % 1;
-				i_ShiftWaiterData[i].EarnedInShift = Math.floor(i_ShiftWaiterData[i].EarnedInShift);
-			}
-	
-			remainder = Math.floor(remainder);
-			for (var i = 0; i < remainder; i++) {
-				var waiterIndexToAdd = i % i_ShiftWaiterData.length;
-				i_ShiftWaiterData[waiterIndexToAdd].EarnedInShift++;
-			}
-		}
-		
-		ShiftData.prototype.TipsToExclude = function()
-		{
-			return this.m_TotalTipsAmount * 0.2;
-		}
+
+        this.addTips = function(i_ShiftWaiterData) {
+            var perHourToAdd = this.m_TipsToIgnore / this.m_TotalHours;
+            for (var i = 0; i < i_ShiftWaiterData.length; i++) {
+                i_ShiftWaiterData[i].EarnedInShift += i_ShiftWaiterData[i].Hours * perHourToAdd;
+            }
+        }
     }
 	
-	
-function ShiftDataWithTipsPercent (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_TipsPercentToExclude)
-{
-	ShiftData.call(this, i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists);
-	this.m_TipsPercentToExclude = i_TipsPercentToExclude;
-}
-ShiftDataWithTipsPercent.prototype = Object.create(ShiftData.prototype);
-ShiftDataWithTipsPercent.prototype.TipsPercentToExclude = function(){return this.m_TipsPercentToExclude;};
-ShiftDataWithTipsPercent.prototype.TipsToExclude = function(){return (this.TipsPercentToExclude())/100 * this.m_TotalTipsAmount ;};
-
-
-function ShiftDataWithSpecificAllowance (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_SpecificAllowance)
-{
-	ShiftDataWithTipsPercent.call(this, i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, 0);
-	var tipsPercentToExclude =  (((i_SpecificAllowance/this.m_AllowancePercent) - this.m_TotalTipsAmount + this.TaxReduction()) / - this.m_TotalTipsAmount)*100 ;
-	this.m_TipsPercentToExclude = (tipsPercentToExclude);
-
-}
-ShiftDataWithSpecificAllowance.prototype = Object.create(ShiftDataWithTipsPercent.prototype);
-
-
-function ShiftDataFactory()
-{
-	ShiftDataFactory.GetShiftData (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists)
+	ShiftData.prototype.TipsToIgnore = function(i_TotalTipsAmount)
 	{
-		return ShiftData(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists);
+		return i_TotalTipsAmount * 0.2;
+	}
+
+	ShiftData.prototype.GetTotalAllowance = function(i_TipsAfterTax)
+	{
+		return Math.floor(i_TipsAfterTax * 0.12);
+	}
+
+	ShiftData.prototype.DevideTipsAndGetResultArray = function(i_WaitersHoursArray, i_MoneyPerHour)
+	{
+		var shiftWaitersData = [];
+		for (var i = 0; i < i_WaitersHoursArray.length; i++) {
+		shiftWaitersData[i] = {
+			Id: i_WaitersHoursArray[i].Id,
+			Name: i_WaitersHoursArray[i].Name,
+			Hours: i_WaitersHoursArray[i].Hours,
+			EarnedInShift: parseFloat(i_WaitersHoursArray[i].Hours * i_MoneyPerHour)
+		};
+	  }  
+
+	   return shiftWaitersData;
+	}
+
+	ShiftData.prototype.devideRemainder = function (i_ShiftWaiterData) {
+		var remainder = 0;
+		for (var i = 0; i < i_ShiftWaiterData.length; i++) {
+			remainder += i_ShiftWaiterData[i].EarnedInShift % 1;
+			i_ShiftWaiterData[i].EarnedInShift = Math.floor(i_ShiftWaiterData[i].EarnedInShift);
+		}
+
+		remainder = Math.floor(remainder);
+		for (var i = 0; i < remainder; i++) {
+			var waiterIndexToAdd = i % i_ShiftWaiterData.length;
+			i_ShiftWaiterData[waiterIndexToAdd].EarnedInShift++;
+		}
 	}
 	
-	ShiftDataFactory.GetShiftDataWithTipsPercent (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_TipsPercentToExclude)
-	{
-		return ShiftDataWithTipsPercent(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_TipsPercentToExclude)
-	}
-	
-	ShiftDataFactory.GetShiftDataWithSpecificAllowance (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_SpecificAllowance)
-	{
-		return GetShiftDataWithSpecificAllowance (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_SpecificAllowance);
-	}
-}
 
 </script>
 

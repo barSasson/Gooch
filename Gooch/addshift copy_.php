@@ -55,13 +55,7 @@ else
 <link rel="stylesheet" href="css/selectize.default.css">
 <link rel="stylesheet" href="css/datepicker.css">
 <style>
-@media screen and (max-height: 450px)  {
-	.scrollable-menu {
-		height: auto;
-		max-height: 365px;
-		overflow-x: hidden;
-	}
-}
+
 ::-webkit-input-placeholder {
    text-align: center;
 }
@@ -307,6 +301,7 @@ input[type=range]:focus::-ms-fill-upper {
 	border-width:5px;
 	border-color: black;
 	border-width: 3px;
+	
 }
 
 :checked + span { color: #2b8eff;  }
@@ -416,8 +411,8 @@ input[readonly]
       <a class="brand-small" id="brand-text">Gooch</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-center  scrollable-menu" >
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-center" >
         <li class="active"><a href="#">Add Shift</a></li>
          <li><a href="#">Latest Shift</a></li>
          <li><a href="#">Edit Shift</a></li>
@@ -564,7 +559,6 @@ const initialNumOfWaiters = 2;
 var numOfWaiters = 0;
 var completionOptions = <?php echo json_encode($query_result_array); ?>;
 
-
 var HtmlOptionValuesForWaiterSelect = "<option value=''>Waiter Name</option>";
 for(var j = 0; j < completionOptions.length; ++j)
 {
@@ -622,7 +616,7 @@ function appendWaiterPicker() {
 			if (isAlreadySelected) {
 				this.setValue('');
 				document.getElementById('err-msg' + currentElementIndex).style.opacity= '1' ;
-				setTimeout(function(){document.getElementById('err-msg' + currentElementIndex).style.opacity= '0';}, 1500)
+				setTimeout(function(){document.getElementById('err-msg' + currentElementIndex).style.opacity= '0';}, 1000)
 			}
 		}
 	});
@@ -724,24 +718,15 @@ $('#submit-button').click(function(e){
     {
         const k_TaxReductionPerHour = 6;
         const k_CheckersAllowance = 20;
-        this.m_AllowancePercent = 0.12;
         this.m_TotalTipsAmount = i_TotalTipsAmount;
         this.m_WaitersHoursArray = i_WaitersHoursArray;
         this.m_isCheckerExists = i_IsCheckerExists;
-        this.m_TipsToExclude = 0;
+        this.m_TipsToIgnore = 0;
+        this.m_TotalHours = 0;
         this.m_TipsAfterTax = 0;
         this.m_TotalAllowance = 0;
         this.m_MoneyPerHour = 0;
-        this.m_TotalHours = (function(waitersHoursArray)
-        {
-            var totalHours = 0;
-            for (var i = waitersHoursArray.length - 1; i >= 0; i--) {
-                 totalHours += parseFloat(waitersHoursArray[i].Hours);
-            }
-			
-			return totalHours;
-        })(i_WaitersHoursArray)
-		
+
         
 		if (!i_TotalTipsAmount) {
 			throw "Tips amount must be entered!";
@@ -750,7 +735,14 @@ $('#submit-button').click(function(e){
 			throw "All waiters names must be selected";
 		}
 		
-		this.TaxReduction = function() { return Math.ceil(k_TaxReductionPerHour * this.m_TotalHours);}
+        //abstract
+        this.sumHours = function(i_WaitersHoursArray)
+        {
+            this.m_TotalHours = 0;
+            for (var i = i_WaitersHoursArray.length - 1; i >= 0; i--) {
+                 this.m_TotalHours += parseFloat(i_WaitersHoursArray[i].Hours);
+            }
+        }
 		this.GetMoneyPerHour = function()
 		{
 			return this.m_MoneyPerHour;
@@ -758,12 +750,11 @@ $('#submit-button').click(function(e){
 		
 		ShiftData.prototype.CalculateTips = function()
         {
-            
-			this.m_TipsToExclude = this.TipsToExclude();
-			this.m_TotalTipsAmount -= this.m_TipsToExclude;
-			
-            this.m_TipsAfterTax = this.m_TotalTipsAmount - this.TaxReduction();
-			
+            this.sumHours(this.m_WaitersHoursArray);
+			this.m_TipsToIgnore = this.TipsToIgnore();
+			this.m_TotalTipsAmount -= this.m_TipsToIgnore;
+            this.m_TaxReduction = Math.ceil(k_TaxReductionPerHour * this.m_TotalHours);
+            this.m_TipsAfterTax = this.m_TotalTipsAmount - this.m_TaxReduction;
             this.m_TotalAllowance = this.GetTotalAllowance(this.m_TipsAfterTax);
 		    var barAllowance = Math.ceil(this.m_TotalAllowance * 0.25)
             var kitchenAllowance = this.m_TotalAllowance - barAllowance;
@@ -787,7 +778,7 @@ $('#submit-button').click(function(e){
 		
 		ShiftData.prototype.addTips = function(i_ShiftWaiterData)
 		{
-			var perHourToAdd = this.m_TipsToExclude / this.m_TotalHours;
+			var perHourToAdd = this.m_TipsToIgnore / this.m_TotalHours;
 			for (var i = 0; i < i_ShiftWaiterData.length; i++) {
 				i_ShiftWaiterData[i].EarnedInShift += i_ShiftWaiterData[i].Hours * perHourToAdd;
 			}
@@ -795,7 +786,7 @@ $('#submit-button').click(function(e){
 		
 		ShiftData.prototype.GetTotalAllowance = function(i_TipsAfterTax)
 		{
-			return (i_TipsAfterTax * this.m_AllowancePercent);
+			return Math.floor(i_TipsAfterTax * 0.12);
 		}
 	
 		ShiftData.prototype.DevideTipsAndGetResultArray = function(i_WaitersHoursArray, i_MoneyPerHour)
@@ -827,7 +818,7 @@ $('#submit-button').click(function(e){
 			}
 		}
 		
-		ShiftData.prototype.TipsToExclude = function()
+		ShiftData.prototype.TipsToIgnore = function()
 		{
 			return this.m_TotalTipsAmount * 0.2;
 		}
@@ -840,37 +831,15 @@ function ShiftDataWithTipsPercent (i_TotalTipsAmount, i_WaitersHoursArray, i_IsC
 	this.m_TipsPercentToExclude = i_TipsPercentToExclude;
 }
 ShiftDataWithTipsPercent.prototype = Object.create(ShiftData.prototype);
-ShiftDataWithTipsPercent.prototype.TipsPercentToExclude = function(){return this.m_TipsPercentToExclude;};
-ShiftDataWithTipsPercent.prototype.TipsToExclude = function(){return (this.TipsPercentToExclude())/100 * this.m_TotalTipsAmount ;};
-
+ShiftDataWithTipsPercent.prototype.TipsToIgnore = function(){return (this.m_TipsPercentToExclude)/100 * this.m_TotalTipsAmount ;};
 
 function ShiftDataWithSpecificAllowance (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_SpecificAllowance)
 {
-	ShiftDataWithTipsPercent.call(this, i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, 0);
-	var tipsPercentToExclude =  (((i_SpecificAllowance/this.m_AllowancePercent) - this.m_TotalTipsAmount + this.TaxReduction()) / - this.m_TotalTipsAmount)*100 ;
-	this.m_TipsPercentToExclude = (tipsPercentToExclude);
-
+	ShiftData.call(this, i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists);
+	this.m_SpecificAllowance = i_SpecificAllowance;
 }
-ShiftDataWithSpecificAllowance.prototype = Object.create(ShiftDataWithTipsPercent.prototype);
-
-
-function ShiftDataFactory()
-{
-	ShiftDataFactory.GetShiftData (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists)
-	{
-		return ShiftData(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists);
-	}
-	
-	ShiftDataFactory.GetShiftDataWithTipsPercent (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_TipsPercentToExclude)
-	{
-		return ShiftDataWithTipsPercent(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_TipsPercentToExclude)
-	}
-	
-	ShiftDataFactory.GetShiftDataWithSpecificAllowance (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_SpecificAllowance)
-	{
-		return GetShiftDataWithSpecificAllowance (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_SpecificAllowance);
-	}
-}
+ShiftDataWithSpecificAllowance.prototype = Object.create(ShiftData.prototype);
+ShiftDataWithSpecificAllowance.prototype.GetTotalAllowance = function(i_TipsAfterTax) {return this.m_SpecificAllowance};
 
 </script>
 

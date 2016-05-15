@@ -100,10 +100,11 @@ border-color: #aaaaaa;
 	}
 }
 
-.btn-social{position:relative;padding-left:44px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; margin-bottom: 10px;}.btn-social>:first-child{position:absolute;left:0;top:0;bottom:0;width:32px;line-height:34px;font-size:1.6em;text-align:center;border-right:1px solid #0f618b}
-.btn-facebook{color:#0f618b;background-color:transparent;border-color: #0f618b;font-size:small; height:35px; width: 300px; padding: 8px; }.btn-facebook:focus,.btn-facebook.focus{color:#fff;background-color:#0f618b;border-color:#0f618b}
+.btn-social{position:relative;padding-left:44px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; margin-bottom: 10px;}.btn-social>:first-child{position:absolute;left:0;top:0;bottom:0;width:32px;line-height:34px;font-size:1.6em;text-align:center;border-right:1px solid rgba(0,0,0,0.2)}
+.btn-facebook{color:#0f618b;background-color:transparent;border-color: #0f618b;font-size:small; height:35px; width: 300px; padding: 8px; }.btn-facebook:focus,.btn-facebook.focus{color:#fff;background-color:#2d4373;border-color:rgba(0,0,0,0.2)}
 
 </style>
+<link rel="stylesheet" href="font-awesome-4.6.2/css/font-awesome.css">
 
 </head>
 <body>
@@ -137,7 +138,7 @@ echo "</div>";
 		<ul style="list-style: none; padding-left:0;">
 			<li>
 				<a href=<?php echo htmlspecialchars($loginUrl) ;?>>
-				<button class="btn  btn-facebook   btn-social "><img  style="padding: 0px; padding-right: 0px; width:36px; height:33.5px;" src="imgs/fbicon.png">Login With Facebook
+				<button class="btn  btn-facebook   btn-social "><img  style="padding-top: 1px;"src="http://beachready365.com/wp-content/icons/facebook.png">Login With Facebook
 				</button>
 				<a/>
 			</li>

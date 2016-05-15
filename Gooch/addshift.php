@@ -58,7 +58,7 @@ else
 @media screen and (max-height: 450px)  {
 	.scrollable-menu {
 		height: auto;
-		max-height: 300px;
+		max-height: 310px;
 		overflow-x: hidden;
 	}
 }

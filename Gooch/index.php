@@ -137,7 +137,7 @@ echo "</div>";
 		<ul style="list-style: none; padding-left:0;">
 			<li>
 				<a href=<?php echo htmlspecialchars($loginUrl) ;?>>
-				<button class="btn  btn-facebook   btn-social "><img  style="padding: 0px; padding-right: 0px; width:36px; height:33.5px;" src="imgs/fbicon.png">Login With Facebook
+				<button class="btn  btn-facebook   btn-social "><img  style="padding-right: 0px; width:34px; height:32.5px;" src="imgs/fbicon.png">Login With Facebook
 				</button>
 				<a/>
 			</li>

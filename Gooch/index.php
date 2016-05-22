@@ -9,7 +9,7 @@ $fb = new Facebook\Facebook(array('app_id' => '123851931358081','app_secret' => 
 $helper = $fb->getRedirectLoginHelper();
 
 $permissions = ['email']; // Optional permissions
-$loginUrl = $helper->getLoginUrl('http://localhost/Gooch/fb_callback.php', $permissions);
+$loginUrl = $helper->getLoginUrl('https://tips-gooch.rhcloud.com/Gooch/fb_callback.php', $permissions);
 ?>
 
 <!DOCTYPE html>
@@ -137,7 +137,7 @@ echo "</div>";
 		<ul style="list-style: none; padding-left:0;">
 			<li>
 				<a href=<?php echo htmlspecialchars($loginUrl) ;?>>
-				<button class="btn  btn-facebook   btn-social "><img  style="padding-right: 0px; width:34px; height:32.5px;" src="imgs/fbicon.png">Login With Facebook
+				<button class="btn  btn-facebook   btn-social "><img  style="padding-right: 0px; width:34px; height:33px;" src="imgs/fbicon.png">Login With Facebook
 				</button>
 				<a/>
 			</li>

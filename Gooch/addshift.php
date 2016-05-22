@@ -6,7 +6,7 @@ require_once('config.php');
 
 
 $sql_query = "SELECT username_heb,id FROM users";
-$query_result = mysql_query($sql_query);
+$query_result = $mysqli->query($sql_query);
 $query_resut_array = array();
 
 if (!$query_result) {
@@ -15,11 +15,11 @@ if (!$query_result) {
     exit;
 }
 
-while($curr_row_in_query = mysql_fetch_assoc($query_result))
+while($curr_row_in_query = $query_result->fetch_assoc())
 {
 	$query_result_array[] = $curr_row_in_query;
 }
-mysql_close($server_connect_response);
+mysqli_close($mysqli);
 
 if(!isset($_SESSION["loggedin"]))
 {
@@ -28,13 +28,20 @@ if(!isset($_SESSION["loggedin"]))
 
 if(isset($_SESSION['fb_access_token']))
 {
-  require_once __DIR__ . '/facebook-sdk-v5/autoload.php';
+	try
+	{
+		require_once __DIR__ . '/facebook-sdk-v5/autoload.php';
 
-  $fb = new Facebook\Facebook(array('app_id' => '123851931358081','app_secret' => '5a3f6c3d3f10f796de6efbd88783b804','default_graph_version' => 'v2.5'));
-
-  $response = $fb->get('/me?fields=id,picture', $_SESSION['fb_access_token']);
-  $user = $response->getGraphUser();
-  $picUrl = $user->getPicture()['url'];
+		$fb = new Facebook\Facebook(array('app_id' => '123851931358081','app_secret' => '5a3f6c3d3f10f796de6efbd88783b804','default_graph_version' => 'v2.5'));
+	  
+		$response = $fb->get('/me?fields=id,picture', $_SESSION['fb_access_token']);
+		$user = $response->getGraphUser();
+		$picUrl = $user->getPicture()['url'];
+	}
+	catch(Exception $e)
+	{
+			header("Location: ./logout.php");	
+	}
 }
 else
 {
@@ -47,367 +54,18 @@ else
 <head  lang="he">
 <title>Gooch</title>
 <meta http-equiv="Content-Type" content="text/html"  charset="utf-8" />
-<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link href='https://fonts.googleapis.com/css?family=League+Script' rel='stylesheet' type='text/css'>
-<!-- Optional theme -->
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/selectize.default.css">
 <link rel="stylesheet" href="css/datepicker.css">
-<style>
-@media screen and (max-height: 450px)  {
-	.scrollable-menu {
-		height: auto;
-		max-height: 310px;
-		overflow-x: hidden;
-	}
-}
-::-webkit-input-placeholder {
-   text-align: center;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   text-align: center;  
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   text-align: center;  
-}
-
-:-ms-input-placeholder {  
-   text-align: center; 
-}
-#glyphicon-add, #glyphicon-minus {
-    font-size: 50px;
-}
-
-.jumbotron p {
-  margin-bottom: 15px;
-  font-size: 20px;
-  font-weight:100;
-
-}
-
-.jumbotron h1 {
-  margin-bottom: 15px;
-  font-weight:101;
-}
-body
-{
-    background-color:#ad8258;
-    color: #cdcdcd;
-  	padding-top: 70px;
-}
-
-h1
-{
-    padding: 5px;
-}
-
-.header-h1
-{
-	 font-weight:100;
-	 font-size:45px;"
-}
-
-.jumbotron {
-   background-color: #373f39;
-    margin-top:20px;
-	padding: 10%;
-}
-.navbar-collapse {
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-   font-weight: 300;
-    max-height: 100% !important;
-}
-.brand-small, .brand-small:checked, .brand-small:visited, .brand-small:link  {
-	color: #ededed; font-family: League Script;
-	font-size: 35px;
-  margin-left: 10px;
-  margin-right: 40px;
-  padding: 30px;
-  text-decoration: none;
-}
-.brand-small:hover {
-	color: #ffffff; font-family: League Script;
-	font-size: 35px;
-  text-decoration: none;
-
-}
-
-.navbar-header:checked
-{
-    text-decoration: none;
-}
-
-.input-group
-{
-    width: 96%;
-}
-
-.form-control
-{
-   background-color: inherit;
-   margin-left: 7px;
-}
-
-.waiter-name-input , #tips-input, .number-input
-{
-	width: 200px;
-	color: white !important;
-	text-align:center;
-}
-
-.white, .white a {
-  color: #fff;
-}
-
-
-
-input[type=range] {
-  -webkit-appearance: none;
-  margin: 10px 0;
-  width: 100%;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 12.8px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  border: 0px solid #000101;
-  
-  background:  #be7622;
-}
-input[type=range]::-webkit-slider-thumb {
-  border: 0px solid #000000;
-  height: 35px;
-  width: 39px;
-  opacity: 0.8;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -10px;
-   
-  border-radius: 7px;
-  
-   border-color: #ffffff;
-   background: #2b8eff;
-   border-width: 2px;
-
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background:  #be7622;;
-
-}
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 12.8px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  
-  background: #be7622;;
-}
-input[type=range]::-moz-range-thumb {
-  height: 35px;
-  width: 39px;
-  opacity: 0.8;
-  cursor: pointer;
-  
-  border-color: #ffffff;
-  background: #2b8eff;
-  border-width: 2px;
-}
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 12.8px;
-  cursor: pointer;
-  animate: 0.2s;
-  border-width: 39px 0;
-  
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-  border: 0px solid #000101;
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-
-  border-radius: 50px;
-  background:  #be7622;;
-  
-}
-input[type=range]::-ms-fill-upper {
-  border: 0px solid #000101;
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  
-  background:  #be7622;
-}
-input[type=range]::-ms-thumb {
-  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-  border: 0px solid #000000;
-  height: 35px;
-  width: 39px;
-  cursor: pointer;
-  margin-top: 2px;
-  
-  border-radius: 7px;
-  opacity: 0.8;
-  
-  border-color: #ffffff;
-  background: #2b8eff;
-  border-width: 2px;
-}
-input[type=range]:focus::-ms-fill-lower {
-  background: #be7622;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #a62c1c;
-}
-
-
-.range-value-style {
-  text-align: center;
-  font-size: 30px;
-  display: block;
-  width: 100%;
-  color: #FFFFFF;
-  font-family: monospace;
-}
-
-.add-remove-control {
-	padding-top: 20px;
-}
-.add-remove-control .default-input-style:hover {
-	color: 	#9c702b;
-	overflow: visible !important;
-
-}
-.default-input-style {
-	min-width:30px;
-	color: #d4a449;
-	margin-bottom: 9px;
-	font-size: x-small;
-	background-color: transparent;
-    transition: all .5s;
-	border-width: 1px;
-	border-color: #9c702b;
-}
-
-
-:checked + span { color: #2b8eff;  }
-.default-input-style:hover
-{
-		color: #2b8eff;
-}
-
-
-@media (max-width: 1081px) {
-    .navbar-header {
-        float: none;
-    }
-    .navbar-toggle {
-        display: block;
-    }
-    .navbar-collapse {
-        border-top: 1px solid transparent;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-    .navbar-collapse.collapse {
-        display: none!important;
-    }
-    .navbar-nav {
-        float: none!important;
-        margin: 7.5px -15px;
-    }
-    .navbar-nav>li {
-        float: none;
-    }
-    .navbar-nav>li>a {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-    .navbar-text {
-        float: none;
-        margin: 15px 0;
-    }
-    /* since 3.1.0 */
-    .navbar-collapse.collapse.in { 
-        display: block!important;
-    }
-    .collapsing {
-        overflow: hidden!important;
-    }
-}
- .btn-group>.btn
-    {
-        white-space: nowrap;
-        overflow: hidden;
-    }
-.hours-picker-wrapper
-{
-  transition: all 0.9s;
-  opacity: 0; 
-
-}
-
-
-@media screen and (max-width: 1081px)  {
-    .navbar-header
-    {
-       padding-left: 70px;
-       text-align: center;
-    }
-}
-.navbar-brand,
-.navbar-nav li a {
-    line-height: 50px;
-    height: 50px;
-    padding-top: 0;
-}
-
-input[readonly]
-{
-	    background-color: transparent!important;
-}
-.popover-title {
-	background-color: #993333;
-	font-family: cursive;
-    font-size: 15px;
-}
-.popover-content {
-	background-color: #28325a;
-    color: #d8d2ba;
-    font-size: 15px;
-	font-family: Helvetica-Neue;
-}
-.container
-{
-	padding: 8px;
-	border-width:4px;
-	border-color:black;
-}
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
-  user-select: none;           /* Non-prefixed version, currently
-                                  not supported by any browser */
-}
-</style>
-
+<link rel="stylesheet" href="css/gooch.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
 <nav class="navbar navbar-full navbar-fixed-top  navbar-inverse bg-faded">
-  <div class="container-fluid"   style="
-    margin-top: 2px;">
+  <div class="container-fluid"  style="margin-top: 2px;">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header" style="
     margin-top: 2px; overflow: hidden;">
@@ -443,16 +101,12 @@ input[readonly]
 </nav>
 
 
-<!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container" style="text-align: center">
         <h1 class="header-h1">Add New Shift</h1>
         <p>
-			Here you can add a new shift;
-			please first enter the working hours for each waiter in the shift, then enter the total amount of tips.
-			You may also change the number of waiters using the plus/minus controls below,
-			and also specify a different date from current one by the date picker.
-        </p>
+			Here you can add a new shift.
+			please first enter the working hours for each waiter, then enter the total amount of tips.        </p>
 			<a href="#" class="btn btn-lg  default-input-style">Edit Shift</a>
 			<a href="#" class="btn btn-lg default-input-style">Latest Shifts</a>
 
@@ -471,7 +125,7 @@ input[readonly]
 			<div class="row">
 				<div class="col-lg-4" align="center">
 					<div class="jumbotron">
-						
+						 <h1 class="header-h1">Hours</h1>
 						<div class="input-group" id="hours-input"></div>
 						<div class="btn-group add-remove-control" data-toggle="buttons" id="addRemoveControl">
               <label class="btn default-input-style" style="padding: 10px;">
@@ -497,10 +151,10 @@ input[readonly]
 							<p>Extra Data</p>		
 							<div class="btn-group" data-toggle="buttons">
 								<label class="btn default-input-style active  col-xs-6">
-									<input type="radio" name="shift-type" id="morning-shift-input" autocomplete="off"/><span>Morning Shift</span>
+									<input type="radio" name="shift-type"  value='morning' id="morning-shift-input" autocomplete="off"/><span>Morning Shift</span>
 								</label>
 								<label class="btn default-input-style  col-xs-6">
-									<input type="radio" name="shift-type" id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
+									<input type="radio" name="shift-type"  value ='evening' id="evening-shift-input" autocomplete="off"/><span>Evening Shift</span>
 								</label>
 							</div>
 							<div class="btn-group" data-toggle="buttons">
@@ -514,23 +168,25 @@ input[readonly]
 						</div>
 						<div class="container">
 							<p>Tips:</p>
-							<input type="number" class="form-control default-input-style" id="tips-input" min="0" placeholder="<< Total Tips >>">
+							<input type="number" class="form-control default-input-style" id="tips-input" min="0">
 						</div>
-						<div class="container">
-							<p>Total Allowance:</p>
-							<input type="number" class="form-control default-input-style number-input" min="0" step="0.01" id="total-allowance" placeholder="Total Allowance" style="text-align:center;">
+						<div class="extended">
+							<div class="container">
+								<p>Total Allowance:</p>
+								<input type="number" class="form-control default-input-style number-input" min="0" step="0.01" id="total-allowance" style="text-align:center;">
+							</div>
+							<div class="container">
+								<p>Percent to Exclude:</p>
+								<input type="number" class="form-control default-input-style number-input" min="0" step="0.01" id="tips-percent">
+							</div>
+							<div class="container">
+								<p>Tips per Hour: <small id='tips-per-hour'>[Not Available]</small></p>
+							</div>
+							<div class="container">
+								<p>Tips per Hour Real: <small id='tips-per-hour-real'>[Not Available]</small></p>
+							</div>
 						</div>
-						<div class="container">
-							<p>Percent to Exclude:</p>
-							<input type="number" class="form-control default-input-style number-input" min="0" step="0.01" id="tips-percent" placeholder="% From Tips">
-						</div>
-						<div class="container">
-							<p>Tips per Hour: <small id='tips-per-hour'>[Not Available]</small></p>
-						</div>
-						<div class="container">
-							<p>Tips per Hour Real: <small id='tips-per-hour-real'>[Not Available]</small></p>
-						</div>
-						<input type="submit" class="btn default-input-style btn-lg" id="submit-button" value="Submit Shift" style="width: 50%; margin-top: 50px;" >
+						<a href="#waiters-data" class="btn default-input-style btn-lg" id="submit-button" style="width: 50%; margin-top: 50px;" >Submit Shift</a>
 
 					</div><!-- /.jumbotron -->
 				</div><!-- /.col-lg-4 -->
@@ -539,8 +195,8 @@ input[readonly]
 					<div class="col-lg-4"  align="center">
             <div class="jumbotron">
              <div class="container">
-             <p>Latest Shift</p>
-			 
+             <h3 class="header-h1">Waiters Data</h3>
+			 <div id='waiters-data'></div>
 
              </div>
            </div>
@@ -569,419 +225,25 @@ input[readonly]
 <script src="js/bootstrap-datepicker.js"></script>
 
 <script>
-const initialNumOfWaiters = 1;
-var numOfWaiters = 0;
-var defaultHoursNum = 6;
 var completionOptions = <?php echo json_encode($query_result_array); ?>;
-
-
-var getHtmlOptionValuesForWaiterSelect = "<option value=''>Waiter Name</option>";
-for(var j = 0; j < completionOptions.length; ++j)
+function ShiftBasicData()
 {
-	getHtmlOptionValuesForWaiterSelect += "<option value='" + completionOptions[j].id + "'>" + completionOptions[j].username_heb  + "</option>";
-}
-getHtmlOptionValuesForWaiterSelect += "</select>";
-
-function getHtmlwaiterPicker(pickerId) {
-	var htmlSelectWaiterCode = "<select id='" + pickerId +"' class='waiter-name-input'>";
-	htmlSelectWaiterCode += getHtmlOptionValuesForWaiterSelect;
-	htmlSelectWaiterCode += "</select>";
-	return htmlSelectWaiterCode;
-}
-
-for(var i=0; i<initialNumOfWaiters; i++)
-{
-	appendWaiterPicker();
-}
-
-function getHtmlRangePicker(id, initialHours)
-{
-	var htmlRangePicker = '';
-	htmlRangePicker += "<output class='range-value-style' id='rangevalue"+ id +"'>"+ initialHours +"</output> <center><small style='position:absolute; margin-left:48px; margin-top:-38px;'>[Hours]</small>";
-    htmlRangePicker += "<input type='range' value='" + initialHours + "' min='0.25' max='12' step='0.25' style='margin-left: 6px' id='hour-"+ id +"-input' oninput='updateHourOutput("+ id +",this.value) '/><br>";
-
-	return htmlRangePicker;
-}
-
-
-
-function appendWaiterPicker() {
-	var htmlSelectHoursCode = "<div class='hours-picker-wrapper' id='hours-picker-wrapper" + numOfWaiters + "'>";
-
-	htmlSelectHoursCode += "<center>";
-	htmlSelectHoursCode += getHtmlRangePicker(numOfWaiters, defaultHoursNum);
-	htmlSelectHoursCode += getHtmlwaiterPicker("waiter-select" + numOfWaiters);
-	htmlSelectHoursCode += "<div id='err-msg"+ numOfWaiters +"' style='height:0px;width:0px;'></div>"
-	htmlSelectHoursCode += "<div id='result" + numOfWaiters + "'></div>";
-
-	htmlSelectHoursCode += "</center>";
-	htmlSelectHoursCode += "</br>"
-	htmlSelectHoursCode += "</div>"
-
-	$("#hours-input").append(htmlSelectHoursCode);
-	$('#waiter-select' + numOfWaiters).selectize
-	({
-		maxItems:1,
-		create: false,
-		sortField: 'text',
-		onChange: function(value) {
-			var currentElementIndex;
-			var isAlreadySelected = false;
-			for (var i=0; i < numOfWaiters; i++)
-			{	
-				if ($('#waiter-select' + i)[0].selectize != this)
-				{
-					if ($("#waiter-select" + i +" option:selected").val() == value && value) {
-						isAlreadySelected = true;
-					}
-				}
-				else{
-					currentElementIndex = i;
-				}
-			}
-			if (isAlreadySelected)
-			{
-				this.setValue('');
-				$('#err-msg' + currentElementIndex).popover({
-				title:"Error!",
-				placement: 'bottom',
-				trigger:'manual',
-				});
-			   $('#err-msg' + currentElementIndex).attr('data-content',"Waiter Already Selected");
-			   $('#err-msg' + currentElementIndex).popover("show");
-			   setTimeout(function(){ $('#err-msg' + currentElementIndex).popover("hide");}, 2000)
-			}
-		}
-	});
-	
-    var newElement = document.getElementById("hours-picker-wrapper" + numOfWaiters);
-    newElement.style.opacity = 1;
-	numOfWaiters++;
-}
-
-
-function updateHourOutput(outputid, newValue)
-{
-	document.getElementById("rangevalue"+outputid).innerHTML = newValue;
-	onRangeChange(outputid);
-}
-function removeLastWaiterPicker() {
-	if (numOfWaiters >= 1) {
-		numOfWaiters--;
-		var elementToRemove = document.getElementById("hours-picker-wrapper" + numOfWaiters);
-		elementToRemove.style.opacity = 0;
-		setTimeout(function(){elementToRemove.parentNode.removeChild(elementToRemove);}, 570)
-	}
-}
-
-$('#datePicker').datepicker({
-  container:'#datePickerContainer',
-  orientation: "left",
-  autoclose: true
-  
-});
-
-var currentDate = new Date();
-var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
-if (currentDate.getHours() >= 10){
-	 $('#datePicker').datepicker('setDate', currentDate);
-	 $("#morning-shift-input").checked = true;
-	 document.getElementById("morning-shift-input").checked = true;
-}
-else {
-	$('#datePicker').datepicker('setDate', yesterday);
-	document.getElementById("evening-shift-input").checked = true;
-}
-
-
-document.getElementById("brand-text").addEventListener('doubleTap', touched);
-function touched()
-{
-		alert('d');
-
-	preventDefault();
-}
-
-function checkPercentValueAndGetOpts()
-{
-	var tipsPercentValue = $('#tips-percent').val();
-	var opts;
-	if (tipsPercentValue) {
-		opts = ['percent', tipsPercentValue]
-	}
-	
-	return opts;
-}
-
-
-function getWaiterArrayDataFromHtml()
-{
-	var waiterHoursArray = [];
-	for (var i=0; i < numOfWaiters; i++){
-		var selectElement = document.getElementById("waiter-select"+ i);
-		var rangeValue = document.getElementById("hour-" + i + "-input").value;
-		if (selectElement.value === "") {
-			throw "All waiters names must be selected"
-		}
-			waiterHoursArray[i] = {
-				Id: selectElement.value,
-				Name:selectElement.textContent,
-				Hours: rangeValue
-			};
-		}
-	
-	return waiterHoursArray;	
-}
-
-
-
-
-
-
-
-function PopulateData(objectIdOfPopluator, opts) {
-	var jqueryObjectName = '#' + objectIdOfPopluator;
-		try {
-		  var waitersHourArray = getWaiterArrayDataFromHtml();
-		  var totalTips = $('#tips-input').val();
-		  var checkerRadio = $("input[type='radio'][name='checker-exists']:checked");
-		  var checkerOn = (checkerRadio.val() == "on");
-		  var shiftData = ShiftDataFactory(totalTips, waitersHourArray, checkerOn , opts);
-		  shiftData.CalculateTips();
-		  $(jqueryObjectName).popover("hide");
-		  
-		  return shiftData;
-	  } catch(e) {
-		  $(jqueryObjectName).popover({
-			  title:"Error!",
-			  placement: 'bottom',
-			  trigger:'manual',
-		  });
-		  $(jqueryObjectName).attr('data-content',e);
-		 $(jqueryObjectName).popover("show");
-		 setTimeout(function(){ $(jqueryObjectName).popover("hide");}, 2000)
-
-	
-		 return null;
-	  }
-}
-
-$('#tips-percent').on('input',function(e){
-	var opts = checkPercentValueAndGetOpts()
-	var shiftData = PopulateData('tips-percent', opts);
-	$('#total-allowance').val(shiftData.m_TotalAllowance);
-	$('#tips-per-hour').html(shiftData.m_MoneyPerHour);
-	$('#tips-per-hour-real').html(shiftData.m_MoneyPerHourAfterInclusion);
-});
-
-$('#total-allowance').on('input',function(e){
-	var opts = ['allowance', $(this).val()]
-	var shiftData = PopulateData('total-allowance', opts);
-	$('#tips-percent').val(shiftData.m_TipsPercentToExclude);
-	$('#tips-per-hour').html(shiftData.m_MoneyPerHour);
-	$('#tips-per-hour-real').html(shiftData.m_MoneyPerHourAfterInclusion);
-
-
-});
-
-$('#tips-input').on('input',function(){
-	 var opts = checkPercentValueAndGetOpts()
-	 var shiftData = PopulateData('tips-input', opts);
-	 $('#tips-percent').val(shiftData.m_TipsPercentToExclude);
-	 $('#total-allowance').val(shiftData.m_TotalAllowance);
-	 $('#tips-per-hour').html(shiftData.m_MoneyPerHour);
-	 $('#tips-per-hour-real').html(shiftData.m_MoneyPerHourAfterInclusion);
-});
-var onRangeChange = function(calleeIndex)
-{
-	
-	var opts = checkPercentValueAndGetOpts()
-	if ($('#tips-input').val()) {
-		var shiftData = PopulateData('err-msg'+ calleeIndex, opts);
-		$('#tips-percent').val(shiftData.m_TipsPercentToExclude);
-		$('#total-allowance').val(shiftData.m_TotalAllowance);
-		$('#tips-per-hour').html(shiftData.m_MoneyPerHour);
-		$('#tips-per-hour-real').html(shiftData.m_MoneyPerHourAfterInclusion);
-	}
-}
-
-$('#submit-button').click(function(){
-	var opts = checkPercentValueAndGetOpts()
-	 var shiftData = PopulateData('submit-button', opts);
-	 $('#tips-percent').val(shiftData.m_TipsPercentToExclude);
-	 $('#total-allowance').val(shiftData.m_TotalAllowance);
-	 $('#tips-per-hour').html(shiftData.m_MoneyPerHour);
-	 $('#tips-per-hour-real').html(shiftData.m_MoneyPerHourAfterInclusion);
-	shiftData = JSON.stringify(shiftData);
-	 $.ajax({
-    type: 'POST',
-    url: 'saveshift.php',
-	data: {text:shiftData},
-	success: function(msg) {
-      alert(msg);
-    }
-  });
-	 
-});
-
- // i_WaitersHoursArray expecting {Id: ,Name: ,Hours: }
-    function ShiftData(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists)
-    {
-        const k_TaxReductionPerHour = 6;
-        const k_CheckersAllowance = 20;
-        this.m_AllowancePercent = 0.12;
-        this.m_TotalTipsAmount = i_TotalTipsAmount;
-        this.m_WaitersHoursArray = i_WaitersHoursArray;
-        this.m_isCheckerExists = i_IsCheckerExists;
-		this.m_TipsPercentToExclude = 20;
-        this.m_TipsToExclude = 0;
-        this.m_TipsAfterTax = 0;
-        this.m_TotalAllowance = 0;
-        this.m_MoneyPerHour = 0;
-        this.m_TotalHours = (function(waitersHoursArray)
-        {
-            var totalHours = 0;
-            for (var i = waitersHoursArray.length - 1; i >= 0; i--) {
-                 totalHours += parseFloat(waitersHoursArray[i].Hours);
-            }
-			
-			return totalHours;
-        })(i_WaitersHoursArray)
+        var checkerRadio = $("input[type='radio'][name='checker-exists']:checked");
+        var shiftTypeRadio = $("input[type='radio'][name='shift-type']:checked");
 		
-        
-		if (!i_TotalTipsAmount) {
-			throw "Tips amount must be entered!";
-		}
-		if (!i_WaitersHoursArray) {
-			throw "All waiters names must be selected";
-		}
-		
-		this.TaxReduction = function() { return Math.ceil(k_TaxReductionPerHour * this.m_TotalHours);}
-		this.GetMoneyPerHour = function()
-		{
-			return this.m_MoneyPerHour;
-		}
-		
-		ShiftData.prototype.CalculateTips = function()
-        {
-            
-			this.m_TipsToExclude = this.TipsToExclude();
-			this.m_TotalTipsAmount -= this.m_TipsToExclude;
-            this.m_TipsAfterTax = this.m_TotalTipsAmount - this.TaxReduction();
-            this.m_TotalAllowance = this.GetTotalAllowance(this.m_TipsAfterTax);
-		    var barAllowance = Math.ceil(this.m_TotalAllowance * 0.25)
-            var kitchenAllowance = this.m_TotalAllowance - barAllowance;
-            var kitchenAllowanceAfterCheckersReduction = kitchenAllowance - k_CheckersAllowance;
-            var tipsAfterAllReduction = this.m_TipsAfterTax - this.m_TotalAllowance;
-			
-            if(this.m_isCheckerExists == false)
-            {
-                 tipsAfterAllReduction += k_CheckersAllowance;
-            }
-
-            this.m_MoneyPerHour = (tipsAfterAllReduction / this.m_TotalHours).toFixed(2);
-
-            var shiftWaiterData = this.DevideTipsAndGetResultArray(this.m_WaitersHoursArray, this.m_MoneyPerHour);
-
-            this.addTips(shiftWaiterData);
-            this.devideRemainder(shiftWaiterData);
-
-            return shiftWaiterData;
-        }
-		
-		ShiftData.prototype.addTips = function(i_ShiftWaiterData)
-		{
-			var perHourToAdd = this.m_TipsToExclude / this.m_TotalHours;
-			this.m_MoneyPerHourAfterInclusion  = (perHourToAdd + parseInt(this.m_MoneyPerHour)).toFixed(2);
-
-			for (var i = 0; i < i_ShiftWaiterData.length; i++) {
-				i_ShiftWaiterData[i].EarnedInShift += i_ShiftWaiterData[i].Hours * perHourToAdd;
-			}
-		}
-		
-		ShiftData.prototype.GetTotalAllowance = function(i_TipsAfterTax)
-		{
-			return (i_TipsAfterTax * this.m_AllowancePercent).toFixed(2);;
-		}
-	
-		ShiftData.prototype.DevideTipsAndGetResultArray = function(i_WaitersHoursArray, i_MoneyPerHour)
-		{
-			var shiftWaitersData = [];
-			for (var i = 0; i < i_WaitersHoursArray.length; i++) {
-			shiftWaitersData[i] = {
-				Id: i_WaitersHoursArray[i].Id,
-				Name: i_WaitersHoursArray[i].Name,
-				Hours: i_WaitersHoursArray[i].Hours,
-				EarnedInShift: parseFloat(i_WaitersHoursArray[i].Hours * i_MoneyPerHour)
-			};
-		  }  
-	
-		   return shiftWaitersData;
-		}
-	
-		ShiftData.prototype.devideRemainder = function (i_ShiftWaiterData) {
-			var remainder = 0;
-			for (var i = 0; i < i_ShiftWaiterData.length; i++) {
-				remainder += i_ShiftWaiterData[i].EarnedInShift % 1;
-				i_ShiftWaiterData[i].EarnedInShift = Math.floor(i_ShiftWaiterData[i].EarnedInShift);
-			}
-	
-			remainder = Math.floor(remainder);
-			for (var i = 0; i < remainder; i++) {
-				var waiterIndexToAdd = i % i_ShiftWaiterData.length;
-				i_ShiftWaiterData[waiterIndexToAdd].EarnedInShift++;
-			}
-		}
-		
-		ShiftData.prototype.TipsToExclude = function()
-		{
-			return this.m_TotalTipsAmount * this.m_TipsPercentToExclude/100;
-		}
-    }
-	
-	
-function ShiftDataWithTipsPercent (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_TipsPercentToExclude)
-{
-	ShiftData.call(this, i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists);
-	this.m_TipsPercentToExclude = i_TipsPercentToExclude;
+        this.m_WaitersHourArray = getWaiterArrayDataFromHtml();
+        this.m_TotalTips = $('#tips-input').val();
+        this.m_CheckerOn = (checkerRadio.val() == "on");
+        this.m_IsMorning = (checkerRadio.val() == "morning");
+        this.m_Date = new Date($("#datePicker").val());
 }
-ShiftDataWithTipsPercent.prototype = Object.create(ShiftData.prototype);
-ShiftDataWithTipsPercent.prototype.TipsPercentToExclude = function(){return this.m_TipsPercentToExclude;};
-ShiftDataWithTipsPercent.prototype.TipsToExclude = function(){return (this.TipsPercentToExclude())/100 * this.m_TotalTipsAmount ;};
-
-
-function ShiftDataWithSpecificAllowance (i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, i_SpecificAllowance)
-{
-	ShiftDataWithTipsPercent.call(this, i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, 0);
-	var tipsPercentToExclude =  (((i_SpecificAllowance/this.m_AllowancePercent) - this.m_TotalTipsAmount + this.TaxReduction()) / - this.m_TotalTipsAmount)*100 ;
-	this.m_TipsPercentToExclude = (tipsPercentToExclude);
-
-}
-ShiftDataWithSpecificAllowance.prototype = Object.create(ShiftDataWithTipsPercent.prototype);
-
-
-function ShiftDataFactory(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, opts)
-{
-	if (opts) {
-		if (opts[0] == 'percent') {
-			var tipsPercentToExclude = opts[1];
-			return new ShiftDataWithTipsPercent(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, tipsPercentToExclude)
-		}
-		else if (opts[0] == 'allowance') {
-			var specificAllowance = opts[1];
-			return new ShiftDataWithSpecificAllowance(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists, specificAllowance);
-		}
-		else{
-			throw "Option is not valid";
-		}
-	}
-	else  {
-		return new ShiftData(i_TotalTipsAmount, i_WaitersHoursArray, i_IsCheckerExists);
-	}
-}
-
-
 </script>
+<script src="js/gooch.js"></script>
 
 </body>
 </html>
+
+
+
+
+

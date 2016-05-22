@@ -6,14 +6,14 @@ $input_was_given = isset($_POST["password-input"]) && isset($_POST["username-inp
 
 
 $sql_query = "SELECT password,id,username_heb FROM users WHERE username='".$safe_username_input."'";
-$query_result = mysql_query($sql_query);
+$query_result = mysqli_query($mysqli, $sql_query);
 if (!$query_result) {
     echo "DB Error, could not process the query\n";
-    echo 'MySQL Error: ' . mysql_error();
+    echo 'MySQL Error: ' . mysqli_error($mysqli);
     exit;
 }
 
-$first_row_in_query_result = mysql_fetch_assoc($query_result);
+$first_row_in_query_result = mysqli_fetch_assoc($query_result);
 $password_is_matching = hash("sha256", $safe_password_input) == $first_row_in_query_result['password'];
 
 if($input_was_given && $password_is_matching)
@@ -30,7 +30,7 @@ header("Location: ./index.php?login_failed");
 }
 
 
- mysql_close($server_connect_response);
+ mysqli_close($server_connect_response);
 
 ?>
 

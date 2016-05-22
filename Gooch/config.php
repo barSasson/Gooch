@@ -1,15 +1,16 @@
 <?php
-$servername = "127.7.203.2:3306";
-$server_login_username = "adminGeMF3HG";
-$server_login_password = "_kTYqdlwMtE9";
-$database_name = "tips";
+$servername = "127.9.124.2:3306";
+$server_login_username = "adminUbfgc62";
+$server_login_password = "f_kHaNi63ccf";
+$database_name = "dizz";
 // Create connection
-$server_connect_response = mysql_connect($servername, $server_login_username, $server_login_password);
-if (!$server_connect_response) {
- die("Database connection failed " . mysql_error());
+$mysqli = mysqli_connect($servername, $server_login_username, $server_login_password, $database_name);
+
+if (!$mysqli) {
+ die("Database connection failed " . mysqli_error());
  }
- 
-mysql_select_db($database_name);
-mysql_query("SET NAMES 'utf8'");
+mysqli_query($mysqli, "SET NAMES 'utf8'");
+
 ?>
+
 

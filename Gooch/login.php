@@ -15,7 +15,9 @@ if (!$query_result) {
 
 $first_row_in_query_result = mysqli_fetch_assoc($query_result);
 $password_is_matching = hash("sha256", $safe_password_input) == $first_row_in_query_result['password'];
-echo $password_is_matching;
+var_dump($first_row_in_query_result);
+var_dump($password_is_matching);
+var_dump($$first_row_in_query_result['password']);
 exit;
 if($input_was_given && $password_is_matching)
 {

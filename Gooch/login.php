@@ -5,7 +5,7 @@ $safe_password_input = $_POST["password-input"];
 $input_was_given = isset($_POST["password-input"]) && isset($_POST["username-input"]);
 
 
-$sql_query = "SELECT password,id,username_heb FROM users WHERE username='".$safe_username_input."'";
+$sql_query = "SELECT password,id,username_heb FROM users WHERE username='gooch'";
 $query_result = mysqli_query($mysqli, $sql_query);
 if (!$query_result) {
     echo "DB Error, could not process the query\n";

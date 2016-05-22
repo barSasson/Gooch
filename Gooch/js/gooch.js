@@ -208,7 +208,6 @@ function getWaiterArrayDataFromHtml()
     return waiterHoursArray;
 }
 
-
 function ShiftBasicData()
 {
         var checkerRadio = $("input[type='radio'][name='checker-exists']:checked");

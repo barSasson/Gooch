@@ -226,17 +226,6 @@ else
 
 <script>
 var completionOptions = <?php echo json_encode($query_result_array); ?>;
-function ShiftBasicData()
-{
-        var checkerRadio = $("input[type='radio'][name='checker-exists']:checked");
-        var shiftTypeRadio = $("input[type='radio'][name='shift-type']:checked");
-		
-        this.m_WaitersHourArray = getWaiterArrayDataFromHtml();
-        this.m_TotalTips = $('#tips-input').val();
-        this.m_CheckerOn = (checkerRadio.val() == "on");
-        this.m_IsMorning = (checkerRadio.val() == "morning");
-        this.m_Date = new Date($("#datePicker").val());
-}
 </script>
 <script src="js/gooch.js"></script>
 

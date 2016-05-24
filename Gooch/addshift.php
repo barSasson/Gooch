@@ -190,20 +190,15 @@ else
 
 					</div><!-- /.jumbotron -->
 				</div><!-- /.col-lg-4 -->
-				
-				
 					<div class="col-lg-4"  align="center">
-            <div class="jumbotron">
-             <div class="container">
-             <h3 class="header-h1">Waiters Data</h3>
-			 <div id='waiters-data'></div>
-
-             </div>
-           </div>
+			            <div class="jumbotron">
+				             <div class="container">
+					             <h3 class="header-h1">Waiters Data</h3>
+								 <div id='waiters-data'></div>
+				             </div>
+			            </div>
 					</div><!-- /.col-lg-4 -->
-
 					<div class="col-lg-4">
-						
 					</div><!-- /.col-lg-4 -->
 				</div><!-- /.row -->
 			<hr>
@@ -217,7 +212,6 @@ else
 	
 	
 <script src="js/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/moment.js"></script>
 <script src="js/TouchGestures.js" type="text/javascript" charset="utf-8"></script>
